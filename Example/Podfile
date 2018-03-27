@@ -1,0 +1,11 @@
+use_frameworks!
+
+target 'RectangleScanner_Example' do
+  pod 'RectangleScanner', :path => '../'
+
+  target 'RectangleScanner_Tests' do
+    inherit! :search_paths
+
+    
+  end
+end
