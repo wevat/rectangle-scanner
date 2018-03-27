@@ -24,7 +24,6 @@
 import Foundation
 import ARKit
 
-@available(iOS 11.0, *)
 extension ARHitTestResult {
     var worldVector: SCNVector3 {
         get {
@@ -35,7 +34,6 @@ extension ARHitTestResult {
     }
 }
 
-@available(iOS 11.0, *)
 extension Array where Element:ARHitTestResult {
     var closest: ARHitTestResult? {
         get {

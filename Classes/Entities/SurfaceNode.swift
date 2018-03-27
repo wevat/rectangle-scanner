@@ -22,7 +22,6 @@
 
 import ARKit
 
-@available(iOS 11.0, *)
 class SurfaceNode: SCNNode {
     
     private(set) var anchor: ARPlaneAnchor

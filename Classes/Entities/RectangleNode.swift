@@ -27,7 +27,6 @@ import Vision
 
 private let meters2inches = CGFloat(39.3701)
 
-@available(iOS 11.0, *)
 class RectangleNode: SCNNode {
     
     convenience init(_ planeRectangle: PlaneRectangle) {

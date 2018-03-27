@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import RectangleScanner
 
 class ViewController: UIViewController {
 

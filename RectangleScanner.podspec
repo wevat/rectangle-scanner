@@ -19,7 +19,7 @@ Pod::Spec.new do |s|
 
   s.description      = <<-DESC
 Use this library to scan rectangles.
-Simply point, tap & hold, and voila.
+Simply point at a rectangle, tap & hold, and voila.
 Our favourite is receipts, however we don't judge you based on your rectangle preference.
                        DESC
 
@@ -30,7 +30,7 @@ Our favourite is receipts, however we don't judge you based on your rectangle pr
   s.source           = { :git => 'https://github.com/wevat/rectangle-scanner.git', :tag => '0.1.0' }
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
-  s.ios.deployment_target = '11.0'
+  s.ios.deployment_target = '9.0'
   s.swift_version = '4.0'
 
   s.source_files = 'RectangleScanner/Classes/**/*'

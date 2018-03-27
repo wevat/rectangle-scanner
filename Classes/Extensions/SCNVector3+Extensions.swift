@@ -21,28 +21,26 @@
 //    SOFTWARE.
 
 
-import Foundation
 import ARKit
 
-@available(iOS 11.0, *)
-extension ARHitTestResult {
-    var worldVector: SCNVector3 {
-        get {
-            return SCNVector3Make(worldTransform.columns.3.x,
-                                  worldTransform.columns.3.y,
-                                  worldTransform.columns.3.z)
-        }
-    }
-}
-
-@available(iOS 11.0, *)
-extension Array where Element:ARHitTestResult {
-    var closest: ARHitTestResult? {
-        get {
-            return sorted { (result1, result2) -> Bool in
-                return result1.distance < result2.distance
-            }.first
-        }
+extension SCNVector3 {
+    func distance(from vector: SCNVector3) -> CGFloat {
+        let deltaX = self.x - vector.x
+        let deltaY = self.y - vector.y
+        let deltaZ = self.z - vector.z
+        
+        return CGFloat(sqrt(deltaX * deltaX + deltaY * deltaY + deltaZ * deltaZ))
     }
     
+    func midpoint(from vector: SCNVector3) -> SCNVector3 {
+        let midX = (self.x + vector.x) / 2
+        let midY = (self.y + vector.y) / 2
+        let midZ = (self.z + vector.z) / 2
+        return SCNVector3Make(midX, midY, midZ)
+    }
+    
+    // from Apples demo APP
+    static func positionFromTransform(_ transform: matrix_float4x4) -> SCNVector3 {
+        return SCNVector3Make(transform.columns.3.x, transform.columns.3.y, transform.columns.3.z)
+    }
 }

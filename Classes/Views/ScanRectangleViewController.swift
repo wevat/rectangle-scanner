@@ -15,7 +15,6 @@ public protocol ScanRectangleDelegate: class {
     func scanCompleted(withImage: UIImage)
 }
 
-@available(iOS 11.0, *)
 public class ScanRectangleViewController: UIViewController {
     
     @IBOutlet var loadingView: UIView!
@@ -118,7 +117,6 @@ public class ScanRectangleViewController: UIViewController {
     }
 }
 
-@available(iOS 11.0, *)
 extension ScanRectangleViewController {
     
     private func setupView() {
@@ -263,7 +261,6 @@ extension ScanRectangleViewController {
     }
 }
 
-@available(iOS 11.0, *)
 extension ScanRectangleViewController: ARSessionDelegate {
     
     public func session(_ session: ARSession, didUpdate frame: ARFrame) {
@@ -279,7 +276,6 @@ extension ScanRectangleViewController: ARSessionDelegate {
     }
 }
 
-@available(iOS 11.0, *)
 extension ScanRectangleViewController: ARSCNViewDelegate {
     
     public func renderer(_ renderer: SCNSceneRenderer, didAdd node: SCNNode, for anchor: ARAnchor) {

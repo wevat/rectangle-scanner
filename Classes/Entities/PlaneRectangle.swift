@@ -25,7 +25,6 @@ import Foundation
 import ARKit
 import Vision
 
-@available(iOS 11.0, *)
 class PlaneRectangle: NSObject {
     
     // Plane anchor this rectangle is attached to
@@ -68,7 +67,6 @@ class PlaneRectangle: NSObject {
     }
 }
 
-@available(iOS 11.0, *)
 fileprivate enum RectangleCorners {
     case topLeft(topLeft: SCNVector3, topRight: SCNVector3, bottomLeft: SCNVector3)
     case topRight(topLeft: SCNVector3, topRight: SCNVector3, bottomRight: SCNVector3)
@@ -79,7 +77,6 @@ fileprivate enum RectangleCorners {
 
 // Finds 3d vector points for the corners of a rectangle on a plane in a given scene
 // Returns 3 corners representing the rectangle as well as the anchor for its plane
-@available(iOS 11.0, *)
 fileprivate func getCorners(for rectangle: VNRectangleObservation, in sceneView: ARSCNView) -> (corners: RectangleCorners, anchor: ARPlaneAnchor)? {
     
     // Perform a hittest on each corner to find intersecting surfaces
@@ -164,7 +161,6 @@ fileprivate func getCorners(for rectangle: VNRectangleObservation, in sceneView:
     return nil
 }
 
-@available(iOS 11.0, *)
 extension RectangleCorners {
     
     // Returns width based on left and right corners for one either top or bottom side

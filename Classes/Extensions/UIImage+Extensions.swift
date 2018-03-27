@@ -21,28 +21,35 @@
 //    SOFTWARE.
 
 
-import Foundation
-import ARKit
+import UIKit
 
-@available(iOS 11.0, *)
-extension ARHitTestResult {
-    var worldVector: SCNVector3 {
-        get {
-            return SCNVector3Make(worldTransform.columns.3.x,
-                                  worldTransform.columns.3.y,
-                                  worldTransform.columns.3.z)
+extension UIImage {
+    
+    func crop(toRect rect: CGRect) -> UIImage? {    
+        guard rect.size.width > 0 && rect.size.height > 0 else {
+            return nil
         }
-    }
-}
-
-@available(iOS 11.0, *)
-extension Array where Element:ARHitTestResult {
-    var closest: ARHitTestResult? {
-        get {
-            return sorted { (result1, result2) -> Bool in
-                return result1.distance < result2.distance
-            }.first
+        guard let cgImage = self.cgImage, let imageRef = cgImage.cropping(to: rect) else {
+            return nil
         }
+        
+        return UIImage(cgImage: imageRef, scale: 1.0, orientation: self.imageOrientation)
     }
     
+    
+    func cropping(toRect rect: CGRect) -> UIImage {
+        UIGraphicsBeginImageContextWithOptions(rect.size, false, self.scale)
+        
+        let context = UIGraphicsGetCurrentContext()! as CGContext
+        let drawRect: CGRect = CGRect(x: -rect.origin.x, y: -rect.origin.y, width: self.size.width, height: self.size.height)
+        
+        context.clip(to: CGRect(x:0, y:0, width: rect.size.width, height: rect.size.height))
+        
+        self.draw(in: drawRect)
+        
+        let croppedImage = UIGraphicsGetImageFromCurrentImageContext()!
+        UIGraphicsEndImageContext()
+        
+        return croppedImage
+    }
 }
