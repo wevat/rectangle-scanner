@@ -1,0 +1,16 @@
+PODS:
+  - RectangleScanner (0.1.0)
+
+DEPENDENCIES:
+  - RectangleScanner (from `../`)
+
+EXTERNAL SOURCES:
+  RectangleScanner:
+    :path: ../
+
+SPEC CHECKSUMS:
+  RectangleScanner: b34ab6456bee5c3cd326bdb0f6fa315abfe3bb1b
+
+PODFILE CHECKSUM: 44d2d0bda0a4485a2231e8c502636bcf21983227
+
+COCOAPODS: 1.4.0

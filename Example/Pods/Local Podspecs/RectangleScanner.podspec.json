@@ -1,0 +1,22 @@
+{
+  "name": "RectangleScanner",
+  "version": "0.1.0",
+  "summary": "A short description of RectangleScanner.",
+  "description": "TODO: Add long description of the pod here.",
+  "homepage": "https://github.com/harryblam/RectangleScanner",
+  "license": {
+    "type": "MIT",
+    "file": "LICENSE"
+  },
+  "authors": {
+    "harryblam": "harrybloom18@gmail.com"
+  },
+  "source": {
+    "git": "https://github.com/harryblam/RectangleScanner.git",
+    "tag": "0.1.0"
+  },
+  "platforms": {
+    "ios": "8.0"
+  },
+  "source_files": "RectangleScanner/Classes/**/*"
+}
