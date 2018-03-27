@@ -11,10 +11,6 @@ import SceneKit
 import ARKit
 import Vision
 
-public protocol ScanRectangleDelegate: class {
-    func scanCompleted(withImage: UIImage)
-}
-
 @available(iOS 11.0, *)
 public class ScanRectangleViewController: UIViewController {
     
@@ -31,7 +27,7 @@ public class ScanRectangleViewController: UIViewController {
     
     private var surfaceNodes = [ARPlaneAnchor:SurfaceNode]()
     
-    weak var delegate: ScanRectangleDelegate?
+    public var scannedRectangleCallback: ((UIImage) -> Void)?
     
     private var scanState: ScanState = .lookingForRectangle {
         didSet {
@@ -44,9 +40,8 @@ public class ScanRectangleViewController: UIViewController {
         print("ScanRectangleViewController deinited")
     }
     
-    public init(delegate: ScanRectangleDelegate) {
+    public init() {
         super.init(nibName: String(describing: type(of: self)), bundle: nil)
-        self.delegate = delegate
     }
     
     public required init?(coder aDecoder: NSCoder) {
@@ -141,7 +136,7 @@ extension ScanRectangleViewController {
     }
     
     private func finish(withImage image: UIImage) {
-        delegate?.scanCompleted(withImage: image)
+        scannedRectangleCallback?(image)
     }
     
     private func findRectangle(locationInScene location: CGPoint, frame currentFrame: ARFrame) {

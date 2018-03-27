@@ -20,11 +20,60 @@
                     <view key="view" contentMode="scaleToFill" id="kh9-bI-dsS">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LA7-5k-but">
+                                <rect key="frame" x="151.5" y="318" width="72" height="30"/>
+                                <state key="normal" title="Start Scan"/>
+                                <connections>
+                                    <action selector="startButtonTapped" destination="vXZ-lx-hvc" eventType="touchUpInside" id="M0y-UY-nlW"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="LA7-5k-but" firstAttribute="centerX" secondItem="kh9-bI-dsS" secondAttribute="centerX" id="62X-JW-hiQ"/>
+                            <constraint firstItem="LA7-5k-but" firstAttribute="centerY" secondItem="kh9-bI-dsS" secondAttribute="centerY" id="Twk-UX-Hz2"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <segue destination="s78-Vd-qsE" kind="show" identifier="ResultSegue" id="wtz-WO-Z9p"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="140" y="133.5832083958021"/>
+        </scene>
+        <!--Result View Controller-->
+        <scene sceneID="SLw-af-0M6">
+            <objects>
+                <viewController id="s78-Vd-qsE" customClass="ResultViewController" customModule="RectangleScanner_Example" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="qRI-R7-HkH"/>
+                        <viewControllerLayoutGuide type="bottom" id="NSG-43-wzN"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8iM-oT-OJt">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="USL-et-i1Y">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="USL-et-i1Y" firstAttribute="leading" secondItem="8iM-oT-OJt" secondAttribute="leading" id="4ac-tt-JmF"/>
+                            <constraint firstItem="USL-et-i1Y" firstAttribute="top" secondItem="8iM-oT-OJt" secondAttribute="top" id="6jZ-dP-tNl"/>
+                            <constraint firstAttribute="trailing" secondItem="USL-et-i1Y" secondAttribute="trailing" id="U9N-hw-vOZ"/>
+                            <constraint firstItem="NSG-43-wzN" firstAttribute="top" secondItem="USL-et-i1Y" secondAttribute="bottom" id="gxp-RL-dkL"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="resultImageView" destination="USL-et-i1Y" id="bXX-mh-4gB"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Hb6-5P-9Zx" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1006" y="134"/>
         </scene>
     </scenes>
 </document>
