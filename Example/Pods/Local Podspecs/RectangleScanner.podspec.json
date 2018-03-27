@@ -1,22 +1,23 @@
 {
   "name": "RectangleScanner",
   "version": "0.1.0",
-  "summary": "A short description of RectangleScanner.",
-  "description": "TODO: Add long description of the pod here.",
-  "homepage": "https://github.com/harryblam/RectangleScanner",
+  "summary": "A UIViewController with callbacks for scanning rectangles.",
+  "description": "Use this library to scan rectangles.\nSimply point, tap & hold, and voila.\nOur favourite is receipts, however we don't judge you based on your rectangle preference.",
+  "homepage": "https://github.com/wevat/rectangle-scanner",
   "license": {
     "type": "MIT",
     "file": "LICENSE"
   },
   "authors": {
-    "harryblam": "harrybloom18@gmail.com"
+    "Harry Bloom": "harry@wevat.com"
   },
   "source": {
-    "git": "https://github.com/harryblam/RectangleScanner.git",
+    "git": "https://github.com/wevat/rectangle-scanner.git",
     "tag": "0.1.0"
   },
   "platforms": {
-    "ios": "8.0"
+    "ios": "11.0"
   },
+  "swift_version": "4.0",
   "source_files": "RectangleScanner/Classes/**/*"
 }
