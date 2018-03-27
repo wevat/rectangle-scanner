@@ -41,7 +41,7 @@ public class ScanRectangleViewController: UIViewController {
     }
     
     public init() {
-        super.init(nibName: String(describing: type(of: self)), bundle: nil)
+        super.init(nibName: String(describing: type(of: self)), bundle: Bundle(for: type(of: self)))
     }
     
     public required init?(coder aDecoder: NSCoder) {
@@ -136,7 +136,9 @@ extension ScanRectangleViewController {
     }
     
     private func finish(withImage image: UIImage) {
-        scannedRectangleCallback?(image)
+        dismiss(animated: true) {[weak self] in
+            self?.scannedRectangleCallback?(image)
+        }
     }
     
     private func findRectangle(locationInScene location: CGPoint, frame currentFrame: ARFrame) {

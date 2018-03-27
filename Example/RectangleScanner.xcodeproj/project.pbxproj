@@ -223,6 +223,7 @@
 					};
 					607FACE41AFB9204008FA782 = {
 						CreatedOnToolsVersion = 6.3.1;
+						DevelopmentTeam = D9K7C3Y7RB;
 						LastSwiftMigration = 0900;
 						TestTargetID = 607FACCF1AFB9204008FA782;
 					};
@@ -555,6 +556,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = CAD98625DA7C7D8CA36B4B53 /* Pods-RectangleScanner_Tests.debug.xcconfig */;
 			buildSettings = {
+				DEVELOPMENT_TEAM = D9K7C3Y7RB;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -576,6 +578,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 70E4BFC206CBC494678CE62F /* Pods-RectangleScanner_Tests.release.xcconfig */;
 			buildSettings = {
+				DEVELOPMENT_TEAM = D9K7C3Y7RB;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
