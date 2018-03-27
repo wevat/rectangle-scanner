@@ -22,7 +22,7 @@ pod 'RectangleScanner'
 
 ## Author
 
-harryblam, harrybloom18@gmail.com
+Harry Bloom, harry@wevat.com
 
 ## License
 
