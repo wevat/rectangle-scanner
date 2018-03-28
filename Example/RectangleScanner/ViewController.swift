@@ -25,19 +25,21 @@ class ViewController: UIViewController {
     @available(iOS 11.0, *)
     private func startScanFlow() {
         
-        let scanView = ScanRectangleViewController()
+        let scanView = ScanRectangleViewController(delegate: self)
         present(scanView, animated: true, completion: nil)
-        
-        scanView.scannedRectangleCallback = {[weak self] scannedImage in
-            
-            self?.scannedImage = scannedImage
-            self?.performSegue(withIdentifier: "ResultSegue", sender: self)
-        }
     }
     
     private func showAlert() {
         let alert = UIAlertController(title: "Unsupported version", message: "You can only use the scan functionality on iOS 11 or later. Sorry!", preferredStyle: .alert)
         present(alert, animated: true, completion: nil)
+    }
+}
+
+extension ViewController: ScanRectangleViewDelegate {
+    
+    func didComplete(withImage: UIImage) {
+        scannedImage = withImage
+        performSegue(withIdentifier: "ResultSegue", sender: self)
     }
 }
 

@@ -11,6 +11,10 @@ import SceneKit
 import ARKit
 import Vision
 
+public protocol ScanRectangleViewDelegate: class {
+    func didComplete(withImage: UIImage)
+}
+
 @available(iOS 11.0, *)
 public class ScanRectangleViewController: UIViewController {
     
@@ -27,7 +31,7 @@ public class ScanRectangleViewController: UIViewController {
     
     private var surfaceNodes = [ARPlaneAnchor:SurfaceNode]()
     
-    public var scannedRectangleCallback: ((UIImage) -> Void)?
+    public weak var delegate: ScanRectangleViewDelegate?
     
     private var scanState: ScanState = .lookingForRectangle {
         didSet {
@@ -42,6 +46,11 @@ public class ScanRectangleViewController: UIViewController {
     
     public init() {
         super.init(nibName: String(describing: type(of: self)), bundle: Bundle(for: type(of: self)))
+    }
+    
+    public convenience init(delegate: ScanRectangleViewDelegate) {
+        self.init()
+        self.delegate = delegate
     }
     
     public required init?(coder aDecoder: NSCoder) {
@@ -137,7 +146,7 @@ extension ScanRectangleViewController {
     
     private func finish(withImage image: UIImage) {
         dismiss(animated: true) {[weak self] in
-            self?.scannedRectangleCallback?(image)
+            self?.delegate?.didComplete(withImage: image)
         }
     }
     
