@@ -25,18 +25,6 @@ import UIKit
 
 extension UIImage {
     
-    func crop(toRect rect: CGRect) -> UIImage? {    
-        guard rect.size.width > 0 && rect.size.height > 0 else {
-            return nil
-        }
-        guard let cgImage = self.cgImage, let imageRef = cgImage.cropping(to: rect) else {
-            return nil
-        }
-        
-        return UIImage(cgImage: imageRef, scale: 1.0, orientation: self.imageOrientation)
-    }
-    
-    
     func cropping(toRect rect: CGRect) -> UIImage {
         UIGraphicsBeginImageContextWithOptions(rect.size, false, self.scale)
         
@@ -52,4 +40,5 @@ extension UIImage {
         
         return croppedImage
     }
+    
 }

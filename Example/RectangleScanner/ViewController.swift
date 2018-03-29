@@ -37,9 +37,16 @@ class ViewController: UIViewController {
 
 extension ViewController: ScanRectangleViewDelegate {
     
-    func didComplete(withImage: UIImage) {
-        scannedImage = withImage
-        performSegue(withIdentifier: "ResultSegue", sender: self)
+    func didComplete(withImage: UIImage, sender: UIViewController) {
+        
+        sender.dismiss(animated: true) { [weak self] in
+            self?.scannedImage = withImage
+            self?.performSegue(withIdentifier: "ResultSegue", sender: nil)
+        }
+    }
+    
+    func didTapCancel(sender: UIViewController) {
+        sender.dismiss(animated: true, completion: nil)
     }
 }
 

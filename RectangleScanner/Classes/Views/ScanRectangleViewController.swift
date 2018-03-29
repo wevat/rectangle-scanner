@@ -12,7 +12,8 @@ import ARKit
 import Vision
 
 public protocol ScanRectangleViewDelegate: class {
-    func didComplete(withImage: UIImage)
+    func didComplete(withImage: UIImage, sender: UIViewController)
+    func didTapCancel(sender: UIViewController)
 }
 
 @available(iOS 11.0, *)
@@ -40,6 +41,8 @@ public class ScanRectangleViewController: UIViewController {
         }
     }
     
+    private var setupClosure: ((_ viewDidLoadOn: ScanRectangleViewController) -> Void)?
+    
     deinit {
         print("ScanRectangleViewController deinited")
     }
@@ -53,6 +56,11 @@ public class ScanRectangleViewController: UIViewController {
         self.delegate = delegate
     }
     
+    public convenience init(setupClosure: ((_ viewDidLoadOn: ScanRectangleViewController) -> Void)?) {
+        self.init()
+        self.setupClosure = setupClosure
+    }
+    
     public required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
@@ -60,10 +68,12 @@ public class ScanRectangleViewController: UIViewController {
     public override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
+        setupClosure?(self)
     }
     
     public override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        navigationController?.setNavigationBarHidden(true, animated: true)
         start()
     }
     
@@ -145,9 +155,7 @@ extension ScanRectangleViewController {
     }
     
     private func finish(withImage image: UIImage) {
-        dismiss(animated: true) {[weak self] in
-            self?.delegate?.didComplete(withImage: image)
-        }
+        delegate?.didComplete(withImage: image, sender: self)
     }
     
     private func findRectangle(locationInScene location: CGPoint, frame currentFrame: ARFrame) {
