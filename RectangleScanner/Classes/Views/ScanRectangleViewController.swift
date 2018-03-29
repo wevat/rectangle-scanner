@@ -10,6 +10,7 @@ import UIKit
 import SceneKit
 import ARKit
 import Vision
+import AVFoundation
 
 public protocol ScanRectangleViewDelegate: class {
     func didComplete(withImage: UIImage, sender: UIViewController)
@@ -17,9 +18,9 @@ public protocol ScanRectangleViewDelegate: class {
 }
 
 @available(iOS 11.0, *)
-public class ScanRectangleViewController: UIViewController {
-    
+public class ScanRectangleViewController: UIViewController, BackgroundCameraStreamPresenter {
     @IBOutlet var loadingView: UIView!
+    @IBOutlet var cameraStreamView: UIView!
     @IBOutlet var instructionView: UIView!
     @IBOutlet var instructionLabel: UILabel!
     @IBOutlet var sceneView: ARSCNView!
@@ -29,6 +30,10 @@ public class ScanRectangleViewController: UIViewController {
     private var selectedRectangleLastUpdated: Date?
     private var currTouchLocation: CGPoint?
     private var searchingForRectangles = false
+    
+    var captureSession: AVCaptureSession?
+    var previewLayer: AVCaptureVideoPreviewLayer?
+    var stillImageOutput: AVCaptureStillImageOutput?
     
     private var surfaceNodes = [ARPlaneAnchor:SurfaceNode]()
     
@@ -43,11 +48,14 @@ public class ScanRectangleViewController: UIViewController {
     
     private var setupClosure: ((_ viewDidLoadOn: ScanRectangleViewController) -> Void)?
     
+    var backgroundCameraStream: DispatchQueue
+    
     deinit {
         print("ScanRectangleViewController deinited")
     }
     
     public init() {
+        backgroundCameraStream = DispatchQueue(label: "camera", attributes: .concurrent)
         super.init(nibName: String(describing: type(of: self)), bundle: Bundle(for: type(of: self)))
     }
     
@@ -62,11 +70,13 @@ public class ScanRectangleViewController: UIViewController {
     }
     
     public required init?(coder aDecoder: NSCoder) {
+        backgroundCameraStream = DispatchQueue(label: "camera")
         super.init(coder: aDecoder)
     }
     
     public override func viewDidLoad() {
         super.viewDidLoad()
+        try? self.initialiseSession()
         setupView()
         setupClosure?(self)
     }
@@ -74,12 +84,20 @@ public class ScanRectangleViewController: UIViewController {
     public override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(true, animated: true)
+    }
+    
+    public override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+//        setupPreviewLayer(withView: cameraStreamView)
+//        startCameraStream()
         start()
     }
     
     public override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         sceneView.session.pause()
+        endCameraStream()
     }
     
     public override var prefersStatusBarHidden: Bool {
@@ -169,6 +187,9 @@ extension ScanRectangleViewController {
                 
                 // Jump back onto the main thread
                 DispatchQueue.main.async {
+                    guard self.scanState.isProcessing() == false else {
+                        return
+                    }
                     
                     // Mark that we've finished searching for rectangles
                     self.searchingForRectangles = false
@@ -199,10 +220,8 @@ extension ScanRectangleViewController {
                     let points = [selectedRect.topLeft, selectedRect.topRight, selectedRect.bottomRight, selectedRect.bottomLeft]
                     let convertedPoints = points.map { self.sceneView.convertFromCamera($0) }
                     
-                    if !self.scanState.isProcessing() {
-                        self.addSelectedRectangle(fromObservation: selectedRect, withConvertedPoints: convertedPoints)
-                        self.scanState = .releaseRectangle
-                    }
+                    self.addSelectedRectangle(fromObservation: selectedRect, withConvertedPoints: convertedPoints)
+                    self.scanState = .releaseRectangle
                 }
             })
             
@@ -262,13 +281,22 @@ extension ScanRectangleViewController {
     private func processRectangle(_ rect: CGRect) {
         scanState = .processingRectangle
         sceneView.pause(self)
-        let screenshot = sceneView.snapshot()
         
-        ScreenshotHelper.takeAndProcessScreenshot(fromImage: screenshot, croppingTo: rect, withDelay: 1.5) { (croppedImage) in
-            
-            DispatchQueue.main.async {
-                self.finish(withImage: croppedImage)
+        let lowres = sceneView.snapshot()
+        startCameraStream()
+        
+        takeSnapshot { (fullResImage) in
+            guard let fullResImage = fullResImage else {
+                self.scanState = .couldntFindRectangle
+                return
             }
+            ScreenshotHelper.takeAndProcessScreenshot(fromImage: fullResImage, croppingTo: rect, withDelay: 1.5) { (croppedImage) in
+                DispatchQueue.main.async {
+                    self.finish(withImage: croppedImage)
+                }
+            }
+            self.pauseCameraStream(pause: false)
+            self.endCameraStream()
         }
     }
     

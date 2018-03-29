@@ -19,7 +19,9 @@
 		54D8CC21F1C82D979AF9A125823ACD09 /* Collection+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0F92C4B429C6890E691A24ACFBDA396 /* Collection+Extensions.swift */; };
 		6A0AD573955E7EC658D66C1630FDA395 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */; };
 		6ED304FB3B239073B5D9E9F7ED6DD786 /* ScanState.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3ECF7E6825A3295ABDFB710E464B656 /* ScanState.swift */; };
-		753BDF95206BB38500E6E5A0 /* LuminanceProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 753BDF94206BB38500E6E5A0 /* LuminanceProvider.swift */; };
+		75D19FD3206D01690000A48C /* RectangleScanProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75D19FCD206CF9100000A48C /* RectangleScanProvider.swift */; };
+		75D19FD4206D01690000A48C /* BackgroundCameraStreamProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75D19FCF206CF9740000A48C /* BackgroundCameraStreamProvider.swift */; };
+		75D19FD5206D01F90000A48C /* ScanError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75D19FD1206CFD0E0000A48C /* ScanError.swift */; };
 		886D1CF4FD851BFD26C5575A5FEE7262 /* ScanRectangleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B72DB4048FBB97F7700825D1C1765EE2 /* ScanRectangleViewController.swift */; };
 		89AC2EDBE1C5236C146F828D50DF4C62 /* RectangleNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7C089BB32FE2F26BC5377833EB93E43 /* RectangleNode.swift */; };
 		8A783F241DD5D33B3C5F5EF38F6C1B16 /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FD849696C01EF55D8A009D20F6DD938 /* UIView+Extensions.swift */; };
@@ -59,7 +61,9 @@
 		69D0A8949E7A1234B707059BAC6B05AF /* Pods-RectangleScanner_Tests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-RectangleScanner_Tests-acknowledgements.plist"; sourceTree = "<group>"; };
 		6B484F1CC439B41805D7C3D33185F36E /* RectangleScanner.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = RectangleScanner.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6FFDFB8211A78F5A980E1F4E822A6124 /* PlaneRectangle.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PlaneRectangle.swift; sourceTree = "<group>"; };
-		753BDF94206BB38500E6E5A0 /* LuminanceProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LuminanceProvider.swift; sourceTree = "<group>"; };
+		75D19FCD206CF9100000A48C /* RectangleScanProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RectangleScanProvider.swift; sourceTree = "<group>"; };
+		75D19FCF206CF9740000A48C /* BackgroundCameraStreamProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundCameraStreamProvider.swift; sourceTree = "<group>"; };
+		75D19FD1206CFD0E0000A48C /* ScanError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanError.swift; sourceTree = "<group>"; };
 		76D6AEA3F9487025089ED8765AB4EC1E /* UIImage+Extensions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "UIImage+Extensions.swift"; sourceTree = "<group>"; };
 		7FD849696C01EF55D8A009D20F6DD938 /* UIView+Extensions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "UIView+Extensions.swift"; sourceTree = "<group>"; };
 		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
@@ -136,6 +140,7 @@
 				C7C089BB32FE2F26BC5377833EB93E43 /* RectangleNode.swift */,
 				F3ECF7E6825A3295ABDFB710E464B656 /* ScanState.swift */,
 				B1513C4D050DEE9485F4095BB63E5FBD /* SurfaceNode.swift */,
+				75D19FD1206CFD0E0000A48C /* ScanError.swift */,
 			);
 			name = Entities;
 			path = RectangleScanner/Classes/Entities;
@@ -286,7 +291,8 @@
 			isa = PBXGroup;
 			children = (
 				01F1F6483E871EEE8E09FF02CCFECF70 /* ScreenshotHelper.swift */,
-				753BDF94206BB38500E6E5A0 /* LuminanceProvider.swift */,
+				75D19FCD206CF9100000A48C /* RectangleScanProvider.swift */,
+				75D19FCF206CF9740000A48C /* BackgroundCameraStreamProvider.swift */,
 			);
 			name = Utility;
 			path = RectangleScanner/Classes/Utility;
@@ -423,14 +429,17 @@
 				AF219342BB2B5669AB32EE8D7809148D /* ARHitTestResult+Extensions.swift in Sources */,
 				54D8CC21F1C82D979AF9A125823ACD09 /* Collection+Extensions.swift in Sources */,
 				26E762D432D11F37C47F0E849AEBD3F8 /* PlaneRectangle.swift in Sources */,
+				75D19FD4206D01690000A48C /* BackgroundCameraStreamProvider.swift in Sources */,
 				89AC2EDBE1C5236C146F828D50DF4C62 /* RectangleNode.swift in Sources */,
 				D2BC8C268A0CF4E290C71425B285E4A6 /* RectangleScanner-dummy.m in Sources */,
 				886D1CF4FD851BFD26C5575A5FEE7262 /* ScanRectangleViewController.swift in Sources */,
 				28966944128A6794A297B90EAF5EC0DF /* ScanRectangleViewController.xib in Sources */,
 				6ED304FB3B239073B5D9E9F7ED6DD786 /* ScanState.swift in Sources */,
+				75D19FD5206D01F90000A48C /* ScanError.swift in Sources */,
 				3B8635B144D11D55BA3E39D3EE55B9D2 /* SCNVector3+Extensions.swift in Sources */,
 				242EA9837A17F18FF492251ECA60849F /* ScreenshotHelper.swift in Sources */,
 				AD76F3C5A7A6E433FA574C3B08C93EB9 /* SurfaceNode.swift in Sources */,
+				75D19FD3206D01690000A48C /* RectangleScanProvider.swift in Sources */,
 				8D0865A6C59AC75047AF360FAD824DD8 /* UIImage+Extensions.swift in Sources */,
 				8A783F241DD5D33B3C5F5EF38F6C1B16 /* UIView+Extensions.swift in Sources */,
 			);
@@ -441,7 +450,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				EDA933220C442A4D1C5992B31D771EAC /* Pods-RectangleScanner_Example-dummy.m in Sources */,
-				753BDF95206BB38500E6E5A0 /* LuminanceProvider.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -485,7 +493,7 @@
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -613,7 +621,7 @@
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";

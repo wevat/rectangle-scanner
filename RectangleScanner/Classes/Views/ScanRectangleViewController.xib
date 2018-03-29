@@ -12,6 +12,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ScanRectangleViewController" customModule="RectangleScanner" customModuleProvider="target">
             <connections>
+                <outlet property="cameraStreamView" destination="iDr-Wq-CXp" id="MgV-YV-Lf5"/>
                 <outlet property="instructionLabel" destination="QaU-an-dim" id="ATK-Z4-Idu"/>
                 <outlet property="instructionView" destination="BzT-Rw-fNH" id="dEG-o5-iO4"/>
                 <outlet property="loadingView" destination="Ltm-fs-Wv4" id="M8m-t1-UWf"/>
@@ -24,6 +25,10 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
+                <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iDr-Wq-CXp">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                </view>
                 <arscnView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="N0t-7Q-rqV">
                     <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                 </arscnView>
@@ -66,12 +71,16 @@
             <constraints>
                 <constraint firstItem="N0t-7Q-rqV" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="14c-yh-Hu5"/>
                 <constraint firstItem="N0t-7Q-rqV" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="BWm-Vu-2Uu"/>
+                <constraint firstItem="iDr-Wq-CXp" firstAttribute="top" secondItem="N0t-7Q-rqV" secondAttribute="top" id="D9i-jf-0lf"/>
+                <constraint firstItem="iDr-Wq-CXp" firstAttribute="trailing" secondItem="N0t-7Q-rqV" secondAttribute="trailing" id="HRo-fe-WDW"/>
                 <constraint firstItem="BzT-Rw-fNH" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="Jmd-n7-ZEf"/>
                 <constraint firstItem="BzT-Rw-fNH" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="SES-f2-Qes"/>
                 <constraint firstItem="Ltm-fs-Wv4" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="TZf-lf-laS"/>
                 <constraint firstItem="Ltm-fs-Wv4" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="W7K-HK-x7E"/>
+                <constraint firstItem="iDr-Wq-CXp" firstAttribute="bottom" secondItem="N0t-7Q-rqV" secondAttribute="bottom" id="WKV-Du-Vns"/>
                 <constraint firstAttribute="bottom" secondItem="N0t-7Q-rqV" secondAttribute="bottom" id="a44-u0-UfP"/>
                 <constraint firstAttribute="trailing" secondItem="N0t-7Q-rqV" secondAttribute="trailing" id="cTJ-vP-upw"/>
+                <constraint firstItem="iDr-Wq-CXp" firstAttribute="leading" secondItem="N0t-7Q-rqV" secondAttribute="leading" id="gq4-ps-2fr"/>
                 <constraint firstAttribute="trailing" secondItem="BzT-Rw-fNH" secondAttribute="trailing" id="yYi-22-Ysq"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
