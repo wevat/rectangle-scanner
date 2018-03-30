@@ -76,7 +76,6 @@ public class ScanRectangleViewController: UIViewController, BackgroundCameraStre
     
     public override func viewDidLoad() {
         super.viewDidLoad()
-        try? self.initialiseSession()
         setupView()
         setupClosure?(self)
     }
@@ -89,7 +88,6 @@ public class ScanRectangleViewController: UIViewController, BackgroundCameraStre
     public override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-//        setupPreviewLayer(withView: cameraStreamView)
 //        startCameraStream()
         start()
     }
@@ -280,23 +278,27 @@ extension ScanRectangleViewController {
     
     private func processRectangle(_ rect: CGRect) {
         scanState = .processingRectangle
-        sceneView.pause(self)
+        sceneView.stop(self)
+        sceneView.session.pause()
         
-        let lowres = sceneView.snapshot()
+        try? self.initialiseSession()
+        setupPreviewLayer(withView: cameraStreamView)
         startCameraStream()
         
-        takeSnapshot { (fullResImage) in
-            guard let fullResImage = fullResImage else {
-                self.scanState = .couldntFindRectangle
-                return
-            }
-            ScreenshotHelper.takeAndProcessScreenshot(fromImage: fullResImage, croppingTo: rect, withDelay: 1.5) { (croppedImage) in
-                DispatchQueue.main.async {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.8) {
+            self.takeSnapshot { (fullResImage) in
+                guard let fullResImage = fullResImage else {
+                    self.scanState = .couldntFindRectangle
+                    return
+                }
+                let lowResImage = self.sceneView.snapshot()
+                print("Full res image size: \(fullResImage.size)")
+                print("Low res image size: \(lowResImage.size)")
+                ScreenshotHelper.processScreenshot(fromImage: lowResImage, toImage: fullResImage, croppingTo: rect) { (croppedImage) in
                     self.finish(withImage: croppedImage)
                 }
+                self.endCameraStream()
             }
-            self.pauseCameraStream(pause: false)
-            self.endCameraStream()
         }
     }
     

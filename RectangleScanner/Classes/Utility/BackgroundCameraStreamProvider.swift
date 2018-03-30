@@ -13,10 +13,8 @@ protocol BackgroundCameraStreamPresenter: class {
     func initialiseSession() throws
     func startCameraStream()
     func endCameraStream()
-    func pauseCameraStream(pause: Bool)
     func setupPreviewLayer(withView view: UIView)
     func takeSnapshot(_ completion: @escaping (_ result: UIImage?) -> Void)
-    func animateSnapshot(withView view: UIView)
     
     var captureSession: AVCaptureSession? { get set }
     var previewLayer: AVCaptureVideoPreviewLayer? { get set }
@@ -28,18 +26,14 @@ extension BackgroundCameraStreamPresenter  {
     func startCameraStream() {
         if captureSession != nil, captureSession?.isRunning == false {
             captureSession?.startRunning()
+            stillImageOutput?.connection(with: .video)?.videoOrientation = .portrait
         }
     }
     
     func endCameraStream() {
-        
         if (captureSession?.isRunning == true) {
             captureSession?.stopRunning()
         }
-    }
-    
-    func pauseCameraStream(pause: Bool) {
-        previewLayer?.connection?.isEnabled = !pause
     }
     
     func initialiseSession() throws {
@@ -66,7 +60,8 @@ extension BackgroundCameraStreamPresenter  {
             throw ScanError(description: "Camera unavailiable")
         }
         
-        stillImageOutput?.outputSettings = [AVVideoCodecKey:AVVideoCodecJPEG]
+        stillImageOutput?.outputSettings = [AVVideoCodecKey: AVVideoCodecJPEG]
+        
         captureSession?.sessionPreset = AVCaptureSession.Preset.photo
         
         if let session = captureSession, let stillImageOutput = stillImageOutput, session.canAddOutput(stillImageOutput) {
@@ -91,27 +86,34 @@ extension BackgroundCameraStreamPresenter  {
     }
     
     func takeSnapshot(_ completion: @escaping (_ result: UIImage?) -> Void) {
-        if let stillImageOutput = stillImageOutput, let videoConnection = stillImageOutput.connection(with: AVMediaType.video) {
+        if let stillImageOutput = stillImageOutput, let videoConnection = stillImageOutput.connection(with: .video) {
             stillImageOutput.captureStillImageAsynchronously(from: videoConnection) {
                 (imageDataSampleBuffer, error) -> Void in
+                
                 guard let imageDataSampleBuffer = imageDataSampleBuffer, let imageData = AVCaptureStillImageOutput.jpegStillImageNSDataRepresentation(imageDataSampleBuffer),
                     let image = UIImage(data: imageData) else {
                         completion(nil)
                         return
                 }
-                completion(image)
+                let croppedImage = self.cropToPreviewLayer(originalImage: image)
+                completion(croppedImage)
             }
         } else {
             completion(nil)
         }
     }
     
-    func animateSnapshot(withView view: UIView) {
-        UIView.animate(withDuration: 0.2, animations: {
-            view.alpha = 0
-        }) { (completed) in
-            view.alpha = 1
-        }
+    private func cropToPreviewLayer(originalImage: UIImage) -> UIImage {
+        let outputRect = previewLayer!.metadataOutputRectConverted(fromLayerRect: previewLayer!.bounds)
+        var cgImage = originalImage.cgImage!
+        let width = CGFloat(cgImage.width)
+        let height = CGFloat(cgImage.height)
+        let cropRect = CGRect(x: outputRect.origin.x * width, y: outputRect.origin.y * height, width: outputRect.size.width * width, height: outputRect.size.height * height)
+        
+        cgImage = cgImage.cropping(to: cropRect)!
+        let croppedUIImage = UIImage(cgImage: cgImage, scale: 1.0, orientation: originalImage.imageOrientation)
+        
+        return croppedUIImage
     }
 }
 
