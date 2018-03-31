@@ -87,9 +87,8 @@ public class ScanRectangleViewController: UIViewController, BackgroundCameraStre
     
     public override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        
-//        startCameraStream()
-        start()
+
+        startScan()
     }
     
     public override func viewWillDisappear(_ animated: Bool) {
@@ -157,7 +156,7 @@ extension ScanRectangleViewController {
         sceneView.autoenablesDefaultLighting = true
     }
     
-    private func start() {
+    private func startScan() {
         let scene = SCNScene()
         sceneView.scene = scene
         
@@ -278,23 +277,24 @@ extension ScanRectangleViewController {
     
     private func processRectangle(_ rect: CGRect) {
         scanState = .processingRectangle
-        sceneView.stop(self)
         sceneView.session.pause()
+        sceneView.stop(self)
+        print("Scan paused at: \(Date().timeIntervalSince1970)")
         
         try? self.initialiseSession()
         setupPreviewLayer(withView: cameraStreamView)
         startCameraStream()
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.8) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
             self.takeSnapshot { (fullResImage) in
                 guard let fullResImage = fullResImage else {
                     self.scanState = .couldntFindRectangle
                     return
                 }
+                print("Photo taken at: \(Date().timeIntervalSince1970)")
                 let lowResImage = self.sceneView.snapshot()
-                print("Full res image size: \(fullResImage.size)")
-                print("Low res image size: \(lowResImage.size)")
                 ScreenshotHelper.processScreenshot(fromImage: lowResImage, toImage: fullResImage, croppingTo: rect) { (croppedImage) in
+                    print("Photo processed at: \(Date().timeIntervalSince1970)")
                     self.finish(withImage: croppedImage)
                 }
                 self.endCameraStream()

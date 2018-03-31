@@ -17,9 +17,6 @@ struct ScreenshotHelper {
         
         let convertedRect = convertRect(smallImageSize: lowResImage.size, largeImageSize: highResImage.size, smallRect: rect)
         
-        print("Original rect to crop: \(rect)")
-        print("Scaled rect to crop: \(convertedRect)")
-        
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + delay) {
             let croppedImage = highResImage.cropping(toRect: convertedRect)
             completion(croppedImage)

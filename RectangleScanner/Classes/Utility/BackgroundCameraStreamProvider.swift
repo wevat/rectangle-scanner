@@ -26,7 +26,6 @@ extension BackgroundCameraStreamPresenter  {
     func startCameraStream() {
         if captureSession != nil, captureSession?.isRunning == false {
             captureSession?.startRunning()
-            stillImageOutput?.connection(with: .video)?.videoOrientation = .portrait
         }
     }
     
