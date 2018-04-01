@@ -222,9 +222,6 @@ extension ScanRectangleViewController {
                 }
             })
             
-            // Don't limit resulting number of observations
-            request.maximumObservations = 0
-            
             // Perform request
             let handler = VNImageRequestHandler(cvPixelBuffer: currentFrame.capturedImage, options: [:])
             try? handler.perform([request])
@@ -285,7 +282,7 @@ extension ScanRectangleViewController {
         setupPreviewLayer(withView: cameraStreamView)
         startCameraStream()
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.15) {
             self.takeSnapshot { (fullResImage) in
                 guard let fullResImage = fullResImage else {
                     self.scanState = .couldntFindRectangle

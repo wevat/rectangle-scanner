@@ -39,7 +39,7 @@ extension BackgroundCameraStreamPresenter  {
         
         captureSession = AVCaptureSession()
         stillImageOutput = AVCaptureStillImageOutput()
-        
+
         guard let videoCaptureDevice = AVCaptureDevice.default(for: AVMediaType.video) else {
             throw ScanError(description: "Camera unavailiable")
         }
@@ -59,13 +59,28 @@ extension BackgroundCameraStreamPresenter  {
             throw ScanError(description: "Camera unavailiable")
         }
         
-        stillImageOutput?.outputSettings = [AVVideoCodecKey: AVVideoCodecJPEG]
+        setupVideoCaptureDevice(videoCaptureDevice)
         
+        stillImageOutput?.outputSettings = [AVVideoCodecKey: AVVideoCodecJPEG]
         captureSession?.sessionPreset = AVCaptureSession.Preset.photo
         
         if let session = captureSession, let stillImageOutput = stillImageOutput, session.canAddOutput(stillImageOutput) {
             session.addOutput(stillImageOutput)
         }
+    }
+    
+    private func setupVideoCaptureDevice(_ device: AVCaptureDevice) {
+        try? device.lockForConfiguration()
+        if device.isFocusModeSupported(.continuousAutoFocus) {
+            device.focusMode = .continuousAutoFocus
+        }
+        if device.isAutoFocusRangeRestrictionSupported {
+            device.autoFocusRangeRestriction = .near
+        }
+        if device.isLowLightBoostSupported {
+            device.automaticallyEnablesLowLightBoostWhenAvailable = true
+        }
+        device.unlockForConfiguration()
     }
     
     func setupPreviewLayer(withView view: UIView) {
