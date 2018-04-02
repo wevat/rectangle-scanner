@@ -10,26 +10,27 @@ import UIKit
 
 struct ScreenshotHelper {
     
-    static func processScreenshot(fromImage lowResImage: UIImage?, toImage highResImage: UIImage?, croppingTo rect: CGRect?, withDelay delay: TimeInterval = 0, completion: @escaping ((UIImage) -> Void)) {
-        guard let lowResImage = lowResImage, let highResImage = highResImage, let rect = rect else {
+    static func processScreenshot(_ image: UIImage?, fromViewRect viewRect: CGRect, croppingTo rect: CGRect?, withDelay delay: TimeInterval = 0, completion: @escaping ((UIImage) -> Void)) {
+        guard let image = image, let rect = rect else {
             return
         }
         
-        let convertedRect = convertRect(smallImageSize: lowResImage.size, largeImageSize: highResImage.size, smallRect: rect)
+        let convertedRect = convertRect(imageSize: image.size, viewRect: viewRect, rectToCropTo: rect)
         
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + delay) {
-            let croppedImage = highResImage.cropping(toRect: convertedRect)
+            let croppedImage = image.cropping(toRect: convertedRect)
             completion(croppedImage)
         }
     }
     
-    private static func convertRect(smallImageSize: CGSize, largeImageSize: CGSize, smallRect: CGRect) -> CGRect {
-        let scaledWidth = largeImageSize.width / smallImageSize.width * 2
-        let scaledHeight = largeImageSize.height / smallImageSize.height * 2
-        
-        let convertedRect = smallRect
+    private static func convertRect(imageSize: CGSize, viewRect: CGRect, rectToCropTo: CGRect) -> CGRect {
+        let scaledWidth = imageSize.width / viewRect.width
+        let scaledHeight = imageSize.height / viewRect.height
+
+        let convertedRect = rectToCropTo
             .applying(CGAffineTransform(scaleX: scaledWidth, y: scaledHeight))
-    
+        
         return convertedRect
     }
+
 }

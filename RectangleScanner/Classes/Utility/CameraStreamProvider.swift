@@ -8,40 +8,44 @@
 import UIKit
 import AVFoundation
 
-protocol BackgroundCameraStreamPresenter: class {
+class CameraStreamProvider: NSObject {
     
-    func initialiseSession() throws
-    func startCameraStream()
-    func endCameraStream()
-    func setupPreviewLayer(withView view: UIView)
-    func takeSnapshot(_ completion: @escaping (_ result: UIImage?) -> Void)
+    var captureSession: AVCaptureSession?
+    var previewLayer: AVCaptureVideoPreviewLayer?
+    var videoOutput: AVCaptureVideoDataOutput?
+    var stillImageOutput: AVCaptureStillImageOutput?
     
-    var captureSession: AVCaptureSession? { get set }
-    var previewLayer: AVCaptureVideoPreviewLayer? { get set }
-    var stillImageOutput: AVCaptureStillImageOutput? { get set }
-}
-
-extension BackgroundCameraStreamPresenter  {
+    var bufferDidUpdate: ((_ buffer: CVPixelBuffer) -> Void)?
     
-    func startCameraStream() {
+    override init() {
+        super.init()
+        try? self.initialiseSession()
+    }
+    
+    func start() {
         if captureSession != nil, captureSession?.isRunning == false {
             captureSession?.startRunning()
         }
     }
     
-    func endCameraStream() {
+    func end() {
         if (captureSession?.isRunning == true) {
             captureSession?.stopRunning()
         }
     }
     
+    func pause(_ on: Bool) {
+        previewLayer?.connection?.isEnabled = !on
+    }
+    
     func initialiseSession() throws {
         
         captureSession = AVCaptureSession()
+        videoOutput = AVCaptureVideoDataOutput()
         stillImageOutput = AVCaptureStillImageOutput()
 
         guard let videoCaptureDevice = AVCaptureDevice.default(for: AVMediaType.video) else {
-            throw ScanError(description: "Camera unavailiable")
+            throw ScanError()
         }
         let videoInput: AVCaptureDeviceInput
         
@@ -49,20 +53,24 @@ extension BackgroundCameraStreamPresenter  {
             videoInput = try AVCaptureDeviceInput(device: videoCaptureDevice)
         } catch {
             captureSession = nil
-            throw ScanError(description: "Camera unavailiable")
+            throw ScanError()
         }
         
         if let session = captureSession, session.canAddInput(videoInput) {
             session.addInput(videoInput)
         } else {
             captureSession = nil
-            throw ScanError(description: "Camera unavailiable")
+            throw ScanError()
         }
         
         setupVideoCaptureDevice(videoCaptureDevice)
-        
         stillImageOutput?.outputSettings = [AVVideoCodecKey: AVVideoCodecJPEG]
         captureSession?.sessionPreset = AVCaptureSession.Preset.photo
+        
+        if let session = captureSession, let videoOutput = videoOutput, session.canAddOutput(videoOutput) {
+            videoOutput.setSampleBufferDelegate(self, queue: DispatchQueue(label: "CameraStream"))
+            session.addOutput(videoOutput)
+        }
         
         if let session = captureSession, let stillImageOutput = stillImageOutput, session.canAddOutput(stillImageOutput) {
             session.addOutput(stillImageOutput)
@@ -101,9 +109,10 @@ extension BackgroundCameraStreamPresenter  {
     
     func takeSnapshot(_ completion: @escaping (_ result: UIImage?) -> Void) {
         if let stillImageOutput = stillImageOutput, let videoConnection = stillImageOutput.connection(with: .video) {
+
             stillImageOutput.captureStillImageAsynchronously(from: videoConnection) {
                 (imageDataSampleBuffer, error) -> Void in
-                
+
                 guard let imageDataSampleBuffer = imageDataSampleBuffer, let imageData = AVCaptureStillImageOutput.jpegStillImageNSDataRepresentation(imageDataSampleBuffer),
                     let image = UIImage(data: imageData) else {
                         completion(nil)
@@ -131,7 +140,18 @@ extension BackgroundCameraStreamPresenter  {
     }
 }
 
-extension BackgroundCameraStreamPresenter where Self: AVCaptureMetadataOutputObjectsDelegate {
+extension CameraStreamProvider: AVCaptureVideoDataOutputSampleBufferDelegate {
+    
+    func captureOutput(_ output: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
+        guard let pixelBuffer: CVPixelBuffer = CMSampleBufferGetImageBuffer(sampleBuffer) else {
+            return
+        }
+        
+        bufferDidUpdate?(pixelBuffer)
+    }
+}
+
+extension CameraStreamProvider: AVCaptureMetadataOutputObjectsDelegate {
     
     func initialiseSession(withView view: UIView, andMetadataTypes: [AVMetadataObject.ObjectType]? = nil) throws -> AVCaptureSession? {
         
@@ -146,11 +166,10 @@ extension BackgroundCameraStreamPresenter where Self: AVCaptureMetadataOutputObj
                 metadataOutput.setMetadataObjectsDelegate(self, queue: DispatchQueue.main)
                 metadataOutput.metadataObjectTypes = types
             } else {
-                throw ScanError(description: "Camera unavailiable")
+                throw ScanError()
             }
         }
         
         return captureSession
     }
-    
 }

@@ -17,4 +17,8 @@ struct ScanError: LocalizedError {
     init(description: String) {
         self._description = description
     }
+    
+    init() {
+        self.init(description: "Unavailable")
+    }
 }

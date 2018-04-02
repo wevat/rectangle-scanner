@@ -20,7 +20,7 @@
 		6A0AD573955E7EC658D66C1630FDA395 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */; };
 		6ED304FB3B239073B5D9E9F7ED6DD786 /* ScanState.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3ECF7E6825A3295ABDFB710E464B656 /* ScanState.swift */; };
 		75D19FD3206D01690000A48C /* RectangleScanProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75D19FCD206CF9100000A48C /* RectangleScanProvider.swift */; };
-		75D19FD4206D01690000A48C /* BackgroundCameraStreamProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75D19FCF206CF9740000A48C /* BackgroundCameraStreamProvider.swift */; };
+		75D19FD4206D01690000A48C /* CameraStreamProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75D19FCF206CF9740000A48C /* CameraStreamProvider.swift */; };
 		75D19FD5206D01F90000A48C /* ScanError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75D19FD1206CFD0E0000A48C /* ScanError.swift */; };
 		886D1CF4FD851BFD26C5575A5FEE7262 /* ScanRectangleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B72DB4048FBB97F7700825D1C1765EE2 /* ScanRectangleViewController.swift */; };
 		89AC2EDBE1C5236C146F828D50DF4C62 /* RectangleNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7C089BB32FE2F26BC5377833EB93E43 /* RectangleNode.swift */; };
@@ -62,7 +62,7 @@
 		6B484F1CC439B41805D7C3D33185F36E /* RectangleScanner.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = RectangleScanner.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6FFDFB8211A78F5A980E1F4E822A6124 /* PlaneRectangle.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PlaneRectangle.swift; sourceTree = "<group>"; };
 		75D19FCD206CF9100000A48C /* RectangleScanProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RectangleScanProvider.swift; sourceTree = "<group>"; };
-		75D19FCF206CF9740000A48C /* BackgroundCameraStreamProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundCameraStreamProvider.swift; sourceTree = "<group>"; };
+		75D19FCF206CF9740000A48C /* CameraStreamProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraStreamProvider.swift; sourceTree = "<group>"; };
 		75D19FD1206CFD0E0000A48C /* ScanError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanError.swift; sourceTree = "<group>"; };
 		76D6AEA3F9487025089ED8765AB4EC1E /* UIImage+Extensions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "UIImage+Extensions.swift"; sourceTree = "<group>"; };
 		7FD849696C01EF55D8A009D20F6DD938 /* UIView+Extensions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "UIView+Extensions.swift"; sourceTree = "<group>"; };
@@ -159,10 +159,10 @@
 		6655C93AD3005E66469A046D4E62B996 /* RectangleScanner */ = {
 			isa = PBXGroup;
 			children = (
-				2DFDCD11617ADB6C1FD036E9A6F1E63D /* Entities */,
-				DB6CE2C5622EE281754E91A140EE4F25 /* Extensions */,
 				61526AE80F41FFA7F26F8EEE5D2B1E98 /* Pod */,
 				6A3A4CC4016C3F8E9A913F1B3F5B21FC /* Support Files */,
+				2DFDCD11617ADB6C1FD036E9A6F1E63D /* Entities */,
+				DB6CE2C5622EE281754E91A140EE4F25 /* Extensions */,
 				EF9DD4C1D4F061F5D8B0AA281487C751 /* Utility */,
 				19AC23648CDF45A4B8888A6D918E7C60 /* Views */,
 			);
@@ -292,7 +292,7 @@
 			children = (
 				01F1F6483E871EEE8E09FF02CCFECF70 /* ScreenshotHelper.swift */,
 				75D19FCD206CF9100000A48C /* RectangleScanProvider.swift */,
-				75D19FCF206CF9740000A48C /* BackgroundCameraStreamProvider.swift */,
+				75D19FCF206CF9740000A48C /* CameraStreamProvider.swift */,
 			);
 			name = Utility;
 			path = RectangleScanner/Classes/Utility;
@@ -429,7 +429,7 @@
 				AF219342BB2B5669AB32EE8D7809148D /* ARHitTestResult+Extensions.swift in Sources */,
 				54D8CC21F1C82D979AF9A125823ACD09 /* Collection+Extensions.swift in Sources */,
 				26E762D432D11F37C47F0E849AEBD3F8 /* PlaneRectangle.swift in Sources */,
-				75D19FD4206D01690000A48C /* BackgroundCameraStreamProvider.swift in Sources */,
+				75D19FD4206D01690000A48C /* CameraStreamProvider.swift in Sources */,
 				89AC2EDBE1C5236C146F828D50DF4C62 /* RectangleNode.swift in Sources */,
 				D2BC8C268A0CF4E290C71425B285E4A6 /* RectangleScanner-dummy.m in Sources */,
 				886D1CF4FD851BFD26C5575A5FEE7262 /* ScanRectangleViewController.swift in Sources */,
