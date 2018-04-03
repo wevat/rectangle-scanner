@@ -19,5 +19,11 @@
     "ios": "9.0"
   },
   "swift_version": "4.0",
-  "source_files": "RectangleScanner/Classes/**/*"
+  "source_files": "RectangleScanner/Classes/**/*",
+  "resources": "RectangleScanner/Assets/*.xcassets",
+  "resource_bundles": {
+    "CameraStreamProvider": [
+      "RectangleScanner/Assets/*.xcassets"
+    ]
+  }
 }

@@ -15,6 +15,7 @@
                 <outlet property="cameraStreamView" destination="iDr-Wq-CXp" id="MgV-YV-Lf5"/>
                 <outlet property="highlightView" destination="KmK-Te-t6o" id="907-gj-iFn"/>
                 <outlet property="loadingView" destination="Ltm-fs-Wv4" id="M8m-t1-UWf"/>
+                <outlet property="takePictureButton" destination="Pul-Jv-1jW" id="OyS-Ae-R3g"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -35,6 +36,12 @@
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 </view>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="top-shadow-view" translatesAutoresizingMaskIntoConstraints="NO" id="j1W-W7-SEc">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="105"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="105" id="7NN-ac-33q"/>
+                    </constraints>
+                </imageView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ltm-fs-Wv4">
                     <rect key="frame" x="137.5" y="283.5" width="100" height="100"/>
                     <subviews>
@@ -52,25 +59,45 @@
                 </view>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Pul-Jv-1jW">
                     <rect key="frame" x="147.5" y="567" width="80" height="80"/>
-                    <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.69999999999999996" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="80" id="jGQ-1H-WYV"/>
                         <constraint firstAttribute="width" constant="80" id="mrO-UV-8FJ"/>
                     </constraints>
-                    <state key="normal" title="Bosh"/>
+                    <state key="normal" image="take-picture-icon"/>
                     <connections>
                         <action selector="takePictureButtonTapped" destination="-1" eventType="touchUpInside" id="Ris-w5-Su4"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TZz-yn-RGI">
+                    <rect key="frame" x="325" y="30" width="35" height="35"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="35" id="WzF-nb-Zd1"/>
+                        <constraint firstAttribute="height" constant="35" id="r2E-lP-Rdm"/>
+                    </constraints>
+                    <state key="normal" image="close-icon"/>
+                    <connections>
+                        <action selector="closeButtonTapped" destination="-1" eventType="touchUpInside" id="GkR-Lr-3ab"/>
                     </connections>
                 </button>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
+                <constraint firstAttribute="trailing" secondItem="j1W-W7-SEc" secondAttribute="trailing" id="3Ob-sQ-3To"/>
+                <constraint firstItem="TZz-yn-RGI" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="10" id="IAr-z5-tCu"/>
                 <constraint firstItem="Pul-Jv-1jW" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="TE0-uz-hYU"/>
                 <constraint firstItem="Ltm-fs-Wv4" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="TZf-lf-laS"/>
                 <constraint firstAttribute="bottom" secondItem="Pul-Jv-1jW" secondAttribute="bottom" constant="20" id="VJv-Qs-IG6"/>
                 <constraint firstItem="Ltm-fs-Wv4" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="W7K-HK-x7E"/>
+                <constraint firstItem="j1W-W7-SEc" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="alQ-fN-mGy"/>
+                <constraint firstItem="j1W-W7-SEc" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="sYz-CY-n85"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="TZz-yn-RGI" secondAttribute="trailing" constant="15" id="tQ4-g2-LYc"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
         </view>
     </objects>
+    <resources>
+        <image name="close-icon" width="15" height="15"/>
+        <image name="take-picture-icon" width="85" height="85"/>
+        <image name="top-shadow-view" width="375" height="105"/>
+    </resources>
 </document>

@@ -1,5 +1,5 @@
 PODS:
-  - RectangleScanner (0.1.0)
+  - RectangleScanner (0.1-beta1)
 
 DEPENDENCIES:
   - RectangleScanner (from `../`)
@@ -9,7 +9,7 @@ EXTERNAL SOURCES:
     :path: ../
 
 SPEC CHECKSUMS:
-  RectangleScanner: 94d132cf6ee71e81ac8d3bffa99337ff47cc5039
+  RectangleScanner: 8ea53ae497a37f60c04367765f11518ef631243d
 
 PODFILE CHECKSUM: 87dcc33f67be11c91fa564a03d92f8e6faa64c9d
 

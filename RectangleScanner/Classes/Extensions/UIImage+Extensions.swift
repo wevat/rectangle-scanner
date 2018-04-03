@@ -40,5 +40,4 @@ extension UIImage {
         
         return croppedImage
     }
-    
 }

@@ -23,6 +23,7 @@ public class ScanRectangleViewController: UIViewController {
     @IBOutlet var instructionView: UIView?
     @IBOutlet var instructionLabel: UILabel?
     @IBOutlet var highlightView: UIView!
+    @IBOutlet var takePictureButton: UIButton!
     
     var cameraStream: CameraStreamProvider
     
@@ -102,8 +103,11 @@ public class ScanRectangleViewController: UIViewController {
     }
     
     @IBAction func takePictureButtonTapped() {
-        
         processRectangle()
+    }
+    
+    @IBAction func closeButtonTapped() {
+        delegate?.didTapCancel(sender: self)
     }
 }
 
@@ -177,6 +181,7 @@ extension ScanRectangleViewController {
     private func processRectangle() {
         scanState = .processingRectangle
         cameraStream.pause(true)
+        
         DispatchQueue.main.async {
             self.cameraStream.takeSnapshot { (capturedImage) in
                 guard let capturedImage = capturedImage else {

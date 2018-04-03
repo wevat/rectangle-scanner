@@ -34,4 +34,8 @@ Our favourite is receipts, however we don't judge you based on your rectangle pr
   s.swift_version = '4.0'
 
   s.source_files = 'RectangleScanner/Classes/**/*'
+  s.resources = 'RectangleScanner/Assets/*.xcassets'
+  s.resource_bundles = {
+    'CameraStreamProvider' => ['RectangleScanner/Assets/*.xcassets']
+  }
 end
