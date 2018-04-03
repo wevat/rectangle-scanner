@@ -64,6 +64,8 @@ class CameraStreamProvider: NSObject {
         }
         
         setupVideoCaptureDevice(videoCaptureDevice)
+        configureDeviceForHighestFrameRate(videoCaptureDevice)
+        
         stillImageOutput?.outputSettings = [AVVideoCodecKey: AVVideoCodecJPEG]
         captureSession?.sessionPreset = AVCaptureSession.Preset.photo
         
@@ -89,6 +91,27 @@ class CameraStreamProvider: NSObject {
             device.automaticallyEnablesLowLightBoostWhenAvailable = true
         }
         device.unlockForConfiguration()
+    }
+    
+    private func configureDeviceForHighestFrameRate(_ device: AVCaptureDevice) {
+        var bestFormat: AVCaptureDevice.Format?
+        var bestFrameRate: AVFrameRateRange?
+        
+        for format in device.formats {
+            for frameRateRange in format.videoSupportedFrameRateRanges {
+                if frameRateRange.maxFrameRate > bestFrameRate?.maxFrameRate ?? 0 {
+                    bestFormat = format
+                    bestFrameRate = frameRateRange
+                }
+            }
+        }
+        
+        if let bestFormat = bestFormat, let bestFrameRate = bestFrameRate {
+            try? device.lockForConfiguration()
+            device.activeFormat = bestFormat
+            device.activeVideoMaxFrameDuration = bestFrameRate.maxFrameDuration
+            device.activeVideoMinFrameDuration = bestFrameRate.minFrameDuration
+        }
     }
     
     func setupPreviewLayer(withView view: UIView) {
