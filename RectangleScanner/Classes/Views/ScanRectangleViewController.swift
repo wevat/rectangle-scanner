@@ -133,7 +133,6 @@ extension ScanRectangleViewController {
             guard self?.shouldThrottleSettingHighlightedRect() == false else {
                 return
             }
-            print("Setting rect at \(Date().timeIntervalSince1970)")
             self?.highlightedRect = convertedRect
         }
     }
@@ -180,11 +179,9 @@ extension ScanRectangleViewController {
                     self.scanState = .couldntFindRectangle
                     return
                 }
-                print("Photo taken at: \(Date().timeIntervalSince1970)")
                 
                 let rectToCropTo = self.getRectToProcess()
                 ScreenshotHelper.processScreenshot(capturedImage, fromViewRect: self.cameraStreamView.frame, croppingTo: rectToCropTo) { (croppedImage) in
-                    print("Photo processed at: \(Date().timeIntervalSince1970)")
                     self.finish(withImage: croppedImage)
                 }
             }
