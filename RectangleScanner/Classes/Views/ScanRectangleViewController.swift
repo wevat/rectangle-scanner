@@ -22,6 +22,7 @@ public class ScanRectangleViewController: UIViewController {
     @IBOutlet var cameraStreamView: UIView!
     @IBOutlet var highlightView: UIView!
     @IBOutlet var takePictureButton: UIButton!
+    @IBOutlet var rectangleDetectionEnabledSwitch: UISwitch!
     
     var cameraStream: CameraStreamProvider
     var rectangleScanner: RectangleScanProvider
@@ -29,6 +30,8 @@ public class ScanRectangleViewController: UIViewController {
     private var highlightedRectLastUpdated: Date?
     
     public weak var delegate: ScanRectangleViewDelegate?
+    
+    private var isRectangleDetectionEnabled: Bool = true
     
     private var highlightedRect: CGRect? {
         didSet {
@@ -109,6 +112,11 @@ public class ScanRectangleViewController: UIViewController {
     @IBAction func closeButtonTapped() {
         delegate?.didTapCancel(sender: self)
     }
+    
+    @IBAction func switchValueChanged(_ sender: UISwitch) {
+        isRectangleDetectionEnabled = sender.isOn
+        highlightView.isHidden = !sender.isOn
+    }
 }
 
 @available(iOS 11.0, *)
@@ -118,15 +126,22 @@ extension ScanRectangleViewController {
         highlightView.layer.borderColor = UIColor.red.cgColor
         highlightView.layer.borderWidth = 3
         highlightView.isHidden = true
+        rectangleDetectionEnabledSwitch.setOn(isRectangleDetectionEnabled, animated: false)
     }
     
     func bindCallbacks() {
         
         cameraStream.bufferDidUpdate = {[weak self] buffer in
+            guard self?.isRectangleDetectionEnabled == true else {
+                return
+            }
             self?.rectangleScanner.startRectangleRequest(onBuffer: buffer)
         }
         
         rectangleScanner.didFindRectangle = {[weak self] rectangle in
+            guard self?.isRectangleDetectionEnabled == true else {
+                return
+            }
             guard let convertedRect = self?.cameraStream.previewLayer?.layerRectConverted(fromMetadataOutputRect: rectangle) else {
                 return
             }
@@ -179,7 +194,10 @@ extension ScanRectangleViewController {
                     self.scanState = .couldntFindRectangle
                     return
                 }
-                
+                guard self.isRectangleDetectionEnabled else {
+                    self.finish(withImage: capturedImage)
+                    return
+                }
                 let rectToCropTo = self.getRectToProcess()
                 ScreenshotHelper.processScreenshot(capturedImage, fromViewRect: self.cameraStreamView.frame, croppingTo: rectToCropTo) { (croppedImage) in
                     self.finish(withImage: croppedImage)
