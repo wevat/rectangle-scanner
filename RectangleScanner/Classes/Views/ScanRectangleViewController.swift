@@ -26,6 +26,7 @@ public class ScanRectangleViewController: UIViewController {
     var cameraStream: CameraStreamProvider
     var rectangleScanner: RectangleScanProvider
     
+    private var highlightedRectLastUpdated: Date?
     
     public weak var delegate: ScanRectangleViewDelegate?
     
@@ -34,6 +35,7 @@ public class ScanRectangleViewController: UIViewController {
             guard oldValue != highlightedRect else { return }
             guard let highlightedRect = highlightedRect else { return }
             updateHighlightedView(withRect: highlightedRect)
+            highlightedRectLastUpdated = Date()
         }
     }
     
@@ -128,7 +130,10 @@ extension ScanRectangleViewController {
             guard let convertedRect = self?.cameraStream.previewLayer?.layerRectConverted(fromMetadataOutputRect: rectangle) else {
                 return
             }
+            guard self?.shouldThrottleSettingHighlightedRect() == false else {
+                return
             }
+            print("Setting rect at \(Date().timeIntervalSince1970)")
             self?.highlightedRect = convertedRect
         }
     }
@@ -156,6 +161,13 @@ extension ScanRectangleViewController {
     
     private func getRectToProcess() -> CGRect {
         return highlightedRect ?? cameraStreamView.frame
+    }
+    
+    private func shouldThrottleSettingHighlightedRect() -> Bool {
+        guard let highlightedRectLastUpdated = highlightedRectLastUpdated else {
+            return false
+        }
+        return highlightedRectLastUpdated.timeIntervalSinceNow > -0.3
     }
     
     private func processRectangle() {
