@@ -20,15 +20,12 @@ public class ScanRectangleViewController: UIViewController {
     
     @IBOutlet var loadingView: UIView!
     @IBOutlet var cameraStreamView: UIView!
-    @IBOutlet var instructionView: UIView?
-    @IBOutlet var instructionLabel: UILabel?
     @IBOutlet var highlightView: UIView!
     @IBOutlet var takePictureButton: UIButton!
     
     var cameraStream: CameraStreamProvider
+    var rectangleScanner: RectangleScanProvider
     
-    private let visionSequenceHandler = VNSequenceRequestHandler()
-    private var lastObservation: VNDetectedObjectObservation?
     
     public weak var delegate: ScanRectangleViewDelegate?
     
@@ -42,7 +39,6 @@ public class ScanRectangleViewController: UIViewController {
     
     private var scanState: ScanState = .lookingForRectangle {
         didSet {
-            instructionLabel?.text = scanState.description()
             toggleLoading(scanState.isProcessing())
         }
     }
@@ -55,6 +51,7 @@ public class ScanRectangleViewController: UIViewController {
     
     public init() {
         cameraStream = CameraStreamProvider()
+        rectangleScanner = RectangleScanProvider()
         super.init(nibName: String(describing: type(of: self)), bundle: Bundle(for: type(of: self)))
     }
     
@@ -70,6 +67,7 @@ public class ScanRectangleViewController: UIViewController {
     
     public required init?(coder aDecoder: NSCoder) {
         cameraStream = CameraStreamProvider()
+        rectangleScanner = RectangleScanProvider()
         super.init(coder: aDecoder)
     }
     
@@ -77,7 +75,7 @@ public class ScanRectangleViewController: UIViewController {
         super.viewDidLoad()
         setupView()
         setupClosure?(self)
-        bindCameraBuffer()
+        bindCallbacks()
     }
     
     public override func viewWillAppear(_ animated: Bool) {
@@ -120,19 +118,18 @@ extension ScanRectangleViewController {
         highlightView.isHidden = true
     }
     
-    func bindCameraBuffer() {
+    func bindCallbacks() {
         
-        cameraStream.bufferDidUpdate = { buffer in
-            let request = VNDetectRectanglesRequest { (request, error) in
-                self.rectangleRequestDidComplete(request: request, error: error)
+        cameraStream.bufferDidUpdate = {[weak self] buffer in
+            self?.rectangleScanner.startRectangleRequest(onBuffer: buffer)
+        }
+        
+        rectangleScanner.didFindRectangle = {[weak self] rectangle in
+            guard let convertedRect = self?.cameraStream.previewLayer?.layerRectConverted(fromMetadataOutputRect: rectangle) else {
+                return
             }
-            
-            do {
-                request.minimumConfidence = 0.8
-                try self.visionSequenceHandler.perform([request], on: buffer)
-            } catch {
-                print("Throws: \(error)")
             }
+            self?.highlightedRect = convertedRect
         }
     }
     
@@ -145,23 +142,6 @@ extension ScanRectangleViewController {
     
     private func finish(withImage image: UIImage) {
         delegate?.didComplete(withImage: image, sender: self)
-    }
-    
-    func rectangleRequestDidComplete(request: VNRequest, error: Error?) {
-        guard let results = request.results,
-              let rectangle = results.first as? VNRectangleObservation,
-              results.count > 0 else {
-            return
-        }
-        
-        print("Results count: \(results.count)")
-        
-        DispatchQueue.main.async {
-            guard let convertedRect = self.cameraStream.previewLayer?.layerRectConverted(fromMetadataOutputRect: rectangle.boundingBox) else {
-                return
-            }
-            self.highlightedRect = convertedRect
-        }
     }
 }
 
