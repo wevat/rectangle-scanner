@@ -199,7 +199,7 @@ extension ScanRectangleViewController {
                     return
                 }
                 let rectToCropTo = self.getRectToProcess()
-                ScreenshotHelper.processScreenshot(capturedImage, fromViewRect: self.cameraStreamView.frame, croppingTo: rectToCropTo) { (croppedImage) in
+                ImageProcessor.process(image: capturedImage, fromViewRect: self.cameraStreamView.frame, croppingTo: rectToCropTo) { (croppedImage) in
                     self.finish(withImage: croppedImage)
                 }
             }

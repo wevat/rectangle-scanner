@@ -1,6 +1,6 @@
 //
 //  ScreenshotHelper.swift
-//  ReceiptScanner
+//  ImageProcessor
 //
 //  Created by Harry Bloom on 26/03/2018.
 //  Copyright © 2018 WeVat. All rights reserved.
@@ -8,9 +8,9 @@
 
 import UIKit
 
-struct ScreenshotHelper {
+struct ImageProcessor {
     
-    static func processScreenshot(_ image: UIImage?, fromViewRect viewRect: CGRect, croppingTo rect: CGRect?, withDelay delay: TimeInterval = 0, completion: @escaping ((UIImage) -> Void)) {
+    static func process(image: UIImage?, fromViewRect viewRect: CGRect, croppingTo rect: CGRect?, withDelay delay: TimeInterval = 0, completion: @escaping ((UIImage) -> Void)) {
         guard let image = image, let rect = rect else {
             return
         }
