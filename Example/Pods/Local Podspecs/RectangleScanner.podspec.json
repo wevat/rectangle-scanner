@@ -20,6 +20,11 @@
   },
   "swift_version": "4.0",
   "source_files": "RectangleScanner/Classes/**/*",
+  "dependencies": {
+    "GPUImage": [
+      "~> 0.1.7"
+    ]
+  },
   "resources": "RectangleScanner/Assets/*.xcassets",
   "resource_bundles": {
     "CameraStreamProvider": [
