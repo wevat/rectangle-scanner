@@ -28,7 +28,6 @@ Our favourite is receipts, however we don't judge you based on your rectangle pr
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { 'Harry Bloom' => 'harry@wevat.com' }
   s.source           = { :git => 'https://github.com/wevat/rectangle-scanner.git', :tag => '0.1-beta1' }
-  # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
   s.ios.deployment_target = '9.0'
   s.swift_version = '4.0'

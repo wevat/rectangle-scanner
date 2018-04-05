@@ -1,9 +1,7 @@
 PODS:
-  - GPUImage (0.1.7)
   - RectangleScanner (0.1-beta1)
 
 DEPENDENCIES:
-  - GPUImage
   - RectangleScanner (from `../`)
 
 EXTERNAL SOURCES:
@@ -11,9 +9,8 @@ EXTERNAL SOURCES:
     :path: ../
 
 SPEC CHECKSUMS:
-  GPUImage: 733a5f0fab92df9de1c37ba9df520a833ccb406d
-  RectangleScanner: 8ea53ae497a37f60c04367765f11518ef631243d
+  RectangleScanner: d13a6d4e3df6030facf876d06a7e4d639ac31e4f
 
-PODFILE CHECKSUM: 2f7cbacb5b9a2688e7a31e935c1bec0b0ac0f997
+PODFILE CHECKSUM: 87dcc33f67be11c91fa564a03d92f8e6faa64c9d
 
 COCOAPODS: 1.4.0
