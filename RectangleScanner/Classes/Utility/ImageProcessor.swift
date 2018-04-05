@@ -10,8 +10,9 @@ import UIKit
 
 struct ImageProcessor {
     
-    static func process(image: UIImage?, fromViewRect viewRect: CGRect, croppingTo rect: CGRect?, withDelay delay: TimeInterval = 0, completion: @escaping ((UIImage) -> Void)) {
-        guard let image = image, let rect = rect else {
+    static func process(image: UIImage, fromViewRect viewRect: CGRect, croppingTo rect: CGRect?, withDelay delay: TimeInterval = 0, completion: @escaping ((UIImage) -> Void)) {
+        guard let rect = rect else {
+            completion(image)
             return
         }
         

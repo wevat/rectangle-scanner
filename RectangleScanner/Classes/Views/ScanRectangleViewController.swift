@@ -91,7 +91,11 @@ public class ScanRectangleViewController: UIViewController {
     public override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
 
-        startScan()
+        let path = Bundle(for: type(of: self)).path(forResource: "IMG_5140", ofType: ".JPG")
+        let url = URL(fileURLWithPath: path!)
+        let data = try! Data(contentsOf: url)
+        let image = UIImage(data: data)!
+        self.finish(withImage: image)
     }
     
     public override func viewWillDisappear(_ animated: Bool) {
