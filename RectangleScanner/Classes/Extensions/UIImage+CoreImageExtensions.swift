@@ -7,7 +7,6 @@
 
 import CoreImage
 import UIKit
-import GPUImage
 
 public extension UIImage {
     

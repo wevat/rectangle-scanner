@@ -88,9 +88,9 @@
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3VJ-w1-jQT">
                                                 <rect key="frame" x="137" y="0.0" width="69" height="40"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                                <state key="normal" title="Grayscale"/>
+                                                <state key="normal" title="B&amp;W"/>
                                                 <connections>
-                                                    <action selector="greyscaleButtonTapped" destination="s78-Vd-qsE" eventType="touchUpInside" id="Cj9-ah-ipG"/>
+                                                    <action selector="blackAndWhiteButtonTapped" destination="s78-Vd-qsE" eventType="touchUpInside" id="5wf-bS-yTW"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Sul-yZ-fqB">

@@ -8,6 +8,7 @@
 
 import UIKit
 import RectangleScanner
+import GPUImage
 
 class ResultViewController: UIViewController {
 
@@ -31,9 +32,11 @@ class ResultViewController: UIViewController {
         resultImageView.image = constastImage
     }
     
-    @IBAction func greyscaleButtonTapped() {
-        var greyscale = resultImage?.imageWithGreyscale()
-        resultImageView.image = greyscale
+    @IBAction func blackAndWhiteButtonTapped() {
+        let stillImageFilter = GPUImageLuminanceThresholdFilter()
+        stillImageFilter.threshold = CGFloat(slider.value)
+        var processeedImage = stillImageFilter.image(byFilteringImage: resultImage!)
+        resultImageView.image = processeedImage
     }
     
     @IBAction func brightnessButtonTapped() {
