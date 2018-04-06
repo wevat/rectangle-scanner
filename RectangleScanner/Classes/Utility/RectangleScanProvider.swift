@@ -24,7 +24,8 @@ class RectangleScanProvider {
         }
         
         do {
-            request.minimumConfidence = 0.8
+            request.minimumConfidence = 0.5
+            request.minimumSize = 0.4
             try self.visionSequenceHandler.perform([request], on: buffer)
         } catch {
             print("Throws: \(error)")
@@ -33,13 +34,9 @@ class RectangleScanProvider {
     
     func rectangleRequestDidComplete(request: VNRequest, error: Error?) {
         guard let results = request.results,
-            let rectangle = results.first as? VNRectangleObservation,
-            results.count > 0 else {
+            let rectangle = results.first as? VNRectangleObservation else {
                 return
         }
-        
-        print("Results count: \(results.count)")
-        
         DispatchQueue.main.async {
             self.didFindRectangle?(rectangle.boundingBox)
         }
