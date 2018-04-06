@@ -24,7 +24,7 @@ class RectangleScanProvider {
         }
         
         do {
-            request.minimumConfidence = 0.5
+            request.minimumConfidence = 0.6
             request.minimumSize = 0.4
             try self.visionSequenceHandler.perform([request], on: buffer)
         } catch {

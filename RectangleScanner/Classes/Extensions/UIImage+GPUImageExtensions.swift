@@ -23,8 +23,11 @@ public extension UIImage {
     }
     
     public func imageWithBlackAndWhite(value: Float) -> UIImage {
-        let stillImageFilter = GPUImageLuminanceThresholdFilter()
-        stillImageFilter.threshold = CGFloat(value)
+        let stillImageFilter = GPUImageAdaptiveThresholdFilter()
+        stillImageFilter.blurRadiusInPixels = 4
+        let stillImageFilter1 = GPUImageLuminanceThresholdFilter()
+        stillImageFilter1.threshold = CGFloat(value)
+        stillImageFilter.addFilter(stillImageFilter1)
         return stillImageFilter.image(byFilteringImage: self)
     }
 }
