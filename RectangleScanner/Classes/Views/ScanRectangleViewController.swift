@@ -20,12 +20,13 @@ public class ScanRectangleViewController: UIViewController {
     
     @IBOutlet var loadingView: UIView!
     @IBOutlet var cameraStreamView: UIView!
-    @IBOutlet var highlightView: UIView!
     @IBOutlet var takePictureButton: UIButton!
     @IBOutlet var rectangleDetectionEnabledSwitch: UISwitch!
     
     var cameraStream: CameraStreamProvider
     var rectangleScanner: RectangleScanProvider
+    
+    private var selectedRectangleOutlineLayer: CAShapeLayer?
     
     private var highlightedRectLastUpdated: Date?
     
@@ -33,10 +34,11 @@ public class ScanRectangleViewController: UIViewController {
     
     private var isRectangleDetectionEnabled: Bool = true
     
-    private var highlightedRect: CGRect? {
+    private var highlightedRect: DetectedRectangle? {
         didSet {
-            guard oldValue != highlightedRect else { return }
             guard let highlightedRect = highlightedRect else { return }
+            highlightedRect.convertPoints(toView: cameraStreamView)
+            removeSelectedRectangle()
             updateHighlightedView(withRect: highlightedRect)
             highlightedRectLastUpdated = Date()
         }
@@ -114,7 +116,7 @@ public class ScanRectangleViewController: UIViewController {
     
     @IBAction func switchValueChanged(_ sender: UISwitch) {
         isRectangleDetectionEnabled = sender.isOn
-        highlightView.isHidden = !sender.isOn
+        removeSelectedRectangle()
     }
 }
 
@@ -122,9 +124,6 @@ public class ScanRectangleViewController: UIViewController {
 extension ScanRectangleViewController {
     
     private func setupView() {
-        highlightView.layer.borderColor = UIColor.red.cgColor
-        highlightView.layer.borderWidth = 3
-        highlightView.isHidden = true
         rectangleDetectionEnabledSwitch.setOn(isRectangleDetectionEnabled, animated: false)
     }
     
@@ -141,13 +140,10 @@ extension ScanRectangleViewController {
             guard self?.isRectangleDetectionEnabled == true else {
                 return
             }
-            guard let convertedRect = self?.cameraStream.previewLayer?.layerRectConverted(fromMetadataOutputRect: rectangle) else {
-                return
-            }
             guard self?.shouldThrottleSettingHighlightedRect() == false else {
                 return
             }
-            self?.highlightedRect = convertedRect
+            self?.highlightedRect = rectangle
         }
     }
     
@@ -166,14 +162,38 @@ extension ScanRectangleViewController {
 @available(iOS 11.0, *)
 extension ScanRectangleViewController {
     
-    private func updateHighlightedView(withRect rect: CGRect) {
-        highlightView.frame = rect
-        highlightView.isHidden = false
-        cameraStreamView.bringSubview(toFront: highlightView)
+    private func updateHighlightedView(withRect rect: DetectedRectangle) {
+        guard self.isRectangleDetectionEnabled else {
+            return
+        }
+        let selectedShape = self.drawPolygon(rect.points, color: UIColor.red)
+        self.selectedRectangleOutlineLayer = selectedShape
+        self.cameraStreamView.layer.addSublayer(selectedShape)
+    }
+    
+    private func removeSelectedRectangle() {
+        if let layer = selectedRectangleOutlineLayer {
+            layer.removeFromSuperlayer()
+            selectedRectangleOutlineLayer = nil
+        }
+    }
+    
+    private func drawPolygon(_ points: [CGPoint], color: UIColor) -> CAShapeLayer {
+        let layer = CAShapeLayer()
+        layer.fillColor = nil
+        layer.strokeColor = color.cgColor
+        layer.lineWidth = 2
+        let path = UIBezierPath()
+        path.move(to: points.last!)
+        points.forEach { point in
+            path.addLine(to: point)
+        }
+        layer.path = path.cgPath
+        return layer
     }
     
     private func getRectToProcess() -> CGRect {
-        return highlightedRect ?? cameraStreamView.frame
+        return highlightedRect?.boundingBox ?? cameraStreamView.frame
     }
     
     private func shouldThrottleSettingHighlightedRect() -> Bool {

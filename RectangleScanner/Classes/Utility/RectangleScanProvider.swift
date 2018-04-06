@@ -16,7 +16,7 @@ class RectangleScanProvider {
     private let visionSequenceHandler = VNSequenceRequestHandler()
     private var lastObservation: VNDetectedObjectObservation?
     
-    var didFindRectangle: ((_ rect: CGRect) -> Void)?
+    var didFindRectangle: ((_ rect: DetectedRectangle) -> Void)?
     
     func startRectangleRequest(onBuffer buffer: CVPixelBuffer) {
         let request = VNDetectRectanglesRequest { (request, error) in
@@ -38,7 +38,8 @@ class RectangleScanProvider {
                 return
         }
         DispatchQueue.main.async {
-            self.didFindRectangle?(rectangle.boundingBox)
+            let detectedRect = DetectedRectangle(rectangle: rectangle)
+            self.didFindRectangle?(detectedRect)
         }
     }
 }

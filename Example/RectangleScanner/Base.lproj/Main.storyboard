@@ -58,7 +58,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="USL-et-i1Y">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2cO-md-jhJ">
                                 <rect key="frame" x="16" y="597" width="343" height="70"/>
@@ -128,7 +128,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="USL-et-i1Y" firstAttribute="leading" secondItem="8iM-oT-OJt" secondAttribute="leading" id="4ac-tt-JmF"/>
-                            <constraint firstItem="USL-et-i1Y" firstAttribute="top" secondItem="8iM-oT-OJt" secondAttribute="top" id="6jZ-dP-tNl"/>
+                            <constraint firstItem="USL-et-i1Y" firstAttribute="top" secondItem="qRI-R7-HkH" secondAttribute="bottom" id="6qK-ZA-tcL"/>
                             <constraint firstAttribute="trailingMargin" secondItem="2cO-md-jhJ" secondAttribute="trailing" id="Ldp-1n-kju"/>
                             <constraint firstAttribute="trailing" secondItem="USL-et-i1Y" secondAttribute="trailing" id="U9N-hw-vOZ"/>
                             <constraint firstItem="2cO-md-jhJ" firstAttribute="leading" secondItem="8iM-oT-OJt" secondAttribute="leadingMargin" id="fjr-IS-2wb"/>

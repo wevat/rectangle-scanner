@@ -13,7 +13,6 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ScanRectangleViewController" customModule="RectangleScanner" customModuleProvider="target">
             <connections>
                 <outlet property="cameraStreamView" destination="iDr-Wq-CXp" id="MgV-YV-Lf5"/>
-                <outlet property="highlightView" destination="KmK-Te-t6o" id="907-gj-iFn"/>
                 <outlet property="loadingView" destination="Ltm-fs-Wv4" id="M8m-t1-UWf"/>
                 <outlet property="rectangleDetectionEnabledSwitch" destination="4in-Ml-ZNi" id="ahi-Dq-Cvg"/>
                 <outlet property="takePictureButton" destination="Pul-Jv-1jW" id="OyS-Ae-R3g"/>
@@ -28,13 +27,6 @@
                 <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="iDr-Wq-CXp">
                     <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <subviews>
-                        <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KmK-Te-t6o">
-                            <rect key="frame" x="67" y="269" width="240" height="128"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        </view>
-                    </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OA9-wv-bEn">

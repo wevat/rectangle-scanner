@@ -30,4 +30,19 @@ public extension UIImage {
         stillImageFilter.addFilter(stillImageFilter1)
         return stillImageFilter.image(byFilteringImage: self)
     }
+    
+    public func imageWithPerspectiveTransform(topLeft: CGPoint, topRight: CGPoint, bottomLeft: CGPoint, bottomRight: CGPoint) -> UIImage? {
+        guard let perspectiveTransform = CIFilter(name: "CIPerspectiveTransform") else {
+            return nil
+        }
+        perspectiveTransform.setValue(CIVector(cgPoint: topLeft), forKey: "inputTopLeft")
+        perspectiveTransform.setValue(CIVector(cgPoint: topRight), forKey: "inputTopRight")
+        perspectiveTransform.setValue(CIVector(cgPoint: bottomRight), forKey: "inputBottomRight")
+        perspectiveTransform.setValue(CIVector(cgPoint: bottomLeft), forKey: "inputBottomLeft")
+        perspectiveTransform.setValue(CIImage(image: self), forKey: kCIInputImageKey)
+        guard let perspectiveImage = perspectiveTransform.outputImage else {
+            return nil
+        }
+        return UIImage(ciImage: perspectiveImage)
+    }
 }
