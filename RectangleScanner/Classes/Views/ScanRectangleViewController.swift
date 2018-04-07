@@ -37,7 +37,6 @@ public class ScanRectangleViewController: UIViewController {
     private var highlightedRect: DetectedRectangle? {
         didSet {
             guard let highlightedRect = highlightedRect else { return }
-            highlightedRect.convertPoints(toView: cameraStreamView)
             removeSelectedRectangle()
             updateHighlightedView(withRect: highlightedRect)
             highlightedRectLastUpdated = Date()
@@ -140,10 +139,12 @@ extension ScanRectangleViewController {
             guard self?.isRectangleDetectionEnabled == true else {
                 return
             }
-            guard self?.shouldThrottleSettingHighlightedRect() == false else {
+            guard let previewLayer = self?.cameraStream.previewLayer else {
                 return
             }
-            self?.highlightedRect = rectangle
+            let convertedPoints = rectangle.points.map { previewLayer.layerPointConverted(fromCaptureDevicePoint: $0) }
+            
+            self?.highlightedRect = DetectedRectangle(points: convertedPoints)
         }
     }
     
@@ -193,7 +194,7 @@ extension ScanRectangleViewController {
     }
     
     private func getRectToProcess() -> CGRect {
-        return highlightedRect?.boundingBox ?? cameraStreamView.frame
+        return highlightedRect?.joiningRect ?? cameraStreamView.frame
     }
     
     private func shouldThrottleSettingHighlightedRect() -> Bool {

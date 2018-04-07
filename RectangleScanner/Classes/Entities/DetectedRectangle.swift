@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import CoreGraphics
 import Vision
 
 class DetectedRectangle {
@@ -23,13 +24,10 @@ class DetectedRectangle {
         ]
     }
     
-    var boundingBox: CGRect {
-        let path = UIBezierPath()
-        path.move(to: points.last!)
-        points.forEach { point in
-            path.addLine(to: point)
-        }
-        return path.cgPath.boundingBox
+    var joiningRect: CGRect {
+        let path = CGMutablePath()
+        path.addLines(between: points)
+        return path.boundingBox
     }
     
     @available(iOS 11.0, *)
@@ -38,6 +36,20 @@ class DetectedRectangle {
         self.topRight = rectangle.topRight
         self.bottomRight = rectangle.bottomRight
         self.bottomLeft = rectangle.bottomLeft
+    }
+    
+    init(rect: CGRect) {
+        self.topLeft = CGPoint(x: rect.minX, y: rect.minY)
+        self.topRight = CGPoint(x: rect.maxX, y: rect.minY)
+        self.bottomRight = CGPoint(x: rect.maxX, y: rect.maxY)
+        self.bottomLeft = CGPoint(x: rect.minX, y: rect.maxY)
+    }
+    
+    init(points: [CGPoint]) {
+        self.topLeft = points[0]
+        self.topRight = points[1]
+        self.bottomRight = points[2]
+        self.bottomLeft = points[3]
     }
     
     func convertPoints(toView view: UIView) {
