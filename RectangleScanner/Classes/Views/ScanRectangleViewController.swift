@@ -167,7 +167,7 @@ extension ScanRectangleViewController {
         guard self.isRectangleDetectionEnabled else {
             return
         }
-        let selectedShape = self.drawPolygon(rect.points, color: UIColor.red)
+        let selectedShape = self.drawPolygon(rect.points, color: UIColor.blue)
         self.selectedRectangleOutlineLayer = selectedShape
         self.cameraStreamView.layer.addSublayer(selectedShape)
     }
@@ -181,9 +181,9 @@ extension ScanRectangleViewController {
     
     private func drawPolygon(_ points: [CGPoint], color: UIColor) -> CAShapeLayer {
         let layer = CAShapeLayer()
-        layer.fillColor = nil
-        layer.strokeColor = color.cgColor
-        layer.lineWidth = 2
+        layer.strokeColor = color.withAlphaComponent(0.4).cgColor
+        layer.fillColor = color.withAlphaComponent(0.4).cgColor
+        layer.lineWidth = 0
         let path = UIBezierPath()
         path.move(to: points.last!)
         points.forEach { point in
