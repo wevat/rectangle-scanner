@@ -8,23 +8,48 @@
 
 import UIKit
 import RectangleScanner
-//import GPUImage
 
 class ResultViewController: UIViewController {
 
     @IBOutlet var resultImageView: UIImageView!
     @IBOutlet var slider: UISlider!
+    @IBOutlet var filterSwitch: UISwitch!
     
     var resultImage: UIImage?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        setupView()
+    }
+    
+    private func setupView() {
+        resultImageView.image = resultImage
+        
+        if filterSwitch.isOn {
+            applyBestFilter()
+        }
+    }
+    
+    private func applyBestFilter() {
+        let blackAndWhiteImage = resultImage?.imageWithBlackAndWhite(value: slider.value)
+        resultImageView.image = blackAndWhiteImage
+    }
+    
+    private func resetFilters() {
         resultImageView.image = resultImage
     }
     
+    @IBAction func filterSwitchDidChange(_ sender: UISwitch) {
+        if sender.isOn {
+            applyBestFilter()
+        } else {
+            resetFilters()
+        }
+    }
+    
     @IBAction func noneButtonTapped() {
-        resultImageView.image = resultImage
+        resetFilters()
     }
     
     @IBAction func constrastButtonTapped() {
@@ -33,8 +58,7 @@ class ResultViewController: UIViewController {
     }
     
     @IBAction func blackAndWhiteButtonTapped() {
-        let blackAndWhiteImage = resultImage?.imageWithBlackAndWhite(value: slider.value)
-        resultImageView.image = blackAndWhiteImage
+        applyBestFilter()
     }
     
     @IBAction func brightnessButtonTapped() {
