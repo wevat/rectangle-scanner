@@ -8,32 +8,24 @@
 
 Pod::Spec.new do |s|
   s.name             = 'RectangleScanner'
-  s.version          = '0.1-beta1'
+  s.version          = '1.0-beta1'
   s.summary          = 'A UIViewController with callbacks for scanning rectangles.'
-
-# This description is used to generate tags and improve search results.
-#   * Think: What does it do? Why did you write it? What is the focus?
-#   * Try to keep it short, snappy and to the point.
-#   * Write the description between the DESC delimiters below.
-#   * Finally, don't worry about the indent, CocoaPods strips it!
 
   s.description      = <<-DESC
 Use this library to scan rectangles.
-Simply point at a rectangle, tap & hold, and voila.
+Simply point at a rectangle, tap the take picture button, and voila. The rectangle will be processed, cropped and provided back to you for your leisure.
 Our favourite is receipts, however we don't judge you based on your rectangle preference.
                        DESC
 
   s.homepage         = 'https://github.com/wevat/rectangle-scanner'
-  # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { 'Harry Bloom' => 'harry@wevat.com' }
-  s.source           = { :git => 'https://github.com/wevat/rectangle-scanner.git', :tag => '0.1-beta1' }
+  s.source           = { :git => 'https://github.com/wevat/rectangle-scanner.git', :tag => 's.version.to_s' }
 
   s.ios.deployment_target = '9.0'
   s.swift_version = '4.0'
 
   s.source_files = 'RectangleScanner/Classes/**/*'
-  s.dependency 'GPUImage', '~> 0.1.7'
   s.resources = 'RectangleScanner/Assets/*.xcassets'
   s.resource_bundles = {
     'CameraStreamProvider' => ['RectangleScanner/Assets/*.xcassets']
