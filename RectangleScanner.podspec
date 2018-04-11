@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'RectangleScanner'
-  s.version          = '1.0-beta1'
+  s.version          = '1.0.0-beta1'
   s.summary          = 'A UIViewController with callbacks for scanning rectangles.'
 
   s.description      = <<-DESC
@@ -20,7 +20,7 @@ Our favourite is receipts, however we don't judge you based on your rectangle pr
   s.homepage         = 'https://github.com/wevat/rectangle-scanner'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { 'Harry Bloom' => 'harry@wevat.com' }
-  s.source           = { :git => 'https://github.com/wevat/rectangle-scanner.git', :tag => 's.version.to_s' }
+  s.source           = { :git => 'https://github.com/wevat/rectangle-scanner.git', :tag => s.version.to_s }
 
   s.ios.deployment_target = '9.0'
   s.swift_version = '4.0'
