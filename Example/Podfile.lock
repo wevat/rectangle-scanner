@@ -6,9 +6,13 @@ PODS:
 DEPENDENCIES:
   - RectangleScanner (from `../`)
 
+SPEC REPOS:
+  https://github.com/CocoaPods/Specs.git:
+    - GPUImage
+
 EXTERNAL SOURCES:
   RectangleScanner:
-    :path: ../
+    :path: "../"
 
 SPEC CHECKSUMS:
   GPUImage: 733a5f0fab92df9de1c37ba9df520a833ccb406d
@@ -16,4 +20,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: 87dcc33f67be11c91fa564a03d92f8e6faa64c9d
 
-COCOAPODS: 1.4.0
+COCOAPODS: 1.5.0
