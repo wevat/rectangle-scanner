@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment version="4352" identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -24,9 +24,8 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="iDr-Wq-CXp">
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iDr-Wq-CXp">
                     <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OA9-wv-bEn">
@@ -90,7 +89,7 @@
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TZz-yn-RGI">
-                    <rect key="frame" x="325" y="30" width="35" height="35"/>
+                    <rect key="frame" x="325" y="35" width="35" height="35"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="35" id="WzF-nb-Zd1"/>
                         <constraint firstAttribute="height" constant="35" id="r2E-lP-Rdm"/>
@@ -105,15 +104,19 @@
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="j1W-W7-SEc" secondAttribute="trailing" id="3Ob-sQ-3To"/>
                 <constraint firstItem="OA9-wv-bEn" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="4Mw-BD-a92"/>
-                <constraint firstItem="TZz-yn-RGI" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="10" id="IAr-z5-tCu"/>
+                <constraint firstAttribute="trailing" secondItem="iDr-Wq-CXp" secondAttribute="trailing" id="AtT-UO-4az"/>
+                <constraint firstItem="TZz-yn-RGI" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="15" id="IAr-z5-tCu"/>
                 <constraint firstItem="Pul-Jv-1jW" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="TE0-uz-hYU"/>
                 <constraint firstItem="Ltm-fs-Wv4" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="TZf-lf-laS"/>
                 <constraint firstAttribute="bottom" secondItem="Pul-Jv-1jW" secondAttribute="bottom" constant="20" id="VJv-Qs-IG6"/>
                 <constraint firstItem="Ltm-fs-Wv4" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="W7K-HK-x7E"/>
                 <constraint firstItem="j1W-W7-SEc" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="alQ-fN-mGy"/>
+                <constraint firstItem="iDr-Wq-CXp" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="btv-wJ-tBx"/>
                 <constraint firstItem="OA9-wv-bEn" firstAttribute="centerY" secondItem="Pul-Jv-1jW" secondAttribute="centerY" id="h5r-oS-ZDe"/>
+                <constraint firstItem="iDr-Wq-CXp" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="rok-sV-hM1"/>
                 <constraint firstItem="j1W-W7-SEc" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="sYz-CY-n85"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="TZz-yn-RGI" secondAttribute="trailing" constant="15" id="tQ4-g2-LYc"/>
+                <constraint firstAttribute="bottom" secondItem="iDr-Wq-CXp" secondAttribute="bottom" id="taO-5p-I1I"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
         </view>
