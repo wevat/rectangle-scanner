@@ -39,6 +39,13 @@ public class ScanRectangleViewController: CameraViewController {
         super.init()
     }
     
+    public convenience init(delegate: CameraViewDelegate, scanConfiguration: RectangleScanConfiguration? = nil, setupClosure: CameraViewControllerDidLoad? = nil) {
+        self.init(delegate: delegate, setupClosure: setupClosure)
+        if let scanConfig = scanConfiguration {
+            rectangleScanner.setScanConfiguration(scanConfig)
+        }
+    }
+    
     public required init?(coder aDecoder: NSCoder) {
         rectangleScanner = RectangleScanProvider()
         super.init(coder: aDecoder)

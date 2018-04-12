@@ -18,14 +18,21 @@ class RectangleScanProvider {
     
     var didFindRectangle: ((_ rect: VNRectangleObservation) -> Void)?
     
+    var scanConfig: RectangleScanConfiguration?
+    
+    func setScanConfiguration(_ config: RectangleScanConfiguration) {
+        scanConfig = config
+    }
+    
     func startRectangleRequest(onBuffer buffer: CVPixelBuffer) {
         let request = VNDetectRectanglesRequest { (request, error) in
             self.rectangleRequestDidComplete(request: request, error: error)
         }
         
         do {
-            request.minimumConfidence = 0.6
-            request.minimumSize = 0.4
+            if let config = scanConfig {
+                request.setConfiguration(from: config)
+            }
             try self.visionSequenceHandler.perform([request], on: buffer)
         } catch {
             print("Throws: \(error)")
