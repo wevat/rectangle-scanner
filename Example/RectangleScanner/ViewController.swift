@@ -9,33 +9,17 @@
 import UIKit
 import RectangleScanner
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, ScanRectangleViewProvider {
     
     var scannedImage: UIImage?
     
     @IBAction func startButtonTapped() {
         
-        if #available(iOS 11.0, *) {
-            startScanFlow()
-        } else {
-            showAlert()
-        }
-    }
-    
-    @available(iOS 11.0, *)
-    private func startScanFlow() {
-        
-        let scanView = ScanRectangleViewController(delegate: self)
-        present(scanView, animated: true, completion: nil)
-    }
-    
-    private func showAlert() {
-        let alert = UIAlertController(title: "Unsupported version", message: "You can only use the scan functionality on iOS 11 or later. Sorry!", preferredStyle: .alert)
-        present(alert, animated: true, completion: nil)
+        startScan(delegate: self)
     }
 }
 
-extension ViewController: ScanRectangleViewDelegate {
+extension ViewController: CameraViewDelegate {
     
     func didComplete(withImage: UIImage, sender: UIViewController) {
         sender.dismiss(animated: true) { [weak self] in

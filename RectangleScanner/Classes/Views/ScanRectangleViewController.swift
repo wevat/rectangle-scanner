@@ -1,36 +1,20 @@
 //
-//  ScanRectangleViewController.swift
-//  ReceiptScanner
+//  ScanRectangleViewControllere.swift
+//  RectangleScanner
 //
-//  Created by Harry Bloom on 27/03/2018.
-//  Copyright © 2018 WeVat. All rights reserved.
+//  Created by Harry Bloom on 12/04/2018.
 //
 
 import UIKit
-import Vision
-import AVFoundation
-
-public protocol ScanRectangleViewDelegate: class {
-    func didComplete(withImage: UIImage, sender: UIViewController)
-    func didTapCancel(sender: UIViewController)
-}
 
 @available(iOS 11.0, *)
-public class ScanRectangleViewController: UIViewController {
+public class ScanRectangleViewController: CameraViewController {
     
-    @IBOutlet var loadingView: UIView!
-    @IBOutlet var cameraStreamView: UIView!
-    @IBOutlet var takePictureButton: UIButton!
-    @IBOutlet var rectangleDetectionEnabledSwitch: UISwitch!
-    
-    var cameraStream: CameraStreamProvider
     var rectangleScanner: RectangleScanProvider
     
     private var selectedRectangleOutlineLayer: CAShapeLayer?
     
     private var highlightedRectLastUpdated: Date?
-    
-    public weak var delegate: ScanRectangleViewDelegate?
     
     private var isRectangleDetectionEnabled: Bool = true
     
@@ -49,84 +33,46 @@ public class ScanRectangleViewController: UIViewController {
         }
     }
     
-    private var setupClosure: ((_ viewDidLoadOn: ScanRectangleViewController) -> Void)?
-    
-    deinit {
-        print("ScanRectangleViewController deinited")
-    }
-    
-    public init() {
-        cameraStream = CameraStreamProvider()
+    public override init() {
         rectangleScanner = RectangleScanProvider()
-        super.init(nibName: String(describing: type(of: self)), bundle: Bundle(for: type(of: self)))
-    }
-    
-    public convenience init(delegate: ScanRectangleViewDelegate) {
-        self.init()
-        self.delegate = delegate
-    }
-    
-    public convenience init(setupClosure: ((_ viewDidLoadOn: ScanRectangleViewController) -> Void)?) {
-        self.init()
-        self.setupClosure = setupClosure
+        super.init()
     }
     
     public required init?(coder aDecoder: NSCoder) {
-        cameraStream = CameraStreamProvider()
         rectangleScanner = RectangleScanProvider()
         super.init(coder: aDecoder)
     }
     
     public override func viewDidLoad() {
         super.viewDidLoad()
-        setupView()
-        setupClosure?(self)
         bindCallbacks()
     }
     
-    public override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        navigationController?.setNavigationBarHidden(true, animated: true)
+    override func setupView() {
+        super.setupView()
+        rectangleDetectionEnabledView.isHidden = false
+        rectangleDetectionEnabledSwitch.setOn(isRectangleDetectionEnabled, animated: false)
     }
     
-    public override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        startScan()
+    override func start() {
+        super.start()
+        scanState = .lookingForRectangle
     }
     
-    public override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        cameraStream.end()
-    }
-    
-    public override var prefersStatusBarHidden: Bool {
-        get {
-            return true
-        }
-    }
-    
-    @IBAction func takePictureButtonTapped() {
+    override func takePicture() {
         processRectangle()
     }
     
-    @IBAction func closeButtonTapped() {
-        delegate?.didTapCancel(sender: self)
-    }
-    
-    @IBAction func switchValueChanged(_ sender: UISwitch) {
-        isRectangleDetectionEnabled = sender.isOn
+    override func switchValueChanged(isOn: Bool) {
+        isRectangleDetectionEnabled = isOn
         removeSelectedRectangle()
     }
 }
 
 @available(iOS 11.0, *)
 extension ScanRectangleViewController {
-    
-    private func setupView() {
-        rectangleDetectionEnabledSwitch.setOn(isRectangleDetectionEnabled, animated: false)
-    }
-    
-    func bindCallbacks() {
+
+    private func bindCallbacks() {
         
         cameraStream.bufferDidUpdate = {[weak self] buffer in
             guard self?.isRectangleDetectionEnabled == true else {
@@ -147,21 +93,6 @@ extension ScanRectangleViewController {
             self?.highlightedRect = DetectedRectangle(points: convertedPoints)
         }
     }
-    
-    private func startScan() {
-        scanState = .lookingForRectangle
-        
-        cameraStream.setupPreviewLayer(withView: cameraStreamView)
-        cameraStream.start()
-    }
-    
-    private func finish(withImage image: UIImage) {
-        delegate?.didComplete(withImage: image, sender: self)
-    }
-}
-
-@available(iOS 11.0, *)
-extension ScanRectangleViewController {
     
     private func updateHighlightedView(withRect rect: DetectedRectangle) {
         guard self.isRectangleDetectionEnabled else {
@@ -224,9 +155,5 @@ extension ScanRectangleViewController {
                 }
             }
         }
-    }
-    
-    private func toggleLoading(_ loading: Bool) {
-        loadingView.isHidden = !loading
     }
 }

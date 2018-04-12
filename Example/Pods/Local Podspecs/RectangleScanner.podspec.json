@@ -1,6 +1,6 @@
 {
   "name": "RectangleScanner",
-  "version": "1.0-beta1",
+  "version": "1.0.0-beta2",
   "summary": "A UIViewController with callbacks for scanning rectangles.",
   "description": "Use this library to scan rectangles.\nSimply point at a rectangle, tap the take picture button, and voila. The rectangle will be processed, cropped and provided back to you for your leisure.\nOur favourite is receipts, however we don't judge you based on your rectangle preference.",
   "homepage": "https://github.com/wevat/rectangle-scanner",
@@ -13,7 +13,7 @@
   },
   "source": {
     "git": "https://github.com/wevat/rectangle-scanner.git",
-    "tag": "s.version.to_s"
+    "tag": "1.0.0-beta2"
   },
   "platforms": {
     "ios": "9.0"
