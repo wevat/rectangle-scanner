@@ -29,7 +29,7 @@ public class CameraViewController: UIViewController {
     
     public weak var delegate: CameraViewDelegate?
     
-    private var setupClosure: CameraViewControllerDidLoad?
+    var setupClosure: CameraViewControllerDidLoad?
     
     public init() {
         cameraStream = CameraStreamProvider()

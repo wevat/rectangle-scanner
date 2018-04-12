@@ -13,10 +13,9 @@ public class ScanRectangleViewController: CameraViewController {
     
     var rectangleScanner: RectangleScanProvider
     
+    private var scanConfiguration: RectangleScanConfiguration
     private var selectedRectangleOutlineLayer: CAShapeLayer?
-    
     private var highlightedRectLastUpdated: Date?
-    
     private var isRectangleDetectionEnabled: Bool = true
     
     private var highlightedRect: VNRectangleObservation? {
@@ -34,20 +33,17 @@ public class ScanRectangleViewController: CameraViewController {
         }
     }
     
-    public override init() {
+    public init(delegate: CameraViewDelegate, scanConfiguration: RectangleScanConfiguration? = nil, setupClosure: CameraViewControllerDidLoad? = nil) {
+        self.scanConfiguration = scanConfiguration ?? RectangleScanConfiguration()
         rectangleScanner = RectangleScanProvider()
         super.init()
+        self.delegate = delegate
+        self.setupClosure = setupClosure
     }
-    
-    public convenience init(delegate: CameraViewDelegate, scanConfiguration: RectangleScanConfiguration? = nil, setupClosure: CameraViewControllerDidLoad? = nil) {
-        self.init(delegate: delegate, setupClosure: setupClosure)
-        if let scanConfig = scanConfiguration {
-            rectangleScanner.setScanConfiguration(scanConfig)
-        }
-    }
-    
+
     public required init?(coder aDecoder: NSCoder) {
         rectangleScanner = RectangleScanProvider()
+        scanConfiguration = RectangleScanConfiguration()
         super.init(coder: aDecoder)
     }
     
@@ -58,6 +54,7 @@ public class ScanRectangleViewController: CameraViewController {
     
     override func setupView() {
         super.setupView()
+        rectangleScanner.setScanConfiguration(scanConfiguration)
         rectangleDetectionEnabledView.isHidden = false
         rectangleDetectionEnabledSwitch.setOn(isRectangleDetectionEnabled, animated: false)
     }
@@ -93,7 +90,9 @@ extension ScanRectangleViewController {
             guard self?.isRectangleDetectionEnabled == true else {
                 return
             }
-            
+            guard self?.shouldThrottleSettingHighlightedRect() == false else {
+                return
+            }
             self?.highlightedRect = rectangle
         }
     }
@@ -105,7 +104,7 @@ extension ScanRectangleViewController {
         guard let convertedPoints = rect.convertedPoints(from: cameraStream.previewLayer) else {
             return
         }
-        let selectedShape = self.drawPolygon(convertedPoints, color: UIColor.blue)
+        let selectedShape = self.drawPolygon(convertedPoints, color: scanConfiguration.highlightedRectColor)
         self.selectedRectangleOutlineLayer = selectedShape
         self.cameraStreamView.layer.addSublayer(selectedShape)
     }
@@ -139,7 +138,7 @@ extension ScanRectangleViewController {
         guard let highlightedRectLastUpdated = highlightedRectLastUpdated else {
             return false
         }
-        return highlightedRectLastUpdated.timeIntervalSinceNow > -0.3
+        return highlightedRectLastUpdated.timeIntervalSinceNow > -scanConfiguration.highlightedRectUpdateThrottle
     }
     
     private func processRectangle() {

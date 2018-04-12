@@ -14,6 +14,7 @@ class ViewController: UIViewController, ScanRectangleViewProvider {
     var scannedImage: UIImage?
     
     @IBAction func startButtonTapped() {
+        
         startScan(delegate: self)
     }
 }
