@@ -130,10 +130,6 @@ extension ScanRectangleViewController {
         return layer
     }
     
-    private func getRectToProcess() -> CGRect {
-        return highlightedRect?.convertedRect(from: cameraStream.previewLayer) ?? cameraStreamView.frame
-    }
-    
     private func shouldThrottleSettingHighlightedRect() -> Bool {
         guard let highlightedRectLastUpdated = highlightedRectLastUpdated else {
             return false
@@ -155,11 +151,29 @@ extension ScanRectangleViewController {
                     self.finish(withImage: capturedImage)
                     return
                 }
-                let rectToCropTo = self.getRectToProcess()
-                ImageProcessor.process(image: capturedImage, fromViewRect: self.cameraStreamView.frame, croppingTo: rectToCropTo) { (croppedImage) in
-                    self.finish(withImage: croppedImage)
+                switch self.scanConfiguration.scanMode {
+                case .autoCrop:
+                    self.cropImageAndFinish(originalImage: capturedImage)
+                case .originalWithCropRect:
+                    self.getHighlightedPointsAndFinish(originalImage: capturedImage)
                 }
             }
+        }
+    }
+    
+    private func cropImageAndFinish(originalImage: UIImage) {
+        let rectToCropTo = highlightedRect?.convertedRect(from: cameraStream.previewLayer) ?? cameraStreamView.frame
+        
+        ImageProcessor.process(image: originalImage, fromViewRect: self.cameraStreamView.frame, croppingTo: rectToCropTo) { (croppedImage) in
+            self.finish(withImage: croppedImage)
+        }
+    }
+    
+    private func getHighlightedPointsAndFinish(originalImage: UIImage) {
+        if let highlightedPoints = highlightedRect?.convertedPoints(from: cameraStream.previewLayer) {
+            self.finish(withOriginalImage: originalImage, andHighlightedPoints: highlightedPoints)
+        } else {
+            self.finish(withOriginalImage: originalImage, andHighlightedPoints: cameraStreamView.frame.cornerPoints)
         }
     }
 }
