@@ -8,12 +8,12 @@
 
 Pod::Spec.new do |s|
   s.name             = 'RectangleScanner'
-  s.version          = '1.0.0-beta2'
+  s.version          = '1.0.0-beta3'
   s.summary          = 'A UIViewController with callbacks for scanning rectangles.'
 
   s.description      = <<-DESC
 Use this library to scan rectangles.
-Simply point at a rectangle, tap the take picture button, and voila. The rectangle will be processed, cropped and provided back to you for your leisure.
+Simply point at a rectangle, tap the take picture button, and voila. The rectangle will be processed and provided back to you for your leisure.
 Our favourite is receipts, however we don't judge you based on your rectangle preference.
                        DESC
 

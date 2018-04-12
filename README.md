@@ -1,6 +1,8 @@
 # RectangleScanner
 
-<p>Simply point at a rectangle, tap the take picture button, and voila. The rectangle will be processed, cropped and provided back to you for your leisure.</p>
+<p>Use me to scan rectangles.
+Simply point at a rectangle, tap the take picture button, and voila. The rectangle will be processed and provided back to you for your leisure.
+Our favourite is receipts, however we don't judge you based on your rectangle preference.</p>
 
 <p align="center">
 <img src="https://github.com/wevat/rectangle-scanner/blob/master/RectangleScanner/Assets/demo.gif" width="400">
