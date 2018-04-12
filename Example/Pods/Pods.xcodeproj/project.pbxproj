@@ -13,6 +13,7 @@
 		1EB2E1227E96E3462A5AE7C3F1C353B8 /* ScanRectangleViewProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CF17773B8F4270AD1D5A11213475920 /* ScanRectangleViewProvider.swift */; };
 		41A41F2B349BA898F700C3BA2E720BFE /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */; };
 		7467B1FCC5DE075F5340EE2F2DCB84C8 /* ImageProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE6F8EED232E445E6561DA343318A615 /* ImageProcessor.swift */; };
+		759D944E207F78B30083137F /* VNRectangleObservation+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 759D944C207F77A00083137F /* VNRectangleObservation+Extensions.swift */; };
 		7DF7A27DEDA324568342185F649709FD /* RectangleScanner-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 931ECBE54EF61171FC5E8FE4344A779A /* RectangleScanner-dummy.m */; };
 		81CE37512F6B907147CC585EAB763462 /* Pods-RectangleScanner_Tests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 595359F3E07CFE1FC22CF3FAC3945ACD /* Pods-RectangleScanner_Tests-dummy.m */; };
 		82BC7DEE9C3910B50FF82029CA7F8519 /* RectangleScanProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FB0C45072CC87F4DBE718D88BCB2D31 /* RectangleScanProvider.swift */; };
@@ -30,7 +31,6 @@
 		EDA933220C442A4D1C5992B31D771EAC /* Pods-RectangleScanner_Example-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = F696EC7C7289439D4C7D425ED2979FB8 /* Pods-RectangleScanner_Example-dummy.m */; };
 		EE8AE536121240B384AD3AD214D158CA /* CameraStreamProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E58B9AAB7319D127746D5D496AFEA73 /* CameraStreamProvider.swift */; };
 		F18185A0CAD345DCE7A4BA27D65EFFF8 /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD013DAF41AD373CF23BD085CE20BF8F /* CameraViewController.swift */; };
-		F9ADD1635DF06D3E77E720CCFB07E951 /* DetectedRectangle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B88E73AD65A58913CC05B5F4102EAAC /* DetectedRectangle.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,8 +60,7 @@
 /* Begin PBXFileReference section */
 		0FB0C45072CC87F4DBE718D88BCB2D31 /* RectangleScanProvider.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = RectangleScanProvider.swift; sourceTree = "<group>"; };
 		16223BFD97437FF5C310113A7FD90DEF /* Pods-RectangleScanner_Tests-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-RectangleScanner_Tests-resources.sh"; sourceTree = "<group>"; };
-		16BACC70CE2D7D5798398B7F2996521A /* RectangleScanner.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = RectangleScanner.framework; path = RectangleScanner.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		2B88E73AD65A58913CC05B5F4102EAAC /* DetectedRectangle.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = DetectedRectangle.swift; sourceTree = "<group>"; };
+		16BACC70CE2D7D5798398B7F2996521A /* RectangleScanner.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = RectangleScanner.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		36C19F39109D1F5701DCF4F5B1C5FF86 /* CameraViewController.xib */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file.xib; path = CameraViewController.xib; sourceTree = "<group>"; };
 		3E58B9AAB7319D127746D5D496AFEA73 /* CameraStreamProvider.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CameraStreamProvider.swift; sourceTree = "<group>"; };
 		43B9D7A046B777A26895C628929A9EE1 /* Pods-RectangleScanner_Example-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-RectangleScanner_Example-acknowledgements.plist"; sourceTree = "<group>"; };
@@ -75,18 +74,19 @@
 		6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.3.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
 		66A355D7FAE1209CD08AC070C0070C0D /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		69D0A8949E7A1234B707059BAC6B05AF /* Pods-RectangleScanner_Tests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-RectangleScanner_Tests-acknowledgements.plist"; sourceTree = "<group>"; };
-		6A72C0D6B044BA010E79B9610A30EC39 /* CameraStreamProvider.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = CameraStreamProvider.bundle; path = "RectangleScanner-CameraStreamProvider.bundle"; sourceTree = BUILT_PRODUCTS_DIR; };
-		7A921F93D517B0A67432FEC9957D42D1 /* Pods_RectangleScanner_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_RectangleScanner_Example.framework; path = "Pods-RectangleScanner_Example.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
-		8823480C0B379E46A38A493682B6170B /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; path = README.md; sourceTree = "<group>"; };
+		6A72C0D6B044BA010E79B9610A30EC39 /* CameraStreamProvider.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CameraStreamProvider.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
+		759D944C207F77A00083137F /* VNRectangleObservation+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "VNRectangleObservation+Extensions.swift"; sourceTree = "<group>"; };
+		7A921F93D517B0A67432FEC9957D42D1 /* Pods_RectangleScanner_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RectangleScanner_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8823480C0B379E46A38A493682B6170B /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		8BFA38ECE831C43595A758487801A804 /* ResourceBundle-CameraStreamProvider-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "ResourceBundle-CameraStreamProvider-Info.plist"; sourceTree = "<group>"; };
 		931ECBE54EF61171FC5E8FE4344A779A /* RectangleScanner-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "RectangleScanner-dummy.m"; sourceTree = "<group>"; };
-		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		972D4C0E9962DBDDC964B5937D94B3F5 /* Pods-RectangleScanner_Example-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-RectangleScanner_Example-acknowledgements.markdown"; sourceTree = "<group>"; };
 		978D050DEE22D80131742993F9401AE8 /* UIImage+Extensions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "UIImage+Extensions.swift"; sourceTree = "<group>"; };
 		99316DD78F6381FE6294501C707AC9C1 /* Images.xcassets */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = RectangleScanner/Assets/Images.xcassets; sourceTree = "<group>"; };
 		9B98A422734F6A33320B7917A145BAFC /* Pods-RectangleScanner_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-RectangleScanner_Tests.debug.xcconfig"; sourceTree = "<group>"; };
-		9C9EB096272834245A1AD5FFFE617696 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; path = LICENSE; sourceTree = "<group>"; };
-		9F58C1F4AEBEA5CA1E3FE50105C70126 /* RectangleScanner.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; path = RectangleScanner.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		9C9EB096272834245A1AD5FFFE617696 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		9F58C1F4AEBEA5CA1E3FE50105C70126 /* RectangleScanner.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; path = RectangleScanner.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		A2EE138471DB5A098F9EBD5515507AF2 /* Pods-RectangleScanner_Example.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-RectangleScanner_Example.modulemap"; sourceTree = "<group>"; };
 		A3926F0B3090F63128C789F81242F74E /* Pods-RectangleScanner_Tests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-RectangleScanner_Tests.modulemap"; sourceTree = "<group>"; };
 		A8EDCC53C86B79FE00C3E13315BD9281 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -103,7 +103,7 @@
 		DE6F8EED232E445E6561DA343318A615 /* ImageProcessor.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ImageProcessor.swift; sourceTree = "<group>"; };
 		E10D3612CDCDA70243CBF4B7666E68C2 /* ScanError.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ScanError.swift; sourceTree = "<group>"; };
 		EA3FB70A22BEBB545D1D0EC1F483190A /* UIView+Extensions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "UIView+Extensions.swift"; sourceTree = "<group>"; };
-		F030EE836D33A7DF7BC5D15658732BE9 /* Pods_RectangleScanner_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_RectangleScanner_Tests.framework; path = "Pods-RectangleScanner_Tests.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		F030EE836D33A7DF7BC5D15658732BE9 /* Pods_RectangleScanner_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RectangleScanner_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F50F41C383863E3E7308562AF7DF26AC /* RectangleScanner-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "RectangleScanner-prefix.pch"; sourceTree = "<group>"; };
 		F696EC7C7289439D4C7D425ED2979FB8 /* Pods-RectangleScanner_Example-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-RectangleScanner_Example-dummy.m"; sourceTree = "<group>"; };
 		FD013DAF41AD373CF23BD085CE20BF8F /* CameraViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
@@ -148,6 +148,7 @@
 			isa = PBXGroup;
 			children = (
 				978D050DEE22D80131742993F9401AE8 /* UIImage+Extensions.swift */,
+				759D944C207F77A00083137F /* VNRectangleObservation+Extensions.swift */,
 				EA3FB70A22BEBB545D1D0EC1F483190A /* UIView+Extensions.swift */,
 			);
 			name = Extensions;
@@ -263,7 +264,6 @@
 		B0039E27B4B78FED7508208E24F2C351 /* Entities */ = {
 			isa = PBXGroup;
 			children = (
-				2B88E73AD65A58913CC05B5F4102EAAC /* DetectedRectangle.swift */,
 				E10D3612CDCDA70243CBF4B7666E68C2 /* ScanError.swift */,
 				DA846513D2571B5C83CA8A9404A14A93 /* ScanState.swift */,
 			);
@@ -274,8 +274,8 @@
 		B694048427524D79F2AAFF1D8564F9E1 /* Utility */ = {
 			isa = PBXGroup;
 			children = (
-				3E58B9AAB7319D127746D5D496AFEA73 /* CameraStreamProvider.swift */,
 				DE6F8EED232E445E6561DA343318A615 /* ImageProcessor.swift */,
+				3E58B9AAB7319D127746D5D496AFEA73 /* CameraStreamProvider.swift */,
 				0FB0C45072CC87F4DBE718D88BCB2D31 /* RectangleScanProvider.swift */,
 				5CF17773B8F4270AD1D5A11213475920 /* ScanRectangleViewProvider.swift */,
 			);
@@ -437,6 +437,11 @@
 			attributes = {
 				LastSwiftUpdateCheck = 0930;
 				LastUpgradeCheck = 0930;
+				TargetAttributes = {
+					3E44EE80BB9298ACAED4DF935C489D2F = {
+						LastSwiftMigration = 0930;
+					};
+				};
 			};
 			buildConfigurationList = 2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -494,11 +499,11 @@
 				EE8AE536121240B384AD3AD214D158CA /* CameraStreamProvider.swift in Sources */,
 				F18185A0CAD345DCE7A4BA27D65EFFF8 /* CameraViewController.swift in Sources */,
 				C9B882C085B9A932D5F98E3BF4ECD939 /* CameraViewController.xib in Sources */,
-				F9ADD1635DF06D3E77E720CCFB07E951 /* DetectedRectangle.swift in Sources */,
 				7467B1FCC5DE075F5340EE2F2DCB84C8 /* ImageProcessor.swift in Sources */,
 				7DF7A27DEDA324568342185F649709FD /* RectangleScanner-dummy.m in Sources */,
 				82BC7DEE9C3910B50FF82029CA7F8519 /* RectangleScanProvider.swift in Sources */,
 				B2E4C4A3A2CB8E9F6A99BC6121FF5DA0 /* ScanError.swift in Sources */,
+				759D944E207F78B30083137F /* VNRectangleObservation+Extensions.swift in Sources */,
 				05ED0CA964C299F4BD364108B263F057 /* ScanRectangleViewController.swift in Sources */,
 				1EB2E1227E96E3462A5AE7C3F1C353B8 /* ScanRectangleViewProvider.swift in Sources */,
 				844B2EAE0AA66304C9312E67D23629C2 /* ScanState.swift in Sources */,
@@ -711,6 +716,7 @@
 			baseConfigurationReference = 4CF7089D91384C9563B499A979E6D83D /* Pods-RectangleScanner_Example.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
@@ -734,6 +740,7 @@
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -813,6 +820,7 @@
 			baseConfigurationReference = BB5301E7313929D3C23B5B8A6F9C31E9 /* Pods-RectangleScanner_Example.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
@@ -837,6 +845,7 @@
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";

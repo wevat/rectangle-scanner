@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Vision
 
 @available(iOS 11.0, *)
 public class ScanRectangleViewController: CameraViewController {
@@ -18,7 +19,7 @@ public class ScanRectangleViewController: CameraViewController {
     
     private var isRectangleDetectionEnabled: Bool = true
     
-    private var highlightedRect: DetectedRectangle? {
+    private var highlightedRect: VNRectangleObservation? {
         didSet {
             guard let highlightedRect = highlightedRect else { return }
             removeSelectedRectangle()
@@ -85,20 +86,19 @@ extension ScanRectangleViewController {
             guard self?.isRectangleDetectionEnabled == true else {
                 return
             }
-            guard let previewLayer = self?.cameraStream.previewLayer else {
-                return
-            }
-            let convertedPoints = rectangle.points.map { previewLayer.layerPointConverted(fromCaptureDevicePoint: $0) }
             
-            self?.highlightedRect = DetectedRectangle(points: convertedPoints)
+            self?.highlightedRect = rectangle
         }
     }
     
-    private func updateHighlightedView(withRect rect: DetectedRectangle) {
+    private func updateHighlightedView(withRect rect: VNRectangleObservation) {
         guard self.isRectangleDetectionEnabled else {
             return
         }
-        let selectedShape = self.drawPolygon(rect.points, color: UIColor.blue)
+        guard let convertedPoints = rect.convertedPoints(from: cameraStream.previewLayer) else {
+            return
+        }
+        let selectedShape = self.drawPolygon(convertedPoints, color: UIColor.blue)
         self.selectedRectangleOutlineLayer = selectedShape
         self.cameraStreamView.layer.addSublayer(selectedShape)
     }
@@ -125,7 +125,7 @@ extension ScanRectangleViewController {
     }
     
     private func getRectToProcess() -> CGRect {
-        return highlightedRect?.joiningRect ?? cameraStreamView.frame
+        return highlightedRect?.convertedRect(from: cameraStream.previewLayer) ?? cameraStreamView.frame
     }
     
     private func shouldThrottleSettingHighlightedRect() -> Bool {
