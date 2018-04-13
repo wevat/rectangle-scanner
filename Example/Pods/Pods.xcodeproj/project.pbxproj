@@ -21,6 +21,8 @@
 		6A2972C67AEBF24FE5861D94200AAA15 /* ScanRectangleViewProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DD04DCAF76EDE549BF20E955FC0D241 /* ScanRectangleViewProvider.swift */; };
 		6FF776590E9482E6B4F20A6C946A4A6C /* VNRectangleObservation+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF1FC225EFE799DA1529A820A6BAEAE4 /* VNRectangleObservation+Extensions.swift */; };
 		71DAD5B7D790C5C44234A0B8F61D6F87 /* CameraStreamProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2236A615A247E5496B15AA20A5DD6279 /* CameraStreamProvider.swift */; };
+		75164CDC2080883600C3C5F7 /* HighlightedRectangleViewProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75164CDB2080883600C3C5F7 /* HighlightedRectangleViewProvider.swift */; };
+		75164CDE208095E400C3C5F7 /* HighlightedRectangleLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75164CDD208095E400C3C5F7 /* HighlightedRectangleLayer.swift */; };
 		75ABA5B8CC865B79C44A63D5F9E37F8F /* RectangleScanConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BDA1A1A9A94861F8E7CA2439D15612C /* RectangleScanConfiguration.swift */; };
 		81CE37512F6B907147CC585EAB763462 /* Pods-RectangleScanner_Tests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 595359F3E07CFE1FC22CF3FAC3945ACD /* Pods-RectangleScanner_Tests-dummy.m */; };
 		891842C44D81CF350D773C9583E9BBF2 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */; };
@@ -66,7 +68,7 @@
 		06AFA805EDF047F05FD185281255B5B6 /* UIView+Extensions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "UIView+Extensions.swift"; sourceTree = "<group>"; };
 		16223BFD97437FF5C310113A7FD90DEF /* Pods-RectangleScanner_Tests-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-RectangleScanner_Tests-resources.sh"; sourceTree = "<group>"; };
 		16B46DD2EA8ECD2FFC23B01E03D31823 /* VNDetectRectanglesRequest+Extensions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "VNDetectRectanglesRequest+Extensions.swift"; sourceTree = "<group>"; };
-		16BACC70CE2D7D5798398B7F2996521A /* RectangleScanner.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = RectangleScanner.framework; path = RectangleScanner.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		16BACC70CE2D7D5798398B7F2996521A /* RectangleScanner.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = RectangleScanner.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		174595578F6BF44BE7C1B365CC770B90 /* CameraViewController.xib */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file.xib; path = CameraViewController.xib; sourceTree = "<group>"; };
 		205849A09A1E0F000B3B0BB392CA4BA1 /* RectangleScanner.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = RectangleScanner.xcconfig; sourceTree = "<group>"; };
 		2236A615A247E5496B15AA20A5DD6279 /* CameraStreamProvider.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CameraStreamProvider.swift; sourceTree = "<group>"; };
@@ -85,16 +87,18 @@
 		66A355D7FAE1209CD08AC070C0070C0D /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6840460214B64D85E0D1E3929311C491 /* CameraViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
 		69D0A8949E7A1234B707059BAC6B05AF /* Pods-RectangleScanner_Tests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-RectangleScanner_Tests-acknowledgements.plist"; sourceTree = "<group>"; };
-		6A72C0D6B044BA010E79B9610A30EC39 /* CameraStreamProvider.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = CameraStreamProvider.bundle; path = "RectangleScanner-CameraStreamProvider.bundle"; sourceTree = BUILT_PRODUCTS_DIR; };
+		6A72C0D6B044BA010E79B9610A30EC39 /* CameraStreamProvider.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CameraStreamProvider.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
 		6DE9DAB115A7AC3C418492695A520FEA /* RectangleScanner.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = RectangleScanner.modulemap; sourceTree = "<group>"; };
 		704DB98C9D2081B88D1A10F6883E5018 /* ScanModes.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ScanModes.swift; sourceTree = "<group>"; };
-		7A921F93D517B0A67432FEC9957D42D1 /* Pods_RectangleScanner_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_RectangleScanner_Example.framework; path = "Pods-RectangleScanner_Example.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		75164CDB2080883600C3C5F7 /* HighlightedRectangleViewProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HighlightedRectangleViewProvider.swift; sourceTree = "<group>"; };
+		75164CDD208095E400C3C5F7 /* HighlightedRectangleLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HighlightedRectangleLayer.swift; sourceTree = "<group>"; };
+		7A921F93D517B0A67432FEC9957D42D1 /* Pods_RectangleScanner_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RectangleScanner_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7C8213FB654CCDB81C1709C81742D493 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		81BECF85D86F4356B9A3FC23A80ACB45 /* RectangleScanner-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "RectangleScanner-dummy.m"; sourceTree = "<group>"; };
 		8375556E981A5B1EB5D5D894079657FB /* ScanState.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ScanState.swift; sourceTree = "<group>"; };
 		8DC25AA08120A487E8EA23843CB6C34D /* RectangleScanProvider.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = RectangleScanProvider.swift; sourceTree = "<group>"; };
 		8F1677448C557247C7101A59DFE3DE37 /* CGRect+Extensions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "CGRect+Extensions.swift"; sourceTree = "<group>"; };
-		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		972D4C0E9962DBDDC964B5937D94B3F5 /* Pods-RectangleScanner_Example-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-RectangleScanner_Example-acknowledgements.markdown"; sourceTree = "<group>"; };
 		9B98A422734F6A33320B7917A145BAFC /* Pods-RectangleScanner_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-RectangleScanner_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		9BDA1A1A9A94861F8E7CA2439D15612C /* RectangleScanConfiguration.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = RectangleScanConfiguration.swift; sourceTree = "<group>"; };
@@ -103,19 +107,19 @@
 		A7E7D369D899A518C2ECCBC75DA0F81E /* Images.xcassets */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = RectangleScanner/Assets/Images.xcassets; sourceTree = "<group>"; };
 		AB6DEDAD47BAF735F913BCCABCBA2A32 /* Pods-RectangleScanner_Tests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-RectangleScanner_Tests-acknowledgements.markdown"; sourceTree = "<group>"; };
 		AD22CB3BADFBB85F4A316905205C7F2F /* UIImage+Extensions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "UIImage+Extensions.swift"; sourceTree = "<group>"; };
-		B75DE80DA1EB3C902A959D65990AB948 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; path = README.md; sourceTree = "<group>"; };
+		B75DE80DA1EB3C902A959D65990AB948 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		B9C3AB48462D64063A8B9151E65F479C /* Pods-RectangleScanner_Example-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-RectangleScanner_Example-umbrella.h"; sourceTree = "<group>"; };
-		BAAE3252E1B3DE0F8A37522DA41E168B /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; path = LICENSE; sourceTree = "<group>"; };
+		BAAE3252E1B3DE0F8A37522DA41E168B /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		BB5301E7313929D3C23B5B8A6F9C31E9 /* Pods-RectangleScanner_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-RectangleScanner_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		BEE5D1E0EDFFA44EB3CD3BDE5937D897 /* Pods-RectangleScanner_Tests-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-RectangleScanner_Tests-frameworks.sh"; sourceTree = "<group>"; };
 		CB155E27D0D6C981FDFF6FA55B98F518 /* RectangleScanner-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "RectangleScanner-umbrella.h"; sourceTree = "<group>"; };
 		CB692DC7F609569681A8FDAC5699EA0D /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		CD44EA4EFECFA6B6440AE7F97641ECBF /* RectangleScanner.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; path = RectangleScanner.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		CD44EA4EFECFA6B6440AE7F97641ECBF /* RectangleScanner.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; path = RectangleScanner.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		D5836060EB369EB0A7E7E7B67DE56D0C /* Pods-RectangleScanner_Tests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-RectangleScanner_Tests-umbrella.h"; sourceTree = "<group>"; };
 		DF1FC225EFE799DA1529A820A6BAEAE4 /* VNRectangleObservation+Extensions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "VNRectangleObservation+Extensions.swift"; sourceTree = "<group>"; };
 		DFEB7972981F41F1A2133C83F244EE92 /* ResourceBundle-CameraStreamProvider-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "ResourceBundle-CameraStreamProvider-Info.plist"; sourceTree = "<group>"; };
 		EE897223E8515753F06F43460C052850 /* RectanglePresets.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = RectanglePresets.swift; sourceTree = "<group>"; };
-		F030EE836D33A7DF7BC5D15658732BE9 /* Pods_RectangleScanner_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_RectangleScanner_Tests.framework; path = "Pods-RectangleScanner_Tests.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		F030EE836D33A7DF7BC5D15658732BE9 /* Pods_RectangleScanner_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RectangleScanner_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F696EC7C7289439D4C7D425ED2979FB8 /* Pods-RectangleScanner_Example-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-RectangleScanner_Example-dummy.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -322,6 +326,7 @@
 			children = (
 				EE897223E8515753F06F43460C052850 /* RectanglePresets.swift */,
 				9BDA1A1A9A94861F8E7CA2439D15612C /* RectangleScanConfiguration.swift */,
+				75164CDD208095E400C3C5F7 /* HighlightedRectangleLayer.swift */,
 				3E761E0AF2999B68D9177D79B62D648F /* ScanError.swift */,
 				704DB98C9D2081B88D1A10F6883E5018 /* ScanModes.swift */,
 				8375556E981A5B1EB5D5D894079657FB /* ScanState.swift */,
@@ -334,6 +339,7 @@
 			isa = PBXGroup;
 			children = (
 				2236A615A247E5496B15AA20A5DD6279 /* CameraStreamProvider.swift */,
+				75164CDB2080883600C3C5F7 /* HighlightedRectangleViewProvider.swift */,
 				3E3415F573BD6AB97E33BE1113F260B6 /* ImageProcessor.swift */,
 				8DC25AA08120A487E8EA23843CB6C34D /* RectangleScanProvider.swift */,
 				2DD04DCAF76EDE549BF20E955FC0D241 /* ScanRectangleViewProvider.swift */,
@@ -499,6 +505,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				71DAD5B7D790C5C44234A0B8F61D6F87 /* CameraStreamProvider.swift in Sources */,
+				75164CDE208095E400C3C5F7 /* HighlightedRectangleLayer.swift in Sources */,
 				2C3EE4C61826C6E9F16CC964AA14C512 /* CameraViewController.swift in Sources */,
 				3568F86D49A507E20EA7DDEB8FE85A90 /* CameraViewController.xib in Sources */,
 				C78F797F4CDE80D6D64B785597087AAB /* CGRect+Extensions.swift in Sources */,
@@ -516,6 +523,7 @@
 				386222C0610421BBC73646459C69E8FB /* UIView+Extensions.swift in Sources */,
 				5213B70C3BBE8011D041B329E628BCF0 /* VNDetectRectanglesRequest+Extensions.swift in Sources */,
 				6FF776590E9482E6B4F20A6C946A4A6C /* VNRectangleObservation+Extensions.swift in Sources */,
+				75164CDC2080883600C3C5F7 /* HighlightedRectangleViewProvider.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

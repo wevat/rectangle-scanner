@@ -21,9 +21,9 @@ class ViewController: UIViewController, ScanRectangleViewProvider {
 
 extension ViewController: CameraViewDelegate {
     
-    func didComplete(withCroppedImage withImage: UIImage, sender: UIViewController) {
+    func didComplete(withCroppedImage image: UIImage, sender: UIViewController) {
         sender.dismiss(animated: true) { [weak self] in
-            self?.scannedImage = withImage
+            self?.scannedImage = image
             self?.performSegue(withIdentifier: "ResultSegue", sender: nil)
         }
     }

@@ -17,5 +17,16 @@ extension CGRect {
             CGPoint(x: minX, y: maxY)
         ]
     }
+}
 
+extension Array where Element == CGPoint {
+
+    var joined: UIBezierPath {
+        let path = UIBezierPath()
+        path.move(to: self.last!)
+        self.forEach { point in
+            path.addLine(to: point)
+        }
+        return path
+    }
 }

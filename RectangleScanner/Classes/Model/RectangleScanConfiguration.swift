@@ -27,7 +27,6 @@ public struct RectangleScanConfiguration {
     var minimumConfidence: VNConfidence?
     
     
-    
     public init(scanMode: ScanMode = .autoCrop,
                 highlightedRectColor: UIColor = UIColor.blue,
                 highlightedRectUpdateThrottle: TimeInterval = 0,
@@ -44,5 +43,20 @@ public struct RectangleScanConfiguration {
         self.quadratureTolerance = quadratureTolerance
         self.minimumSize = minimumSize
         self.minimumConfidence = minimumConfidence
+    }
+    
+    public init(scanMode: ScanMode = .autoCrop,
+                highlightedRectColor: UIColor = UIColor.blue,
+                highlightedRectUpdateThrottle: TimeInterval = 0,
+                rectanglePreset: RectanglePreset = .yolo) {
+        
+        self.init(scanMode: scanMode,
+                  highlightedRectColor: highlightedRectColor,
+                  highlightedRectUpdateThrottle: highlightedRectUpdateThrottle,
+                  minimumAspectRatio: rectanglePreset.scanConfig().minimumAspectRatio,
+                  maximumAspectRatio: rectanglePreset.scanConfig().maximumAspectRatio,
+                  quadratureTolerance: rectanglePreset.scanConfig().quadratureTolerance,
+                  minimumSize: rectanglePreset.scanConfig().minimumSize,
+                  minimumConfidence: rectanglePreset.scanConfig().minimumConfidence)
     }
 }

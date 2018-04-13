@@ -20,7 +20,7 @@ public extension CameraViewDelegate {
     
     ///Default implementations, either of these is to be implemented in your camera delegate, depending on what scan mode you choose
     func didComplete(withOriginalImage: UIImage, andHighlightedPoints: [CGPoint], sender: UIViewController) {}
-    func didComplete(withCroppedImage withImage: UIImage, sender: UIViewController) {}
+    func didComplete(withCroppedImage: UIImage, sender: UIViewController) {}
 }
 
 public typealias CameraViewControllerDidLoad = ((_ viewDidLoadOn: CameraViewController) -> Void)

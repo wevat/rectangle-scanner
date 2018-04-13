@@ -13,15 +13,14 @@ public class ScanRectangleViewController: CameraViewController {
     
     var rectangleScanner: RectangleScanProvider
     
+    var highlightedRectLayer: HighlightedRectangleLayer?
     private var scanConfiguration: RectangleScanConfiguration
-    private var selectedRectangleOutlineLayer: CAShapeLayer?
     private var highlightedRectLastUpdated: Date?
     private var isRectangleDetectionEnabled: Bool = true
     
     private var highlightedRect: VNRectangleObservation? {
         didSet {
             guard let highlightedRect = highlightedRect else { return }
-            removeSelectedRectangle()
             updateHighlightedView(withRect: highlightedRect)
             highlightedRectLastUpdated = Date()
         }
@@ -70,12 +69,12 @@ public class ScanRectangleViewController: CameraViewController {
     
     override func switchValueChanged(isOn: Bool) {
         isRectangleDetectionEnabled = isOn
-        removeSelectedRectangle()
+        removeHighlightedRect()
     }
 }
 
 @available(iOS 11.0, *)
-extension ScanRectangleViewController {
+extension ScanRectangleViewController: HighlightedRectangleViewProvider {
 
     private func bindCallbacks() {
         
@@ -104,30 +103,7 @@ extension ScanRectangleViewController {
         guard let convertedPoints = rect.convertedPoints(from: cameraStream.previewLayer) else {
             return
         }
-        let selectedShape = self.drawPolygon(convertedPoints, color: scanConfiguration.highlightedRectColor)
-        self.selectedRectangleOutlineLayer = selectedShape
-        self.cameraStreamView.layer.addSublayer(selectedShape)
-    }
-    
-    private func removeSelectedRectangle() {
-        if let layer = selectedRectangleOutlineLayer {
-            layer.removeFromSuperlayer()
-            selectedRectangleOutlineLayer = nil
-        }
-    }
-    
-    private func drawPolygon(_ points: [CGPoint], color: UIColor) -> CAShapeLayer {
-        let layer = CAShapeLayer()
-        layer.strokeColor = color.withAlphaComponent(0.4).cgColor
-        layer.fillColor = color.withAlphaComponent(0.4).cgColor
-        layer.lineWidth = 0
-        let path = UIBezierPath()
-        path.move(to: points.last!)
-        points.forEach { point in
-            path.addLine(to: point)
-        }
-        layer.path = path.cgPath
-        return layer
+        updateHighlightedRect(onLayer: self.cameraStreamView.layer, fromPoints: convertedPoints, withColor: scanConfiguration.highlightedRectColor)
     }
     
     private func shouldThrottleSettingHighlightedRect() -> Bool {
