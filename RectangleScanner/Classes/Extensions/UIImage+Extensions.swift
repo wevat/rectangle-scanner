@@ -7,9 +7,9 @@
 
 import UIKit
 
-extension UIImage {
+public extension UIImage {
     
-    func cropping(toRect rect: CGRect) -> UIImage {
+    public func cropping(toRect rect: CGRect) -> UIImage {
         UIGraphicsBeginImageContextWithOptions(rect.size, false, self.scale)
         
         let context = UIGraphicsGetCurrentContext()! as CGContext

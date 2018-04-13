@@ -23,7 +23,10 @@ extension Array where Element == CGPoint {
 
     var joined: UIBezierPath {
         let path = UIBezierPath()
-        path.move(to: self.last!)
+        guard let lastPoint = self.last else {
+            return path
+        }
+        path.move(to: lastPoint)
         self.forEach { point in
             path.addLine(to: point)
         }

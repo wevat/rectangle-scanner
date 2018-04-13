@@ -10,9 +10,6 @@ import Vision
 
 public struct RectangleScanConfiguration {
     
-    ///Dictates what processing will get done to the output image
-    var scanMode: ScanMode
-    
     ///Colour of the highlighted rect on screen
     var highlightedRectColor: UIColor
     
@@ -27,15 +24,13 @@ public struct RectangleScanConfiguration {
     var minimumConfidence: VNConfidence?
     
     
-    public init(scanMode: ScanMode = .autoCrop,
-                highlightedRectColor: UIColor = UIColor.blue,
+    public init(highlightedRectColor: UIColor = UIColor.blue,
                 highlightedRectUpdateThrottle: TimeInterval = 0,
                 minimumAspectRatio: VNAspectRatio? = nil,
                 maximumAspectRatio: VNAspectRatio? = nil,
                 quadratureTolerance: VNDegrees? = nil,
                 minimumSize: Float? = nil,
                 minimumConfidence: VNConfidence? = nil) {
-        self.scanMode = scanMode
         self.highlightedRectColor = highlightedRectColor
         self.highlightedRectUpdateThrottle = highlightedRectUpdateThrottle
         self.minimumAspectRatio = minimumAspectRatio
@@ -45,13 +40,11 @@ public struct RectangleScanConfiguration {
         self.minimumConfidence = minimumConfidence
     }
     
-    public init(scanMode: ScanMode = .autoCrop,
-                highlightedRectColor: UIColor = UIColor.blue,
+    public init(highlightedRectColor: UIColor = UIColor.blue,
                 highlightedRectUpdateThrottle: TimeInterval = 0,
                 rectanglePreset: RectanglePreset = .yolo) {
         
-        self.init(scanMode: scanMode,
-                  highlightedRectColor: highlightedRectColor,
+        self.init(highlightedRectColor: highlightedRectColor,
                   highlightedRectUpdateThrottle: highlightedRectUpdateThrottle,
                   minimumAspectRatio: rectanglePreset.scanConfig().minimumAspectRatio,
                   maximumAspectRatio: rectanglePreset.scanConfig().maximumAspectRatio,

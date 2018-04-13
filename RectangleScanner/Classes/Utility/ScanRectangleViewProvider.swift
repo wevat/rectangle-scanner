@@ -11,7 +11,11 @@ public protocol ScanRectangleViewProvider: class {
     
     var canScanRectangle: Bool { get }
     
-    func startScan(parentViewController: UIViewController, delegate: CameraViewDelegate, scanConfig: RectangleScanConfiguration?, setupClosure: CameraViewControllerDidLoad?)
+    func startScan(parentViewController: UIViewController,
+                   delegate: CameraViewDelegate,
+                   scanMode: ScanMode,
+                   scanConfig: RectangleScanConfiguration?,
+                   setupClosure: ViewControllerDidLoadCallback?)
 }
 
 public extension ScanRectangleViewProvider {
@@ -24,14 +28,14 @@ public extension ScanRectangleViewProvider {
         }
     }
     
-    func startScan(parentViewController: UIViewController, delegate: CameraViewDelegate, scanConfig: RectangleScanConfiguration? = nil, setupClosure: CameraViewControllerDidLoad? = nil) {
-        let cameraOrScanView = availableViewController(delegate, scanConfig, setupClosure)
+    func startScan(parentViewController: UIViewController, delegate: CameraViewDelegate, scanMode: ScanMode = .autoCrop, scanConfig: RectangleScanConfiguration? = nil, setupClosure: ViewControllerDidLoadCallback? = nil) {
+        let cameraOrScanView = availableViewController(delegate, scanMode, scanConfig, setupClosure)
         parentViewController.present(cameraOrScanView, animated: true, completion: nil)
     }
     
-    private func availableViewController(_ delegate: CameraViewDelegate, _ scanConfig: RectangleScanConfiguration?, _ setupClosure: CameraViewControllerDidLoad?) -> UIViewController {
+    private func availableViewController(_ delegate: CameraViewDelegate, _ scanMode: ScanMode, _ scanConfig: RectangleScanConfiguration?, _ setupClosure: ViewControllerDidLoadCallback?) -> UIViewController {
         if #available(iOS 11.0, *) {
-            return ScanRectangleViewController(delegate: delegate, scanConfiguration: scanConfig, setupClosure: setupClosure)
+            return ScanRectangleViewController(delegate: delegate, scanMode: scanMode, scanConfiguration: scanConfig, setupClosure: setupClosure)
         } else {
             return CameraViewController(delegate: delegate, setupClosure: setupClosure)
         }
@@ -40,7 +44,7 @@ public extension ScanRectangleViewProvider {
 
 public extension ScanRectangleViewProvider where Self: UIViewController {
     
-    func startScan(delegate: CameraViewDelegate, scanConfig: RectangleScanConfiguration? = nil, setupClosure: CameraViewControllerDidLoad? = nil) {
-        startScan(parentViewController: self, delegate: delegate, scanConfig: scanConfig, setupClosure: setupClosure)
+    func startScan(delegate: CameraViewDelegate, scanMode: ScanMode = .autoCrop, scanConfig: RectangleScanConfiguration? = nil, setupClosure: ViewControllerDidLoadCallback? = nil) {
+        startScan(parentViewController: self, delegate: delegate, scanMode: scanMode, scanConfig: scanConfig, setupClosure: setupClosure)
     }
 }

@@ -23,8 +23,6 @@ public extension CameraViewDelegate {
     func didComplete(withCroppedImage: UIImage, sender: UIViewController) {}
 }
 
-public typealias CameraViewControllerDidLoad = ((_ viewDidLoadOn: CameraViewController) -> Void)
-
 public class CameraViewController: UIViewController {
     
     @IBOutlet var loadingView: UIView!
@@ -37,14 +35,14 @@ public class CameraViewController: UIViewController {
     
     public weak var delegate: CameraViewDelegate?
     
-    var setupClosure: CameraViewControllerDidLoad?
+    var setupClosure: ViewControllerDidLoadCallback?
     
     public init() {
         cameraStream = CameraStreamProvider()
         super.init(nibName: String(describing: CameraViewController.self), bundle: Bundle(for: type(of: self)))
     }
     
-    public convenience init(delegate: CameraViewDelegate, setupClosure: CameraViewControllerDidLoad? = nil) {
+    public convenience init(delegate: CameraViewDelegate, setupClosure: ViewControllerDidLoadCallback? = nil) {
         self.init()
         self.delegate = delegate
         self.setupClosure = setupClosure

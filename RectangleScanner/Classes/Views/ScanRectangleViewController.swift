@@ -17,6 +17,7 @@ public class ScanRectangleViewController: CameraViewController {
     private var scanConfiguration: RectangleScanConfiguration
     private var highlightedRectLastUpdated: Date?
     private var isRectangleDetectionEnabled: Bool = true
+    private var scanMode: ScanMode
     
     private var highlightedRect: VNRectangleObservation? {
         didSet {
@@ -32,17 +33,22 @@ public class ScanRectangleViewController: CameraViewController {
         }
     }
     
-    public init(delegate: CameraViewDelegate, scanConfiguration: RectangleScanConfiguration? = nil, setupClosure: CameraViewControllerDidLoad? = nil) {
+    public init(delegate: CameraViewDelegate,
+                scanMode: ScanMode = .autoCrop,
+                scanConfiguration: RectangleScanConfiguration? = nil,
+                setupClosure: ViewControllerDidLoadCallback? = nil) {
         self.scanConfiguration = scanConfiguration ?? RectangleScanConfiguration()
+        self.scanMode = scanMode
         rectangleScanner = RectangleScanProvider()
         super.init()
         self.delegate = delegate
         self.setupClosure = setupClosure
     }
-
+    
     public required init?(coder aDecoder: NSCoder) {
         rectangleScanner = RectangleScanProvider()
         scanConfiguration = RectangleScanConfiguration()
+        scanMode = .autoCrop
         super.init(coder: aDecoder)
     }
     
@@ -75,7 +81,7 @@ public class ScanRectangleViewController: CameraViewController {
 
 @available(iOS 11.0, *)
 extension ScanRectangleViewController: HighlightedRectangleViewProvider {
-
+    
     private func bindCallbacks() {
         
         cameraStream.bufferDidUpdate = {[weak self] buffer in
@@ -127,7 +133,7 @@ extension ScanRectangleViewController: HighlightedRectangleViewProvider {
                     self.finish(withImage: capturedImage)
                     return
                 }
-                switch self.scanConfiguration.scanMode {
+                switch self.scanMode {
                 case .autoCrop:
                     self.cropImageAndFinish(originalImage: capturedImage)
                 case .originalWithCropRect:
