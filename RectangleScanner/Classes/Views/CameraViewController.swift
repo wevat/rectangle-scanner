@@ -12,14 +12,14 @@ import AVFoundation
 
 public protocol CameraViewDelegate: class {
     func didComplete(withCroppedImage: UIImage, sender: UIViewController)
-    func didComplete(withOriginalImage: UIImage, andHighlightedPoints: [CGPoint], sender: UIViewController)
+    func didComplete(withOriginalImage: UIImage, andHighlightedPoints: HighlightedPoints, sender: UIViewController)
     func didTapCancel(sender: UIViewController)
 }
 
 public extension CameraViewDelegate {
     
     ///Default implementations, either of these is to be implemented in your camera delegate, depending on what scan mode you choose
-    func didComplete(withOriginalImage: UIImage, andHighlightedPoints: [CGPoint], sender: UIViewController) {}
+    func didComplete(withOriginalImage: UIImage, andHighlightedPoints: HighlightedPoints, sender: UIViewController) {}
     func didComplete(withCroppedImage: UIImage, sender: UIViewController) {}
 }
 
@@ -118,7 +118,8 @@ public class CameraViewController: UIViewController {
     }
     
     func finish(withOriginalImage image: UIImage, andHighlightedPoints points: [CGPoint]) {
-        delegate?.didComplete(withOriginalImage: image, andHighlightedPoints: points, sender: self)
+        let pointsInfo = HighlightedPoints(points: points, originView: cameraStreamView)
+        delegate?.didComplete(withOriginalImage: image, andHighlightedPoints: pointsInfo, sender: self)
     }
     
     func toggleLoading(_ loading: Bool) {

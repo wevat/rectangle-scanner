@@ -103,7 +103,7 @@ extension ScanRectangleViewController: HighlightedRectangleViewProvider {
     }
     
     private func updateHighlightedView(withRect rect: VNRectangleObservation) {
-        guard self.isRectangleDetectionEnabled else {
+        guard isRectangleDetectionEnabled, scanState != .processingRectangle else {
             return
         }
         guard let convertedPoints = rect.convertedPoints(from: cameraStream.previewLayer) else {
@@ -146,7 +146,7 @@ extension ScanRectangleViewController: HighlightedRectangleViewProvider {
     private func cropImageAndFinish(originalImage: UIImage) {
         let rectToCropTo = highlightedRect?.convertedRect(from: cameraStream.previewLayer) ?? cameraStreamView.frame
         
-        ImageProcessor.process(image: originalImage, fromViewRect: self.cameraStreamView.frame, croppingTo: rectToCropTo) { (croppedImage) in
+        ImageProcessor.process(image: originalImage, fromViewRect: self.cameraStreamView.bounds, croppingTo: rectToCropTo) { (croppedImage) in
             self.finish(withImage: croppedImage)
         }
     }
