@@ -71,6 +71,7 @@ public class CameraViewController: UIViewController {
     
     public override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
+        navigationController?.setNavigationBarHidden(false, animated: true)
         cameraStream.end()
     }
     
