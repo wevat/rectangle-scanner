@@ -10,6 +10,9 @@ import UIKit
 public extension UIImage {
     
     public func cropping(toRect rect: CGRect) -> UIImage {
+        guard size.height > 0 && size.width > 0 else {
+            return self
+        }
         UIGraphicsBeginImageContextWithOptions(rect.size, false, self.scale)
         
         let context = UIGraphicsGetCurrentContext()! as CGContext
