@@ -8,7 +8,6 @@
 import Foundation
 
 public enum RectanglePreset {
-    
     case receipt
     case yolo
 }

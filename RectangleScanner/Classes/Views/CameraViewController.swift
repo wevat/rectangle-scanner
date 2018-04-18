@@ -23,7 +23,7 @@ public extension CameraViewDelegate {
     func didComplete(withCroppedImage: UIImage, sender: UIViewController) {}
 }
 
-public class CameraViewController: UIViewController {
+open class CameraViewController: UIViewController {
     
     @IBOutlet var loadingView: UIView!
     @IBOutlet var cameraStreamView: UIView!
@@ -33,13 +33,14 @@ public class CameraViewController: UIViewController {
     
     var cameraStream: CameraStreamProvider
     
-    public weak var delegate: CameraViewDelegate?
+    open weak var delegate: CameraViewDelegate?
     
     var setupClosure: ViewControllerDidLoadCallback?
     
     public init() {
         cameraStream = CameraStreamProvider()
-        super.init(nibName: String(describing: CameraViewController.self), bundle: Bundle(for: type(of: self)))
+        
+        super.init(nibName: String(describing: CameraViewController.self), bundle: Bundle(for: CameraViewController.self))
     }
     
     public convenience init(delegate: CameraViewDelegate, setupClosure: ViewControllerDidLoadCallback? = nil) {
@@ -53,29 +54,29 @@ public class CameraViewController: UIViewController {
         super.init(coder: aDecoder)
     }
     
-    public override func viewDidLoad() {
+    open override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
         setupClosure?(self)
     }
     
-    public override func viewWillAppear(_ animated: Bool) {
+    open override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(true, animated: true)
     }
     
-    public override func viewDidAppear(_ animated: Bool) {
+    open override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         start()
     }
     
-    public override func viewWillDisappear(_ animated: Bool) {
+    open override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         navigationController?.setNavigationBarHidden(false, animated: true)
         cameraStream.end()
     }
     
-    public override var prefersStatusBarHidden: Bool {
+    open override var prefersStatusBarHidden: Bool {
         get {
             return true
         }
@@ -93,7 +94,7 @@ public class CameraViewController: UIViewController {
         switchValueChanged(isOn: sender.isOn)
     }
     
-    func takePicture() {
+    open func takePicture() {
         processImage()
     }
     

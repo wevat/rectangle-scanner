@@ -9,7 +9,7 @@ import UIKit
 import Vision
 
 @available(iOS 11.0, *)
-public class ScanRectangleViewController: CameraViewController {
+open class ScanRectangleViewController: CameraViewController {
     
     var rectangleScanner: RectangleScanProvider
     
@@ -52,7 +52,7 @@ public class ScanRectangleViewController: CameraViewController {
         super.init(coder: aDecoder)
     }
     
-    public override func viewDidLoad() {
+    open override func viewDidLoad() {
         super.viewDidLoad()
         bindCallbacks()
     }
@@ -62,6 +62,7 @@ public class ScanRectangleViewController: CameraViewController {
         rectangleScanner.setScanConfiguration(scanConfiguration)
         rectangleDetectionEnabledView.isHidden = false
         rectangleDetectionEnabledSwitch.setOn(isRectangleDetectionEnabled, animated: false)
+        takePictureButton.isHidden = !shouldShowTakePictureButton
     }
     
     override func start() {
@@ -69,7 +70,10 @@ public class ScanRectangleViewController: CameraViewController {
         scanState = .lookingForRectangle
     }
     
-    override func takePicture() {
+    override open func takePicture() {
+        guard scanState != .processingRectangle else {
+            return
+        }
         processRectangle()
     }
     
@@ -77,13 +81,21 @@ public class ScanRectangleViewController: CameraViewController {
         isRectangleDetectionEnabled = isOn
         removeHighlightedRect()
     }
-}
-
-@available(iOS 11.0, *)
-extension ScanRectangleViewController: HighlightedRectangleViewProvider {
     
-    private func bindCallbacks() {
-        
+    open func didFind(rectangle: VNRectangleObservation) {
+        guard scanState != .processingRectangle else {
+            return
+        }
+        guard isRectangleDetectionEnabled == true else {
+            return
+        }
+        guard shouldThrottleSettingHighlightedRect() == false else {
+            return
+        }
+        highlightedRect = rectangle
+    }
+    
+    open func bindCallbacks() {
         cameraStream.bufferDidUpdate = {[weak self] buffer in
             guard self?.isRectangleDetectionEnabled == true else {
                 return
@@ -92,15 +104,18 @@ extension ScanRectangleViewController: HighlightedRectangleViewProvider {
         }
         
         rectangleScanner.didFindRectangle = {[weak self] rectangle in
-            guard self?.isRectangleDetectionEnabled == true else {
-                return
-            }
-            guard self?.shouldThrottleSettingHighlightedRect() == false else {
-                return
-            }
-            self?.highlightedRect = rectangle
+            self?.didFind(rectangle: rectangle)
         }
     }
+    
+    open var shouldShowTakePictureButton: Bool {
+        return true
+    }
+    
+}
+
+@available(iOS 11.0, *)
+extension ScanRectangleViewController: HighlightedRectangleViewProvider {
     
     private func updateHighlightedView(withRect rect: VNRectangleObservation) {
         guard isRectangleDetectionEnabled, scanState != .processingRectangle else {

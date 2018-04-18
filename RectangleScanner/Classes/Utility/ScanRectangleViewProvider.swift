@@ -16,6 +16,7 @@ public protocol ScanRectangleViewProvider: class {
                    scanMode: ScanMode,
                    scanConfig: RectangleScanConfiguration?,
                    setupClosure: ViewControllerDidLoadCallback?)
+    func availableViewController(_ delegate: CameraViewDelegate, _ scanMode: ScanMode, _ scanConfig: RectangleScanConfiguration?, _ setupClosure: ViewControllerDidLoadCallback?) -> UIViewController
 }
 
 public extension ScanRectangleViewProvider {
@@ -33,7 +34,7 @@ public extension ScanRectangleViewProvider {
         parentViewController.present(cameraOrScanView, animated: true, completion: nil)
     }
     
-    private func availableViewController(_ delegate: CameraViewDelegate, _ scanMode: ScanMode, _ scanConfig: RectangleScanConfiguration?, _ setupClosure: ViewControllerDidLoadCallback?) -> UIViewController {
+    public func availableViewController(_ delegate: CameraViewDelegate, _ scanMode: ScanMode, _ scanConfig: RectangleScanConfiguration?, _ setupClosure: ViewControllerDidLoadCallback?) -> UIViewController {
         if #available(iOS 11.0, *) {
             return ScanRectangleViewController(delegate: delegate, scanMode: scanMode, scanConfiguration: scanConfig, setupClosure: setupClosure)
         } else {
