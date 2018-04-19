@@ -149,30 +149,44 @@ extension ScanRectangleViewController: HighlightedRectangleViewProvider {
                     self.scanState = .couldntFindRectangle
                     return
                 }
-                guard self.isRectangleDetectionEnabled else {
-                    self.finish(withImage: capturedImage)
-                    return
-                }
-                switch self.scanMode {
-                case .autoCrop:
-                    self.cropImageAndFinish(originalImage: capturedImage)
-                case .originalWithCropRect:
-                    self.getHighlightedPointsAndFinish(originalImage: capturedImage)
+                if self.isRectangleDetectionEnabled {
+                    self.processWithRectangleDetection(capturedImage: capturedImage)
+                } else {
+                    self.processWithCamera(capturedImage: capturedImage)
                 }
             }
         }
     }
     
-    private func cropImageAndFinish(originalImage: UIImage) {
-        let rectToCropTo = highlightedRect?.convertedRect(from: cameraStream.previewLayer) ?? cameraStreamView.frame
+    private func processWithRectangleDetection(capturedImage image: UIImage) {
+        switch self.scanMode {
+        case .autoCrop:
+            let cropRect = highlightedRect?.convertedRect(from: cameraStream.previewLayer) ?? cameraStreamView.frame
+            self.cropImageAndFinish(originalImage: image, rectToCropTo: cropRect)
+        case .originalWithCropRect:
+            let points = highlightedRect?.convertedPoints(from: cameraStream.previewLayer)
+            self.getHighlightedPointsAndFinish(originalImage: image, highlightedPoints: points)
+        }
+    }
+    
+    private func processWithCamera(capturedImage image: UIImage) {
+        switch self.scanMode {
+        case .autoCrop:
+            self.cropImageAndFinish(originalImage: image, rectToCropTo: cameraStreamView.frame)
+        case .originalWithCropRect:
+            self.getHighlightedPointsAndFinish(originalImage: image, highlightedPoints: nil)
+        }
+    }
+    
+    private func cropImageAndFinish(originalImage: UIImage, rectToCropTo: CGRect) {
         
         ImageProcessor.process(image: originalImage, fromViewRect: self.cameraStreamView.bounds, croppingTo: rectToCropTo) { (croppedImage) in
             self.finish(withImage: croppedImage)
         }
     }
     
-    private func getHighlightedPointsAndFinish(originalImage: UIImage) {
-        if let highlightedPoints = highlightedRect?.convertedPoints(from: cameraStream.previewLayer) {
+    private func getHighlightedPointsAndFinish(originalImage: UIImage, highlightedPoints: [CGPoint]?) {
+        if let highlightedPoints = highlightedPoints {
             self.finish(withOriginalImage: originalImage, andHighlightedPoints: highlightedPoints)
         } else {
             self.finish(withOriginalImage: originalImage, andHighlightedPoints: cameraStreamView.frame.cornerPoints)
