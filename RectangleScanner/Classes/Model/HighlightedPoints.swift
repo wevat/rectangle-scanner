@@ -13,20 +13,12 @@ public struct HighlightedPoints {
     public var originView: UIView
     
     public init() {
-        points = [CGPoint.zero]
+        points = []
         originView = UIView()
     }
     
     public init(points: [CGPoint], originView: UIView) {
         self.points = points
         self.originView = originView
-    }
-    
-    public mutating func convertPoints(toView view: UIView) {
-        print("Joined points before: \(points.joined.bounds)")
-        points = points.map { (point) -> CGPoint in
-            return originView.convert(point, to: view)
-        }
-        print("Joined points after: \(points.joined.bounds)")
     }
 }

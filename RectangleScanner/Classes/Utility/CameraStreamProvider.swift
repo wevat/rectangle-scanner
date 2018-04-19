@@ -115,7 +115,10 @@ class CameraStreamProvider: NSObject {
     }
     
     func setupPreviewLayer(withView view: UIView) {
-        let previewLayer = AVCaptureVideoPreviewLayer(session: captureSession!)
+        guard let captureSession = captureSession else {
+            return
+        }
+        let previewLayer = AVCaptureVideoPreviewLayer(session: captureSession)
         previewLayer.frame = view.layer.bounds
         previewLayer.videoGravity = AVLayerVideoGravity.resizeAspectFill
         previewLayer.backgroundColor = UIColor.black.cgColor

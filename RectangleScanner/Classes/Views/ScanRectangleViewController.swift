@@ -12,11 +12,11 @@ import Vision
 open class ScanRectangleViewController: CameraViewController {
     
     var rectangleScanner: RectangleScanProvider
+    public var isRectangleDetectionEnabled: Bool = true
     
     var highlightedRectLayer: HighlightedRectangleLayer?
     private var scanConfiguration: RectangleScanConfiguration
     private var highlightedRectLastUpdated: Date?
-    private var isRectangleDetectionEnabled: Bool = true
     private var scanMode: ScanMode
     
     private var highlightedRect: VNRectangleObservation? {
@@ -62,7 +62,7 @@ open class ScanRectangleViewController: CameraViewController {
         rectangleScanner.setScanConfiguration(scanConfiguration)
         rectangleDetectionEnabledView.isHidden = false
         rectangleDetectionEnabledSwitch.setOn(isRectangleDetectionEnabled, animated: false)
-        takePictureButton.isHidden = !shouldShowTakePictureButton
+        updateViewForTakePictureButton()
     }
     
     override func start() {
@@ -77,9 +77,10 @@ open class ScanRectangleViewController: CameraViewController {
         processRectangle()
     }
     
-    override func switchValueChanged(isOn: Bool) {
+    override open func switchValueChanged(isOn: Bool) {
         isRectangleDetectionEnabled = isOn
         removeHighlightedRect()
+        updateViewForTakePictureButton()
     }
     
     open func didFind(rectangle: VNRectangleObservation) {
@@ -116,6 +117,10 @@ open class ScanRectangleViewController: CameraViewController {
 
 @available(iOS 11.0, *)
 extension ScanRectangleViewController: HighlightedRectangleViewProvider {
+    
+    private func updateViewForTakePictureButton() {
+        takePictureButton.isHidden = !shouldShowTakePictureButton
+    }
     
     private func updateHighlightedView(withRect rect: VNRectangleObservation) {
         guard isRectangleDetectionEnabled, scanState != .processingRectangle else {

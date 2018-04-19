@@ -102,7 +102,7 @@ open class CameraViewController: UIViewController {
         delegate?.didTapCancel(sender: self)
     }
     
-    func switchValueChanged(isOn: Bool) {
+    open func switchValueChanged(isOn: Bool) {
     }
     
     func setupView() {
