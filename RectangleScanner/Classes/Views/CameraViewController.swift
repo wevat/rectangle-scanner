@@ -25,7 +25,6 @@ public extension CameraViewDelegate {
 
 open class CameraViewController: UIViewController {
     
-    @IBOutlet var loadingView: UIView!
     @IBOutlet var cameraStreamView: UIView!
     @IBOutlet var takePictureButton: UIButton!
     @IBOutlet var rectangleDetectionEnabledView: UIView!
@@ -107,7 +106,6 @@ open class CameraViewController: UIViewController {
     
     func setupView() {
         rectangleDetectionEnabledView.isHidden = true
-        toggleLoading(false)
     }
     
     func start() {
@@ -123,23 +121,19 @@ open class CameraViewController: UIViewController {
         let pointsInfo = HighlightedPoints(points: points, originView: cameraStreamView)
         delegate?.didComplete(withOriginalImage: image, andHighlightedPoints: pointsInfo, sender: self)
     }
-    
-    func toggleLoading(_ loading: Bool) {
-        loadingView.isHidden = !loading
-    }
 }
 
 extension CameraViewController {
     
     private func processImage() {
         cameraStream.pause(true)
-        toggleLoading(true)
+        cameraStream.animateSnapshot(withView: cameraStreamView)
+        
         DispatchQueue.main.async {
             self.cameraStream.takeSnapshot { (capturedImage) in
                 guard let capturedImage = capturedImage else {
                     return
                 }
-                self.toggleLoading(false)
                 self.finish(withImage: capturedImage)
             }
         }

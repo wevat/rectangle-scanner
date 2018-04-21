@@ -12,7 +12,7 @@ import Vision
 open class ScanRectangleViewController: CameraViewController {
     
     var rectangleScanner: RectangleScanProvider
-    public var isRectangleDetectionEnabled: Bool = true
+    open var isRectangleDetectionEnabled: Bool
     
     var highlightedRectLayer: HighlightedRectangleLayer?
     private var scanConfiguration: RectangleScanConfiguration
@@ -27,11 +27,7 @@ open class ScanRectangleViewController: CameraViewController {
         }
     }
     
-    private var scanState: ScanState = .lookingForRectangle {
-        didSet {
-            toggleLoading(scanState.isProcessing())
-        }
-    }
+    private var scanState: ScanState = .lookingForRectangle
     
     public init(delegate: CameraViewDelegate,
                 scanMode: ScanMode = .autoCrop,
@@ -40,6 +36,7 @@ open class ScanRectangleViewController: CameraViewController {
         self.scanConfiguration = scanConfiguration ?? RectangleScanConfiguration()
         self.scanMode = scanMode
         rectangleScanner = RectangleScanProvider()
+        isRectangleDetectionEnabled = true
         super.init()
         self.delegate = delegate
         self.setupClosure = setupClosure
@@ -49,6 +46,7 @@ open class ScanRectangleViewController: CameraViewController {
         rectangleScanner = RectangleScanProvider()
         scanConfiguration = RectangleScanConfiguration()
         scanMode = .autoCrop
+        isRectangleDetectionEnabled = true
         super.init(coder: aDecoder)
     }
     
@@ -142,6 +140,7 @@ extension ScanRectangleViewController: HighlightedRectangleViewProvider {
     private func processRectangle() {
         scanState = .processingRectangle
         cameraStream.pause(true)
+        cameraStream.animateSnapshot(withView: cameraStreamView)
         
         DispatchQueue.main.async {
             self.cameraStream.takeSnapshot { (capturedImage) in

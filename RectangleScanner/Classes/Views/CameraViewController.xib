@@ -13,7 +13,6 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CameraViewController" customModule="Pods_RectangleScanner_Example">
             <connections>
                 <outlet property="cameraStreamView" destination="iDr-Wq-CXp" id="MgV-YV-Lf5"/>
-                <outlet property="loadingView" destination="Ltm-fs-Wv4" id="M8m-t1-UWf"/>
                 <outlet property="rectangleDetectionEnabledSwitch" destination="4in-Ml-ZNi" id="ahi-Dq-Cvg"/>
                 <outlet property="rectangleDetectionEnabledView" destination="OA9-wv-bEn" id="tu4-ry-NEC"/>
                 <outlet property="takePictureButton" destination="Pul-Jv-1jW" id="OyS-Ae-R3g"/>
@@ -63,21 +62,6 @@
                         <constraint firstAttribute="height" constant="105" id="7NN-ac-33q"/>
                     </constraints>
                 </imageView>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ltm-fs-Wv4">
-                    <rect key="frame" x="137.5" y="283.5" width="100" height="100"/>
-                    <subviews>
-                        <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="R8k-Gz-eDq">
-                            <rect key="frame" x="31.5" y="31.5" width="37" height="37"/>
-                        </activityIndicatorView>
-                    </subviews>
-                    <color key="backgroundColor" white="0.0" alpha="0.4471853596" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    <constraints>
-                        <constraint firstItem="R8k-Gz-eDq" firstAttribute="centerX" secondItem="Ltm-fs-Wv4" secondAttribute="centerX" id="Qpi-QV-AHH"/>
-                        <constraint firstItem="R8k-Gz-eDq" firstAttribute="centerY" secondItem="Ltm-fs-Wv4" secondAttribute="centerY" id="bVY-nx-nrC"/>
-                        <constraint firstAttribute="width" constant="100" id="oY4-wh-m5v"/>
-                        <constraint firstAttribute="height" constant="100" id="u0g-og-q18"/>
-                    </constraints>
-                </view>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Pul-Jv-1jW">
                     <rect key="frame" x="147.5" y="567" width="80" height="80"/>
                     <constraints>
@@ -108,9 +92,7 @@
                 <constraint firstAttribute="trailing" secondItem="iDr-Wq-CXp" secondAttribute="trailing" id="AtT-UO-4az"/>
                 <constraint firstItem="TZz-yn-RGI" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="15" id="IAr-z5-tCu"/>
                 <constraint firstItem="Pul-Jv-1jW" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="TE0-uz-hYU"/>
-                <constraint firstItem="Ltm-fs-Wv4" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="TZf-lf-laS"/>
                 <constraint firstAttribute="bottom" secondItem="Pul-Jv-1jW" secondAttribute="bottom" constant="20" id="VJv-Qs-IG6"/>
-                <constraint firstItem="Ltm-fs-Wv4" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="W7K-HK-x7E"/>
                 <constraint firstItem="j1W-W7-SEc" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="alQ-fN-mGy"/>
                 <constraint firstItem="iDr-Wq-CXp" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="btv-wJ-tBx"/>
                 <constraint firstItem="OA9-wv-bEn" firstAttribute="centerY" secondItem="Pul-Jv-1jW" secondAttribute="centerY" id="h5r-oS-ZDe"/>

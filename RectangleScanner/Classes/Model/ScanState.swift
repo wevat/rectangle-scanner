@@ -10,22 +10,8 @@ import Foundation
 
 enum ScanState {
     case lookingForRectangle
-    case releaseRectangle
     case processingRectangle
     case couldntFindRectangle
-    
-    func description() -> String {
-        switch self {
-        case .lookingForRectangle:
-            return "Please tap and hold on the rectangle."
-        case .releaseRectangle:
-            return "Release to select rectangle"
-        case .processingRectangle:
-            return "Processing image..."
-        case .couldntFindRectangle:
-            return "Couldn't find rectangle. Please move perspective a little and try selecting again."
-        }
-    }
     
     func isProcessing() -> Bool {
         switch self {

@@ -152,6 +152,14 @@ class CameraStreamProvider: NSObject {
         }
     }
     
+    func animateSnapshot(withView view: UIView) {
+        UIView.animate(withDuration: 0.2, animations: {
+            view.alpha = 0
+        }) { (completed) in
+            view.alpha = 1
+        }
+    }
+    
     private func cropToPreviewLayer(originalImage: UIImage) -> UIImage {
         let outputRect = previewLayer!.metadataOutputRectConverted(fromLayerRect: previewLayer!.bounds)
         var cgImage = originalImage.cgImage!
