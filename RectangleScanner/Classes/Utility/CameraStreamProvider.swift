@@ -25,6 +25,7 @@ class CameraStreamProvider: NSObject {
     func start() {
         if captureSession != nil, captureSession?.isRunning == false {
             captureSession?.startRunning()
+            pause(false)
         }
     }
     
@@ -118,19 +119,23 @@ class CameraStreamProvider: NSObject {
         guard let captureSession = captureSession else {
             return
         }
-        let previewLayer = AVCaptureVideoPreviewLayer(session: captureSession)
-        previewLayer.frame = view.layer.bounds
-        previewLayer.videoGravity = AVLayerVideoGravity.resizeAspectFill
-        previewLayer.backgroundColor = UIColor.black.cgColor
-        view.layer.addSublayer(previewLayer)
+        
+        if self.previewLayer == nil {
+            let previewLayer = AVCaptureVideoPreviewLayer(session: captureSession)
+            previewLayer.frame = view.layer.bounds
+            previewLayer.videoGravity = AVLayerVideoGravity.resizeAspectFill
+            previewLayer.backgroundColor = UIColor.black.cgColor
+            view.layer.addSublayer(previewLayer)
+            self.previewLayer = previewLayer
+        }
         
         let fadeAnimation = CABasicAnimation(keyPath: "opacity")
         fadeAnimation.duration = 0.25
         fadeAnimation.fromValue = 0
         fadeAnimation.toValue = 1
+        fadeAnimation.isRemovedOnCompletion = true
         
-        previewLayer.add(fadeAnimation, forKey: "opacity")
-        self.previewLayer = previewLayer
+        self.previewLayer?.add(fadeAnimation, forKey: "opacity")
     }
     
     func takeSnapshot(_ completion: @escaping (_ result: UIImage?) -> Void) {

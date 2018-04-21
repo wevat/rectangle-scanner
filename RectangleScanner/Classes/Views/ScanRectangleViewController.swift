@@ -127,7 +127,7 @@ extension ScanRectangleViewController: HighlightedRectangleViewProvider {
         guard let convertedPoints = rect.convertedPoints(from: cameraStream.previewLayer) else {
             return
         }
-        updateHighlightedRect(onLayer: self.cameraStreamView.layer, fromPoints: convertedPoints, withColor: scanConfiguration.highlightedRectColor)
+        updateHighlightedRect(onView: self.cameraStreamView, fromPoints: convertedPoints, withColor: scanConfiguration.highlightedRectColor)
     }
     
     private func shouldThrottleSettingHighlightedRect() -> Bool {
@@ -153,6 +153,7 @@ extension ScanRectangleViewController: HighlightedRectangleViewProvider {
                 } else {
                     self.processWithCamera(capturedImage: capturedImage)
                 }
+                self.scanState = .lookingForRectangle
             }
         }
     }
