@@ -165,7 +165,7 @@ extension ScanRectangleViewController: HighlightedRectangleViewProvider {
             self.cropImageAndFinish(originalImage: image, rectToCropTo: cropRect)
         case .originalWithCropRect:
             let points = highlightedRect?.convertedPoints(from: cameraStream.previewLayer)
-            self.getHighlightedPointsAndFinish(originalImage: image, highlightedPoints: points)
+            self.finish(withOriginalImage: image, andHighlightedPoints: points)
         }
     }
     
@@ -174,7 +174,7 @@ extension ScanRectangleViewController: HighlightedRectangleViewProvider {
         case .autoCrop:
             self.cropImageAndFinish(originalImage: image, rectToCropTo: cameraStreamView.frame)
         case .originalWithCropRect:
-            self.getHighlightedPointsAndFinish(originalImage: image, highlightedPoints: nil)
+            self.finish(withOriginalImage: image, andHighlightedPoints: nil)
         }
     }
     
@@ -182,14 +182,6 @@ extension ScanRectangleViewController: HighlightedRectangleViewProvider {
         
         ImageProcessor.process(image: originalImage, fromViewRect: self.cameraStreamView.bounds, croppingTo: rectToCropTo) { (croppedImage) in
             self.finish(withImage: croppedImage)
-        }
-    }
-    
-    private func getHighlightedPointsAndFinish(originalImage: UIImage, highlightedPoints: [CGPoint]?) {
-        if let highlightedPoints = highlightedPoints {
-            self.finish(withOriginalImage: originalImage, andHighlightedPoints: highlightedPoints)
-        } else {
-            self.finish(withOriginalImage: originalImage, andHighlightedPoints: cameraStreamView.frame.cornerPoints)
         }
     }
 }

@@ -17,8 +17,12 @@ public struct HighlightedPoints {
         originView = UIView()
     }
     
-    public init(points: [CGPoint], originView: UIView) {
-        self.points = points
+    public init(points: [CGPoint]?, originView: UIView) {
+        self.points = points ?? []
         self.originView = originView
+    }
+    
+    public mutating func updatePoints(fromViewRect rect: CGRect) {
+        points = rect.cornerPoints
     }
 }

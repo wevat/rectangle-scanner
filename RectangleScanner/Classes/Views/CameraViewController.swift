@@ -117,7 +117,7 @@ open class CameraViewController: UIViewController {
         delegate?.didComplete(withCroppedImage: image, sender: self)
     }
     
-    func finish(withOriginalImage image: UIImage, andHighlightedPoints points: [CGPoint]) {
+    func finish(withOriginalImage image: UIImage, andHighlightedPoints points: [CGPoint]?) {
         let pointsInfo = HighlightedPoints(points: points, originView: cameraStreamView)
         delegate?.didComplete(withOriginalImage: image, andHighlightedPoints: pointsInfo, sender: self)
     }
