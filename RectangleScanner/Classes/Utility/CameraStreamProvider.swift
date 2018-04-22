@@ -126,16 +126,18 @@ class CameraStreamProvider: NSObject {
             previewLayer.videoGravity = AVLayerVideoGravity.resizeAspectFill
             previewLayer.backgroundColor = UIColor.black.cgColor
             view.layer.addSublayer(previewLayer)
+            
+            let fadeAnimation = CABasicAnimation(keyPath: "opacity")
+            fadeAnimation.duration = 0.25
+            fadeAnimation.fromValue = 0
+            fadeAnimation.toValue = 1
+            fadeAnimation.isRemovedOnCompletion = true
+            
+            previewLayer.add(fadeAnimation, forKey: "opacity")
             self.previewLayer = previewLayer
+        } else {
+            self.previewLayer?.frame = view.layer.bounds
         }
-        
-        let fadeAnimation = CABasicAnimation(keyPath: "opacity")
-        fadeAnimation.duration = 0.25
-        fadeAnimation.fromValue = 0
-        fadeAnimation.toValue = 1
-        fadeAnimation.isRemovedOnCompletion = true
-        
-        self.previewLayer?.add(fadeAnimation, forKey: "opacity")
     }
     
     func takeSnapshot(_ completion: @escaping (_ result: UIImage?) -> Void) {
