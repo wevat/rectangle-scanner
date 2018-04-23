@@ -18,6 +18,7 @@
 		4B8E844742A4BE0B5FEC91E48B003628 /* HighlightedRectangleViewProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3904B64CB105C2B49D39E4113D61009 /* HighlightedRectangleViewProvider.swift */; };
 		6BC6B2FFA516924DB37A3514453CDCB7 /* Typealiases.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33A0CBE5885B8F8D3A5B07D66D526072 /* Typealiases.swift */; };
 		756EFB1EB2B10BEB1D7F6ABD0AA50291 /* CameraViewController.xib in Sources */ = {isa = PBXBuildFile; fileRef = 1E85E2B24E3C6819FDB863ECECBAB5E9 /* CameraViewController.xib */; };
+		75A9F1AB208DD6C400BFF45F /* RectangleDetectionEnabledCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75A9F1AA208DD6C400BFF45F /* RectangleDetectionEnabledCache.swift */; };
 		75E356072084C08100B456C3 /* HighlightedPoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75E356062084C08100B456C3 /* HighlightedPoints.swift */; };
 		81CE37512F6B907147CC585EAB763462 /* Pods-RectangleScanner_Tests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 595359F3E07CFE1FC22CF3FAC3945ACD /* Pods-RectangleScanner_Tests-dummy.m */; };
 		85F958C35C3A647B9AE2FBA19905C8A0 /* CameraStreamProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 610F78652ECA5355C30CE2C30BB7A298 /* CameraStreamProvider.swift */; };
@@ -92,6 +93,7 @@
 		67FD8FDCC448489B712683B4A97F2D2C /* CGRect+Extensions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "CGRect+Extensions.swift"; sourceTree = "<group>"; };
 		69D0A8949E7A1234B707059BAC6B05AF /* Pods-RectangleScanner_Tests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-RectangleScanner_Tests-acknowledgements.plist"; sourceTree = "<group>"; };
 		6A72C0D6B044BA010E79B9610A30EC39 /* CameraStreamProvider.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CameraStreamProvider.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
+		75A9F1AA208DD6C400BFF45F /* RectangleDetectionEnabledCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RectangleDetectionEnabledCache.swift; sourceTree = "<group>"; };
 		75E356062084C08100B456C3 /* HighlightedPoints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = HighlightedPoints.swift; path = ../Model/HighlightedPoints.swift; sourceTree = "<group>"; };
 		7A8591F4B82270822D1FC9FBF6C2879E /* ImageProcessor.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ImageProcessor.swift; sourceTree = "<group>"; };
 		7A921F93D517B0A67432FEC9957D42D1 /* Pods_RectangleScanner_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RectangleScanner_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -164,6 +166,7 @@
 			isa = PBXGroup;
 			children = (
 				610F78652ECA5355C30CE2C30BB7A298 /* CameraStreamProvider.swift */,
+				75A9F1AA208DD6C400BFF45F /* RectangleDetectionEnabledCache.swift */,
 				D3904B64CB105C2B49D39E4113D61009 /* HighlightedRectangleViewProvider.swift */,
 				7A8591F4B82270822D1FC9FBF6C2879E /* ImageProcessor.swift */,
 				A990D52D99139E77250D72B3A49F92BD /* RectangleScanProvider.swift */,
@@ -527,6 +530,7 @@
 				450DEE4DE261CFD11E75EA72F8F1759F /* RectangleScanner-dummy.m in Sources */,
 				3ED5663494B8813FA83924AE2AD44500 /* RectangleScanProvider.swift in Sources */,
 				AAD134A06F389327BF42D4FA2F94AFB1 /* ScanError.swift in Sources */,
+				75A9F1AB208DD6C400BFF45F /* RectangleDetectionEnabledCache.swift in Sources */,
 				2C59686AA346290856CEFCD93741A56F /* ScanModes.swift in Sources */,
 				9031CD088CBBC8BC2B70714E3D803184 /* ScanRectangleViewController.swift in Sources */,
 				0498C22BFC7EA739A8B4EB34A8BCEF0D /* ScanRectangleViewProvider.swift in Sources */,

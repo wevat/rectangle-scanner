@@ -58,6 +58,7 @@ open class ScanRectangleViewController: CameraViewController {
     override func setupView() {
         super.setupView()
         rectangleScanner.setScanConfiguration(scanConfiguration)
+        isRectangleDetectionEnabled = RectangleDetectionEnabledCache.getInitialValue()
         rectangleDetectionEnabledView.isHidden = false
         rectangleDetectionEnabledSwitch.setOn(isRectangleDetectionEnabled, animated: false)
         updateViewForTakePictureButton()
@@ -76,6 +77,7 @@ open class ScanRectangleViewController: CameraViewController {
     }
     
     override open func switchValueChanged(isOn: Bool) {
+        super.switchValueChanged(isOn: isOn)
         isRectangleDetectionEnabled = isOn
         removeHighlightedRect()
         updateViewForTakePictureButton()

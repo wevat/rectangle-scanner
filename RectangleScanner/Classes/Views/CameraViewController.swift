@@ -101,11 +101,13 @@ open class CameraViewController: UIViewController {
         delegate?.didTapCancel(sender: self)
     }
     
-    open func switchValueChanged(isOn: Bool) {
+    open func switchValueChanged(isOn on: Bool) {
+        RectangleDetectionEnabledCache.set(on: on)
     }
     
     func setupView() {
         rectangleDetectionEnabledView.isHidden = true
+        
     }
     
     func start() {
