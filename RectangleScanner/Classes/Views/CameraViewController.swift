@@ -55,6 +55,7 @@ open class CameraViewController: UIViewController {
     
     open override func viewDidLoad() {
         super.viewDidLoad()
+        cameraStream.load()
         setupView()
         setupClosure?(self)
     }

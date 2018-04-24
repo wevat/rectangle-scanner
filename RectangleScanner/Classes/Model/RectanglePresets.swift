@@ -18,7 +18,8 @@ public extension RectanglePreset {
         switch self {
         case .receipt:
             return RectangleScanConfiguration(minimumAspectRatio: 0.1,
-                                              minimumSize: 0.2,
+                                              maximumAspectRatio: 0.75,
+                                              minimumSize: 0.3,
                                               minimumConfidence: 0.9)
         case .yolo:
             return RectangleScanConfiguration(minimumAspectRatio: 0,

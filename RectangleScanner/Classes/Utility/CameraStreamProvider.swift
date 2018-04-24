@@ -19,6 +19,9 @@ class CameraStreamProvider: NSObject {
     
     override init() {
         super.init()
+    }
+    
+    func load() {
         try? self.initialiseSession()
     }
     
