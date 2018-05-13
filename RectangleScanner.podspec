@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'RectangleScanner'
-  s.version          = '1.0.0-beta3'
+  s.version          = '1.0.0-beta4'
   s.summary          = 'A UIViewController with callbacks for scanning rectangles.'
 
   s.description      = <<-DESC
