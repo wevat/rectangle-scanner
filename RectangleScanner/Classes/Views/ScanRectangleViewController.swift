@@ -11,13 +11,14 @@ import Vision
 @available(iOS 11.0, *)
 open class ScanRectangleViewController: CameraViewController {
     
-    var rectangleScanner: RectangleScanProvider
     open var isRectangleDetectionEnabled: Bool
+    open var scanMode: ScanMode
     
+    var rectangleScanner: RectangleScanProvider
     var highlightedRectLayer: HighlightedRectangleLayer?
+    
     private var scanConfiguration: RectangleScanConfiguration
     private var highlightedRectLastUpdated: Date?
-    private var scanMode: ScanMode
     
     private var highlightedRect: VNRectangleObservation? {
         didSet {
@@ -30,7 +31,7 @@ open class ScanRectangleViewController: CameraViewController {
     private var scanState: ScanState = .lookingForRectangle
     
     public init(delegate: CameraViewDelegate,
-                scanMode: ScanMode = .autoCrop,
+                scanMode: ScanMode = .autoCrop(autoScan: true),
                 scanConfiguration: RectangleScanConfiguration? = nil,
                 setupClosure: ViewControllerDidLoadCallback? = nil) {
         self.scanConfiguration = scanConfiguration ?? RectangleScanConfiguration()
@@ -45,7 +46,7 @@ open class ScanRectangleViewController: CameraViewController {
     public required init?(coder aDecoder: NSCoder) {
         rectangleScanner = RectangleScanProvider()
         scanConfiguration = RectangleScanConfiguration()
-        scanMode = .autoCrop
+        scanMode = .autoCrop(autoScan: true)
         isRectangleDetectionEnabled = true
         super.init(coder: aDecoder)
     }

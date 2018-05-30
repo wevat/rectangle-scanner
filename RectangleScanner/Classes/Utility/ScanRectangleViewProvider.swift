@@ -16,7 +16,11 @@ public protocol ScanRectangleViewProvider: class {
                    scanMode: ScanMode,
                    scanConfig: RectangleScanConfiguration?,
                    setupClosure: ViewControllerDidLoadCallback?)
-    func availableViewController(_ delegate: CameraViewDelegate, _ scanMode: ScanMode, _ scanConfig: RectangleScanConfiguration?, _ setupClosure: ViewControllerDidLoadCallback?) -> UIViewController
+    
+    func availableViewController(_ delegate: CameraViewDelegate,
+                                 _ scanMode: ScanMode,
+                                 _ scanConfig: RectangleScanConfiguration?,
+                                 _ setupClosure: ViewControllerDidLoadCallback?) -> UIViewController
 }
 
 public extension ScanRectangleViewProvider {
@@ -29,7 +33,7 @@ public extension ScanRectangleViewProvider {
         }
     }
     
-    func startScan(parentViewController: UIViewController, delegate: CameraViewDelegate, scanMode: ScanMode = .autoCrop, scanConfig: RectangleScanConfiguration? = nil, setupClosure: ViewControllerDidLoadCallback? = nil) {
+    func startScan(parentViewController: UIViewController, delegate: CameraViewDelegate, scanMode: ScanMode = .autoCrop(autoScan: true), scanConfig: RectangleScanConfiguration? = nil, setupClosure: ViewControllerDidLoadCallback? = nil) {
         let cameraOrScanView = availableViewController(delegate, scanMode, scanConfig, setupClosure)
         parentViewController.present(cameraOrScanView, animated: true, completion: nil)
     }
@@ -45,7 +49,7 @@ public extension ScanRectangleViewProvider {
 
 public extension ScanRectangleViewProvider where Self: UIViewController {
     
-    func startScan(delegate: CameraViewDelegate, scanMode: ScanMode = .autoCrop, scanConfig: RectangleScanConfiguration? = nil, setupClosure: ViewControllerDidLoadCallback? = nil) {
+    func startScan(delegate: CameraViewDelegate, scanMode: ScanMode = .autoCrop(autoScan: true), scanConfig: RectangleScanConfiguration? = nil, setupClosure: ViewControllerDidLoadCallback? = nil) {
         startScan(parentViewController: self, delegate: delegate, scanMode: scanMode, scanConfig: scanConfig, setupClosure: setupClosure)
     }
 }

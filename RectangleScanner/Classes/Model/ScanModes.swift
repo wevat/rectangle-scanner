@@ -8,9 +8,10 @@
 import Foundation
 
 public enum ScanMode {
+    
     ///automatically crops the returned image based on the highlighted rect
-    case autoCrop
+    case autoCrop(autoScan: Bool)
     
     ///returns the original image, alongside an array of CGPoints so you can do the processing yourself
-    case originalWithCropRect
+    case originalWithCropRect(autoScan: Bool)
 }
