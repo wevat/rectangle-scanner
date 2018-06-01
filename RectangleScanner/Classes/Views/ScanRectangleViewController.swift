@@ -19,6 +19,7 @@ open class ScanRectangleViewController: CameraViewController {
     
     private var scanConfiguration: RectangleScanConfiguration
     private var highlightedRectLastUpdated: Date?
+    private var scanState: ScanState = .lookingForRectangle
     
     private var highlightedRect: VNRectangleObservation? {
         didSet {
@@ -27,8 +28,6 @@ open class ScanRectangleViewController: CameraViewController {
             highlightedRectLastUpdated = Date()
         }
     }
-    
-    private var scanState: ScanState = .lookingForRectangle
     
     public init(delegate: CameraViewDelegate,
                 scanMode: ScanMode = .autoCrop(autoScan: true),
@@ -114,6 +113,25 @@ open class ScanRectangleViewController: CameraViewController {
         return true
     }
     
+    open func processWithRectangleDetection(capturedImage image: UIImage) {
+        switch scanMode {
+        case .autoCrop:
+            let cropRect = highlightedRect?.convertedRect(from: cameraStream.previewLayer) ?? cameraStreamView.frame
+            cropImageAndFinish(originalImage: image, rectToCropTo: cropRect)
+        case .originalWithCropRect:
+            let points = highlightedRect?.convertedPoints(from: cameraStream.previewLayer)
+            finish(withOriginalImage: image, andHighlightedPoints: points)
+        }
+    }
+    
+    open func processWithCamera(capturedImage image: UIImage) {
+        switch self.scanMode {
+        case .autoCrop:
+            cropImageAndFinish(originalImage: image, rectToCropTo: cameraStreamView.frame)
+        case .originalWithCropRect:
+            finish(withOriginalImage: image, andHighlightedPoints: nil)
+        }
+    }
 }
 
 @available(iOS 11.0, *)
@@ -158,26 +176,6 @@ extension ScanRectangleViewController: HighlightedRectangleViewProvider {
                 }
                 self.scanState = .lookingForRectangle
             }
-        }
-    }
-    
-    private func processWithRectangleDetection(capturedImage image: UIImage) {
-        switch self.scanMode {
-        case .autoCrop:
-            let cropRect = highlightedRect?.convertedRect(from: cameraStream.previewLayer) ?? cameraStreamView.frame
-            self.cropImageAndFinish(originalImage: image, rectToCropTo: cropRect)
-        case .originalWithCropRect:
-            let points = highlightedRect?.convertedPoints(from: cameraStream.previewLayer)
-            self.finish(withOriginalImage: image, andHighlightedPoints: points)
-        }
-    }
-    
-    private func processWithCamera(capturedImage image: UIImage) {
-        switch self.scanMode {
-        case .autoCrop:
-            self.cropImageAndFinish(originalImage: image, rectToCropTo: cameraStreamView.frame)
-        case .originalWithCropRect:
-            self.finish(withOriginalImage: image, andHighlightedPoints: nil)
         }
     }
     
