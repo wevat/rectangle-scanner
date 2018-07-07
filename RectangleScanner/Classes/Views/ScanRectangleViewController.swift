@@ -8,6 +8,12 @@
 import UIKit
 import Vision
 
+public protocol ScanRectangleAnalyticsDelegate: class {
+    
+    func didComplete(withAutoScanValue: Bool)
+    func didToggleAutoScan(autoScanIsOn: Bool)
+}
+
 @available(iOS 11.0, *)
 open class ScanRectangleViewController: CameraViewController {
     
@@ -17,8 +23,11 @@ open class ScanRectangleViewController: CameraViewController {
     var rectangleScanner: RectangleScanProvider
     var highlightedRectLayer: HighlightedRectangleLayer?
     
+    private weak var analyticsDelegate: ScanRectangleAnalyticsDelegate?
+    
     private var scanConfiguration: RectangleScanConfiguration
     private var highlightedRectLastUpdated: Date?
+    private var scanState: ScanState = .lookingForRectangle
     
     private var highlightedRect: VNRectangleObservation? {
         didSet {
@@ -28,9 +37,8 @@ open class ScanRectangleViewController: CameraViewController {
         }
     }
     
-    private var scanState: ScanState = .lookingForRectangle
-    
     public init(delegate: CameraViewDelegate,
+                analyticsDelegate: ScanRectangleAnalyticsDelegate?,
                 scanMode: ScanMode = .autoCrop(autoScan: true),
                 scanConfiguration: RectangleScanConfiguration? = nil,
                 setupClosure: ViewControllerDidLoadCallback? = nil) {
@@ -40,6 +48,7 @@ open class ScanRectangleViewController: CameraViewController {
         isRectangleDetectionEnabled = true
         super.init()
         self.delegate = delegate
+        self.analyticsDelegate = analyticsDelegate
         self.setupClosure = setupClosure
     }
     
@@ -82,6 +91,7 @@ open class ScanRectangleViewController: CameraViewController {
         isRectangleDetectionEnabled = isOn
         removeHighlightedRect()
         updateViewForTakePictureButton()
+        analyticsDelegate?.didToggleAutoScan(autoScanIsOn: isOn)
     }
     
     open func didFind(rectangle: VNRectangleObservation) {
@@ -162,23 +172,25 @@ extension ScanRectangleViewController: HighlightedRectangleViewProvider {
     }
     
     private func processWithRectangleDetection(capturedImage image: UIImage) {
-        switch self.scanMode {
+        switch scanMode {
         case .autoCrop:
             let cropRect = highlightedRect?.convertedRect(from: cameraStream.previewLayer) ?? cameraStreamView.frame
-            self.cropImageAndFinish(originalImage: image, rectToCropTo: cropRect)
+            cropImageAndFinish(originalImage: image, rectToCropTo: cropRect)
         case .originalWithCropRect:
             let points = highlightedRect?.convertedPoints(from: cameraStream.previewLayer)
-            self.finish(withOriginalImage: image, andHighlightedPoints: points)
+            finish(withOriginalImage: image, andHighlightedPoints: points)
         }
+        analyticsDelegate?.didComplete(withAutoScanValue: true)
     }
     
     private func processWithCamera(capturedImage image: UIImage) {
         switch self.scanMode {
         case .autoCrop:
-            self.cropImageAndFinish(originalImage: image, rectToCropTo: cameraStreamView.frame)
+            cropImageAndFinish(originalImage: image, rectToCropTo: cameraStreamView.frame)
         case .originalWithCropRect:
-            self.finish(withOriginalImage: image, andHighlightedPoints: nil)
+            finish(withOriginalImage: image, andHighlightedPoints: nil)
         }
+        analyticsDelegate?.didComplete(withAutoScanValue: false)
     }
     
     private func cropImageAndFinish(originalImage: UIImage, rectToCropTo: CGRect) {
