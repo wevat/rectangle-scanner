@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import Vision
 import AVFoundation
 
 public protocol CameraViewDelegate: class {
