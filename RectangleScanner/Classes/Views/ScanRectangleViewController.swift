@@ -70,7 +70,7 @@ open class ScanRectangleViewController: CameraViewController {
     }
     
     override open func takePicture() {
-        guard scanState != .processingRectangle else {
+        guard scanState.scannerIsRunning() == true else {
             return
         }
         processRectangle()
@@ -84,7 +84,7 @@ open class ScanRectangleViewController: CameraViewController {
     }
     
     open func didFind(rectangle: VNRectangleObservation) {
-        guard scanState != .processingRectangle else {
+        guard scanState.scannerIsRunning() == true else {
             return
         }
         guard isRectangleDetectionEnabled == true else {
@@ -132,6 +132,15 @@ open class ScanRectangleViewController: CameraViewController {
             finish(withOriginalImage: image, andHighlightedPoints: nil)
         }
     }
+    
+    open func pauseScanner() {
+        removeHighlightedRect()
+        scanState = .waiting
+    }
+    
+    open func resumeScanner() {
+        scanState = .lookingForRectangle
+    }
 }
 
 @available(iOS 11.0, *)
@@ -142,7 +151,7 @@ extension ScanRectangleViewController: HighlightedRectangleViewProvider {
     }
     
     private func updateHighlightedView(withRect rect: VNRectangleObservation) {
-        guard isRectangleDetectionEnabled, scanState != .processingRectangle else {
+        guard isRectangleDetectionEnabled, scanState.scannerIsRunning() == true else {
             return
         }
         guard let convertedPoints = rect.convertedPoints(from: cameraStream.previewLayer) else {

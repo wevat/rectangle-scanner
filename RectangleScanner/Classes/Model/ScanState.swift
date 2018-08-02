@@ -8,17 +8,18 @@
 
 import Foundation
 
-enum ScanState {
+public enum ScanState {
+    case waiting
     case lookingForRectangle
     case processingRectangle
     case couldntFindRectangle
     
-    func isProcessing() -> Bool {
+    func scannerIsRunning() -> Bool {
         switch self {
-        case .processingRectangle:
-            return true
-        default:
+        case .processingRectangle, .waiting:
             return false
+        default:
+            return true
         }
     }
 }

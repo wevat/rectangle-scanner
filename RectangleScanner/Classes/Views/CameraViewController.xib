@@ -1,17 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14295.6" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment version="2352" identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14270.1"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CameraViewController" customModule="Pods_RectangleScanner_Example">
             <connections>
                 <outlet property="cameraStreamView" destination="iDr-Wq-CXp" id="MgV-YV-Lf5"/>
+                <outlet property="closeButton" destination="TZz-yn-RGI" id="SNP-E9-Wh1"/>
                 <outlet property="rectangleDetectionEnabledLabel" destination="H5T-bg-pvN" id="xpx-87-PAx"/>
                 <outlet property="rectangleDetectionEnabledSwitch" destination="4in-Ml-ZNi" id="ahi-Dq-Cvg"/>
                 <outlet property="rectangleDetectionEnabledView" destination="OA9-wv-bEn" id="tu4-ry-NEC"/>
@@ -64,7 +65,7 @@
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TZz-yn-RGI">
-                    <rect key="frame" x="325" y="35" width="35" height="35"/>
+                    <rect key="frame" x="325" y="32" width="35" height="35"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="35" id="8r2-Us-EcZ"/>
                         <constraint firstAttribute="width" constant="35" id="NCB-Xb-gLL"/>
@@ -77,7 +78,7 @@
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstItem="TZz-yn-RGI" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="35" id="1WE-Ta-JTf"/>
+                <constraint firstItem="TZz-yn-RGI" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="32" id="1WE-Ta-JTf"/>
                 <constraint firstAttribute="trailing" secondItem="j1W-W7-SEc" secondAttribute="trailing" id="T6u-qj-p9S"/>
                 <constraint firstItem="Pul-Jv-1jW" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="Tnv-Lp-BM9"/>
                 <constraint firstItem="iDr-Wq-CXp" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="XBA-eO-cm2"/>

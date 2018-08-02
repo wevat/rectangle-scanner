@@ -26,6 +26,7 @@ open class CameraViewController: UIViewController {
     
     @IBOutlet var cameraStreamView: UIView!
     @IBOutlet var takePictureButton: UIButton!
+    @IBOutlet var closeButton: UIButton!
     @IBOutlet var rectangleDetectionEnabledLabel: UILabel!
     @IBOutlet var rectangleDetectionEnabledView: UIView!
     @IBOutlet var rectangleDetectionEnabledSwitch: UISwitch!
@@ -98,17 +99,22 @@ open class CameraViewController: UIViewController {
         processImage()
     }
     
-    func cancelled() {
-        delegate?.didTapCancel(sender: self)
-    }
-    
     open func switchValueChanged(isOn on: Bool) {
         RectangleDetectionEnabledCache.set(on: on)
     }
     
+    open func hideCameraControls(hide: Bool) {
+        rectangleDetectionEnabledView.isHidden = hide
+        takePictureButton.isHidden = hide
+        closeButton.isHidden = hide
+    }
+    
+    func cancelled() {
+        delegate?.didTapCancel(sender: self)
+    }
+    
     func setupView() {
         rectangleDetectionEnabledView.isHidden = true
-        
     }
     
     func start() {
