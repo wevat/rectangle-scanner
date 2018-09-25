@@ -27,7 +27,7 @@ open class CameraViewController: UIViewController {
     @IBOutlet var cameraStreamView: UIView!
     @IBOutlet var takePictureButton: UIButton!
     @IBOutlet var closeButton: UIButton!
-    @IBOutlet var rectangleDetectionEnabledLabel: UILabel!
+    @IBOutlet public var rectangleDetectionEnabledLabel: UILabel!
     @IBOutlet var rectangleDetectionEnabledView: UIView!
     @IBOutlet var rectangleDetectionEnabledSwitch: UISwitch!
     
