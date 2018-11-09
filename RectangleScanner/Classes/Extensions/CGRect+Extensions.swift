@@ -7,9 +7,9 @@
 
 import Foundation
 
-extension CGRect {
+public extension CGRect {
     
-    var cornerPoints: [CGPoint] {
+    public var cornerPoints: [CGPoint] {
         return [
             CGPoint(x: minX, y: minY),
             CGPoint(x: maxX, y: minY),
@@ -19,9 +19,9 @@ extension CGRect {
     }
 }
 
-extension Array where Element == CGPoint {
+public extension Array where Element == CGPoint {
 
-    var joined: UIBezierPath {
+    public var joined: UIBezierPath {
         let path = UIBezierPath()
         guard let lastPoint = self.last else {
             return path
