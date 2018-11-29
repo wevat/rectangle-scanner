@@ -149,7 +149,8 @@ class CameraStreamProvider: NSObject {
             stillImageOutput.captureStillImageAsynchronously(from: videoConnection) {
                 (imageDataSampleBuffer, error) -> Void in
 
-                guard let imageDataSampleBuffer = imageDataSampleBuffer, let imageData = AVCaptureStillImageOutput.jpegStillImageNSDataRepresentation(imageDataSampleBuffer),
+                guard let imageDataSampleBuffer = imageDataSampleBuffer,
+                    let imageData = AVCaptureStillImageOutput.jpegStillImageNSDataRepresentation(imageDataSampleBuffer),
                     let image = UIImage(data: imageData) else {
                         completion(nil)
                         return

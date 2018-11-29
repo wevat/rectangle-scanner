@@ -172,26 +172,26 @@ extension ScanRectangleViewController: HighlightedRectangleViewProvider {
         cameraStream.pause(true)
         cameraStream.animateSnapshot(withView: cameraStreamView)
         
-        DispatchQueue.main.async {
-            self.cameraStream.takeSnapshot { (capturedImage) in
+        DispatchQueue.main.async {[weak self] in
+            self?.cameraStream.takeSnapshot {[weak self] (capturedImage) in
                 guard let capturedImage = capturedImage else {
-                    self.scanState = .couldntFindRectangle
+                    self?.scanState = .couldntFindRectangle
                     return
                 }
-                if self.isRectangleDetectionEnabled {
-                    self.processWithRectangleDetection(capturedImage: capturedImage)
+                if self?.isRectangleDetectionEnabled == true {
+                    self?.processWithRectangleDetection(capturedImage: capturedImage)
                 } else {
-                    self.processWithCamera(capturedImage: capturedImage)
+                    self?.processWithCamera(capturedImage: capturedImage)
                 }
-                self.scanState = .lookingForRectangle
+                self?.scanState = .lookingForRectangle
             }
         }
     }
     
     private func cropImageAndFinish(originalImage: UIImage, rectToCropTo: CGRect) {
         
-        ImageProcessor.process(image: originalImage, fromViewRect: self.cameraStreamView.bounds, croppingTo: rectToCropTo) { (croppedImage) in
-            self.finish(withImage: croppedImage)
+        ImageProcessor.process(image: originalImage, fromViewRect: self.cameraStreamView.bounds, croppingTo: rectToCropTo) {[weak self] (croppedImage) in
+            self?.finish(withImage: croppedImage)
         }
     }
 }

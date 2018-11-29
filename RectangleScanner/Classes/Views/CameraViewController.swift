@@ -138,12 +138,12 @@ extension CameraViewController {
         cameraStream.pause(true)
         cameraStream.animateSnapshot(withView: cameraStreamView)
         
-        DispatchQueue.main.async {
-            self.cameraStream.takeSnapshot { (capturedImage) in
+        DispatchQueue.main.async {[weak self] in
+            self?.cameraStream.takeSnapshot {[weak self] (capturedImage) in
                 guard let capturedImage = capturedImage else {
                     return
                 }
-                self.finish(withImage: capturedImage)
+                self?.finish(withImage: capturedImage)
             }
         }
     }
