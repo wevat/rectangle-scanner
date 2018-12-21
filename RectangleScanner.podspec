@@ -23,7 +23,7 @@ Our favourite is receipts, however we won't judge you based on your rectangle pr
   s.source           = { :git => 'https://github.com/wevat/rectangle-scanner.git', :tag => s.version.to_s }
 
   s.ios.deployment_target = '9.0'
-  s.swift_version = '4.0'
+  s.swift_version = '4.2'
 
   s.source_files = 'RectangleScanner/Classes/**/*'
   s.resources = 'RectangleScanner/Assets/*.xcassets'
