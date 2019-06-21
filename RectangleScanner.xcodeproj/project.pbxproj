@@ -1,0 +1,584 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		AEFED05522BCEEFB006043C5 /* RectangleScanner.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AEFED04B22BCEEFA006043C5 /* RectangleScanner.framework */; };
+		AEFED05C22BCEEFB006043C5 /* RectangleScanner.h in Headers */ = {isa = PBXBuildFile; fileRef = AEFED04E22BCEEFA006043C5 /* RectangleScanner.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		AEFED07E22BCEF79006043C5 /* UIImage+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEFED06622BCEF79006043C5 /* UIImage+Extensions.swift */; };
+		AEFED07F22BCEF79006043C5 /* VNDetectRectanglesRequest+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEFED06722BCEF79006043C5 /* VNDetectRectanglesRequest+Extensions.swift */; };
+		AEFED08022BCEF79006043C5 /* VNRectangleObservation+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEFED06822BCEF79006043C5 /* VNRectangleObservation+Extensions.swift */; };
+		AEFED08122BCEF79006043C5 /* CGRect+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEFED06922BCEF79006043C5 /* CGRect+Extensions.swift */; };
+		AEFED08222BCEF79006043C5 /* CameraViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = AEFED06B22BCEF79006043C5 /* CameraViewController.xib */; };
+		AEFED08322BCEF79006043C5 /* ScanRectangleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEFED06C22BCEF79006043C5 /* ScanRectangleViewController.swift */; };
+		AEFED08422BCEF79006043C5 /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEFED06D22BCEF79006043C5 /* CameraViewController.swift */; };
+		AEFED08522BCEF79006043C5 /* ScanError.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEFED06F22BCEF79006043C5 /* ScanError.swift */; };
+		AEFED08622BCEF79006043C5 /* RectanglePresets.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEFED07022BCEF79006043C5 /* RectanglePresets.swift */; };
+		AEFED08722BCEF79006043C5 /* ScanModes.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEFED07122BCEF79006043C5 /* ScanModes.swift */; };
+		AEFED08822BCEF79006043C5 /* ScanState.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEFED07222BCEF79006043C5 /* ScanState.swift */; };
+		AEFED08922BCEF79006043C5 /* HighlightedRectangleLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEFED07322BCEF79006043C5 /* HighlightedRectangleLayer.swift */; };
+		AEFED08A22BCEF79006043C5 /* RectangleScanConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEFED07422BCEF79006043C5 /* RectangleScanConfiguration.swift */; };
+		AEFED08B22BCEF79006043C5 /* HighlightedPoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEFED07522BCEF79006043C5 /* HighlightedPoints.swift */; };
+		AEFED08C22BCEF79006043C5 /* HighlightedRectangleViewProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEFED07722BCEF79006043C5 /* HighlightedRectangleViewProvider.swift */; };
+		AEFED08D22BCEF79006043C5 /* CameraStreamProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEFED07822BCEF79006043C5 /* CameraStreamProvider.swift */; };
+		AEFED08E22BCEF79006043C5 /* ScanRectangleViewProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEFED07922BCEF79006043C5 /* ScanRectangleViewProvider.swift */; };
+		AEFED08F22BCEF79006043C5 /* RectangleScanProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEFED07A22BCEF79006043C5 /* RectangleScanProvider.swift */; };
+		AEFED09022BCEF79006043C5 /* Typealiases.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEFED07B22BCEF79006043C5 /* Typealiases.swift */; };
+		AEFED09122BCEF79006043C5 /* ImageProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEFED07C22BCEF79006043C5 /* ImageProcessor.swift */; };
+		AEFED09222BCEF79006043C5 /* RectangleDetectionEnabledCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEFED07D22BCEF79006043C5 /* RectangleDetectionEnabledCache.swift */; };
+		AEFED09822BCEF7E006043C5 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AEFED09522BCEF7E006043C5 /* Images.xcassets */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		AEFED05622BCEEFB006043C5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = AEFED04222BCEEFA006043C5 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = AEFED04A22BCEEFA006043C5;
+			remoteInfo = RectangleScanner;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		AEFED04B22BCEEFA006043C5 /* RectangleScanner.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = RectangleScanner.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		AEFED04E22BCEEFA006043C5 /* RectangleScanner.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RectangleScanner.h; sourceTree = "<group>"; };
+		AEFED04F22BCEEFA006043C5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		AEFED05422BCEEFB006043C5 /* RectangleScannerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RectangleScannerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		AEFED06622BCEF79006043C5 /* UIImage+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+Extensions.swift"; sourceTree = "<group>"; };
+		AEFED06722BCEF79006043C5 /* VNDetectRectanglesRequest+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "VNDetectRectanglesRequest+Extensions.swift"; sourceTree = "<group>"; };
+		AEFED06822BCEF79006043C5 /* VNRectangleObservation+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "VNRectangleObservation+Extensions.swift"; sourceTree = "<group>"; };
+		AEFED06922BCEF79006043C5 /* CGRect+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGRect+Extensions.swift"; sourceTree = "<group>"; };
+		AEFED06B22BCEF79006043C5 /* CameraViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CameraViewController.xib; sourceTree = "<group>"; };
+		AEFED06C22BCEF79006043C5 /* ScanRectangleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScanRectangleViewController.swift; sourceTree = "<group>"; };
+		AEFED06D22BCEF79006043C5 /* CameraViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
+		AEFED06F22BCEF79006043C5 /* ScanError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScanError.swift; sourceTree = "<group>"; };
+		AEFED07022BCEF79006043C5 /* RectanglePresets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RectanglePresets.swift; sourceTree = "<group>"; };
+		AEFED07122BCEF79006043C5 /* ScanModes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScanModes.swift; sourceTree = "<group>"; };
+		AEFED07222BCEF79006043C5 /* ScanState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScanState.swift; sourceTree = "<group>"; };
+		AEFED07322BCEF79006043C5 /* HighlightedRectangleLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HighlightedRectangleLayer.swift; sourceTree = "<group>"; };
+		AEFED07422BCEF79006043C5 /* RectangleScanConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RectangleScanConfiguration.swift; sourceTree = "<group>"; };
+		AEFED07522BCEF79006043C5 /* HighlightedPoints.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HighlightedPoints.swift; sourceTree = "<group>"; };
+		AEFED07722BCEF79006043C5 /* HighlightedRectangleViewProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HighlightedRectangleViewProvider.swift; sourceTree = "<group>"; };
+		AEFED07822BCEF79006043C5 /* CameraStreamProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraStreamProvider.swift; sourceTree = "<group>"; };
+		AEFED07922BCEF79006043C5 /* ScanRectangleViewProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScanRectangleViewProvider.swift; sourceTree = "<group>"; };
+		AEFED07A22BCEF79006043C5 /* RectangleScanProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RectangleScanProvider.swift; sourceTree = "<group>"; };
+		AEFED07B22BCEF79006043C5 /* Typealiases.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Typealiases.swift; sourceTree = "<group>"; };
+		AEFED07C22BCEF79006043C5 /* ImageProcessor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageProcessor.swift; sourceTree = "<group>"; };
+		AEFED07D22BCEF79006043C5 /* RectangleDetectionEnabledCache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RectangleDetectionEnabledCache.swift; sourceTree = "<group>"; };
+		AEFED09522BCEF7E006043C5 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		AEFED04822BCEEFA006043C5 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AEFED05122BCEEFB006043C5 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AEFED05522BCEEFB006043C5 /* RectangleScanner.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		AEFED04122BCEEFA006043C5 = {
+			isa = PBXGroup;
+			children = (
+				AEFED04D22BCEEFA006043C5 /* RectangleScanner */,
+				AEFED04C22BCEEFA006043C5 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		AEFED04C22BCEEFA006043C5 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				AEFED04B22BCEEFA006043C5 /* RectangleScanner.framework */,
+				AEFED05422BCEEFB006043C5 /* RectangleScannerTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		AEFED04D22BCEEFA006043C5 /* RectangleScanner */ = {
+			isa = PBXGroup;
+			children = (
+				AEFED09322BCEF7E006043C5 /* Assets */,
+				AEFED06522BCEF79006043C5 /* Extensions */,
+				AEFED06E22BCEF79006043C5 /* Model */,
+				AEFED07622BCEF79006043C5 /* Utility */,
+				AEFED06A22BCEF79006043C5 /* Views */,
+				AEFED04E22BCEEFA006043C5 /* RectangleScanner.h */,
+				AEFED04F22BCEEFA006043C5 /* Info.plist */,
+			);
+			path = RectangleScanner;
+			sourceTree = "<group>";
+		};
+		AEFED06522BCEF79006043C5 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				AEFED06622BCEF79006043C5 /* UIImage+Extensions.swift */,
+				AEFED06722BCEF79006043C5 /* VNDetectRectanglesRequest+Extensions.swift */,
+				AEFED06822BCEF79006043C5 /* VNRectangleObservation+Extensions.swift */,
+				AEFED06922BCEF79006043C5 /* CGRect+Extensions.swift */,
+			);
+			name = Extensions;
+			path = Classes/Extensions;
+			sourceTree = "<group>";
+		};
+		AEFED06A22BCEF79006043C5 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				AEFED06B22BCEF79006043C5 /* CameraViewController.xib */,
+				AEFED06C22BCEF79006043C5 /* ScanRectangleViewController.swift */,
+				AEFED06D22BCEF79006043C5 /* CameraViewController.swift */,
+			);
+			name = Views;
+			path = Classes/Views;
+			sourceTree = "<group>";
+		};
+		AEFED06E22BCEF79006043C5 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				AEFED06F22BCEF79006043C5 /* ScanError.swift */,
+				AEFED07022BCEF79006043C5 /* RectanglePresets.swift */,
+				AEFED07122BCEF79006043C5 /* ScanModes.swift */,
+				AEFED07222BCEF79006043C5 /* ScanState.swift */,
+				AEFED07322BCEF79006043C5 /* HighlightedRectangleLayer.swift */,
+				AEFED07422BCEF79006043C5 /* RectangleScanConfiguration.swift */,
+				AEFED07522BCEF79006043C5 /* HighlightedPoints.swift */,
+			);
+			name = Model;
+			path = Classes/Model;
+			sourceTree = "<group>";
+		};
+		AEFED07622BCEF79006043C5 /* Utility */ = {
+			isa = PBXGroup;
+			children = (
+				AEFED07722BCEF79006043C5 /* HighlightedRectangleViewProvider.swift */,
+				AEFED07822BCEF79006043C5 /* CameraStreamProvider.swift */,
+				AEFED07922BCEF79006043C5 /* ScanRectangleViewProvider.swift */,
+				AEFED07A22BCEF79006043C5 /* RectangleScanProvider.swift */,
+				AEFED07B22BCEF79006043C5 /* Typealiases.swift */,
+				AEFED07C22BCEF79006043C5 /* ImageProcessor.swift */,
+				AEFED07D22BCEF79006043C5 /* RectangleDetectionEnabledCache.swift */,
+			);
+			name = Utility;
+			path = Classes/Utility;
+			sourceTree = "<group>";
+		};
+		AEFED09322BCEF7E006043C5 /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				AEFED09522BCEF7E006043C5 /* Images.xcassets */,
+			);
+			path = Assets;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		AEFED04622BCEEFA006043C5 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AEFED05C22BCEEFB006043C5 /* RectangleScanner.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		AEFED04A22BCEEFA006043C5 /* RectangleScanner */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = AEFED05F22BCEEFB006043C5 /* Build configuration list for PBXNativeTarget "RectangleScanner" */;
+			buildPhases = (
+				AEFED04622BCEEFA006043C5 /* Headers */,
+				AEFED04722BCEEFA006043C5 /* Sources */,
+				AEFED04822BCEEFA006043C5 /* Frameworks */,
+				AEFED04922BCEEFA006043C5 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = RectangleScanner;
+			productName = RectangleScanner;
+			productReference = AEFED04B22BCEEFA006043C5 /* RectangleScanner.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		AEFED05322BCEEFB006043C5 /* RectangleScannerTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = AEFED06222BCEEFB006043C5 /* Build configuration list for PBXNativeTarget "RectangleScannerTests" */;
+			buildPhases = (
+				AEFED05022BCEEFB006043C5 /* Sources */,
+				AEFED05122BCEEFB006043C5 /* Frameworks */,
+				AEFED05222BCEEFB006043C5 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				AEFED05722BCEEFB006043C5 /* PBXTargetDependency */,
+			);
+			name = RectangleScannerTests;
+			productName = RectangleScannerTests;
+			productReference = AEFED05422BCEEFB006043C5 /* RectangleScannerTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		AEFED04222BCEEFA006043C5 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1020;
+				LastUpgradeCheck = 1020;
+				ORGANIZATIONNAME = Wevat;
+				TargetAttributes = {
+					AEFED04A22BCEEFA006043C5 = {
+						CreatedOnToolsVersion = 10.2.1;
+					};
+					AEFED05322BCEEFB006043C5 = {
+						CreatedOnToolsVersion = 10.2.1;
+					};
+				};
+			};
+			buildConfigurationList = AEFED04522BCEEFA006043C5 /* Build configuration list for PBXProject "RectangleScanner" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = AEFED04122BCEEFA006043C5;
+			productRefGroup = AEFED04C22BCEEFA006043C5 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				AEFED04A22BCEEFA006043C5 /* RectangleScanner */,
+				AEFED05322BCEEFB006043C5 /* RectangleScannerTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		AEFED04922BCEEFA006043C5 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AEFED09822BCEF7E006043C5 /* Images.xcassets in Resources */,
+				AEFED08222BCEF79006043C5 /* CameraViewController.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AEFED05222BCEEFB006043C5 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		AEFED04722BCEEFA006043C5 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AEFED08022BCEF79006043C5 /* VNRectangleObservation+Extensions.swift in Sources */,
+				AEFED08D22BCEF79006043C5 /* CameraStreamProvider.swift in Sources */,
+				AEFED08122BCEF79006043C5 /* CGRect+Extensions.swift in Sources */,
+				AEFED08A22BCEF79006043C5 /* RectangleScanConfiguration.swift in Sources */,
+				AEFED08922BCEF79006043C5 /* HighlightedRectangleLayer.swift in Sources */,
+				AEFED08822BCEF79006043C5 /* ScanState.swift in Sources */,
+				AEFED08B22BCEF79006043C5 /* HighlightedPoints.swift in Sources */,
+				AEFED09122BCEF79006043C5 /* ImageProcessor.swift in Sources */,
+				AEFED07F22BCEF79006043C5 /* VNDetectRectanglesRequest+Extensions.swift in Sources */,
+				AEFED08322BCEF79006043C5 /* ScanRectangleViewController.swift in Sources */,
+				AEFED08722BCEF79006043C5 /* ScanModes.swift in Sources */,
+				AEFED08E22BCEF79006043C5 /* ScanRectangleViewProvider.swift in Sources */,
+				AEFED08622BCEF79006043C5 /* RectanglePresets.swift in Sources */,
+				AEFED08F22BCEF79006043C5 /* RectangleScanProvider.swift in Sources */,
+				AEFED08522BCEF79006043C5 /* ScanError.swift in Sources */,
+				AEFED09022BCEF79006043C5 /* Typealiases.swift in Sources */,
+				AEFED07E22BCEF79006043C5 /* UIImage+Extensions.swift in Sources */,
+				AEFED08422BCEF79006043C5 /* CameraViewController.swift in Sources */,
+				AEFED09222BCEF79006043C5 /* RectangleDetectionEnabledCache.swift in Sources */,
+				AEFED08C22BCEF79006043C5 /* HighlightedRectangleViewProvider.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AEFED05022BCEEFB006043C5 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		AEFED05722BCEEFB006043C5 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = AEFED04A22BCEEFA006043C5 /* RectangleScanner */;
+			targetProxy = AEFED05622BCEEFB006043C5 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		AEFED05D22BCEEFB006043C5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		AEFED05E22BCEEFB006043C5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		AEFED06022BCEEFB006043C5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = MW7MHM7DNB;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = RectangleScanner/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.wevat.RectangleScanner;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		AEFED06122BCEEFB006043C5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = MW7MHM7DNB;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = RectangleScanner/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.wevat.RectangleScanner;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		AEFED06322BCEEFB006043C5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = MW7MHM7DNB;
+				INFOPLIST_FILE = RectangleScannerTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.wevat.RectangleScannerTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		AEFED06422BCEEFB006043C5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = MW7MHM7DNB;
+				INFOPLIST_FILE = RectangleScannerTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.wevat.RectangleScannerTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		AEFED04522BCEEFA006043C5 /* Build configuration list for PBXProject "RectangleScanner" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AEFED05D22BCEEFB006043C5 /* Debug */,
+				AEFED05E22BCEEFB006043C5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		AEFED05F22BCEEFB006043C5 /* Build configuration list for PBXNativeTarget "RectangleScanner" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AEFED06022BCEEFB006043C5 /* Debug */,
+				AEFED06122BCEEFB006043C5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		AEFED06222BCEEFB006043C5 /* Build configuration list for PBXNativeTarget "RectangleScannerTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AEFED06322BCEEFB006043C5 /* Debug */,
+				AEFED06422BCEEFB006043C5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = AEFED04222BCEEFA006043C5 /* Project object */;
+}
