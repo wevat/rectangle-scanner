@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "1000"
+   LastUpgradeVersion = "1020"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -14,23 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "607FACCF1AFB9204008FA782"
-               BuildableName = "RectangleScanner_Example.app"
-               BlueprintName = "RectangleScanner_Example"
-               ReferencedContainer = "container:RectangleScanner.xcodeproj">
-            </BuildableReference>
-         </BuildActionEntry>
-         <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "YES"
-            buildForProfiling = "NO"
-            buildForArchiving = "NO"
-            buildForAnalyzing = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "607FACE41AFB9204008FA782"
-               BuildableName = "RectangleScanner_Tests.xctest"
-               BlueprintName = "RectangleScanner_Tests"
+               BlueprintIdentifier = "AEFED04A22BCEEFA006043C5"
+               BuildableName = "RectangleScanner.framework"
+               BlueprintName = "RectangleScanner"
                ReferencedContainer = "container:RectangleScanner.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -46,9 +32,9 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "607FACE41AFB9204008FA782"
-               BuildableName = "RectangleScanner_Tests.xctest"
-               BlueprintName = "RectangleScanner_Tests"
+               BlueprintIdentifier = "AEFED05322BCEEFB006043C5"
+               BuildableName = "RectangleScannerTests.xctest"
+               BlueprintName = "RectangleScannerTests"
                ReferencedContainer = "container:RectangleScanner.xcodeproj">
             </BuildableReference>
          </TestableReference>
@@ -56,9 +42,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "607FACCF1AFB9204008FA782"
-            BuildableName = "RectangleScanner_Example.app"
-            BlueprintName = "RectangleScanner_Example"
+            BlueprintIdentifier = "AEFED04A22BCEEFA006043C5"
+            BuildableName = "RectangleScanner.framework"
+            BlueprintName = "RectangleScanner"
             ReferencedContainer = "container:RectangleScanner.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -75,16 +61,15 @@
       debugDocumentVersioning = "YES"
       debugServiceExtension = "internal"
       allowLocationSimulation = "YES">
-      <BuildableProductRunnable
-         runnableDebuggingMode = "0">
+      <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "607FACCF1AFB9204008FA782"
-            BuildableName = "RectangleScanner_Example.app"
-            BlueprintName = "RectangleScanner_Example"
+            BlueprintIdentifier = "AEFED04A22BCEEFA006043C5"
+            BuildableName = "RectangleScanner.framework"
+            BlueprintName = "RectangleScanner"
             ReferencedContainer = "container:RectangleScanner.xcodeproj">
          </BuildableReference>
-      </BuildableProductRunnable>
+      </MacroExpansion>
       <AdditionalOptions>
       </AdditionalOptions>
    </LaunchAction>
@@ -94,16 +79,15 @@
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES">
-      <BuildableProductRunnable
-         runnableDebuggingMode = "0">
+      <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "607FACCF1AFB9204008FA782"
-            BuildableName = "RectangleScanner_Example.app"
-            BlueprintName = "RectangleScanner_Example"
+            BlueprintIdentifier = "AEFED04A22BCEEFA006043C5"
+            BuildableName = "RectangleScanner.framework"
+            BlueprintName = "RectangleScanner"
             ReferencedContainer = "container:RectangleScanner.xcodeproj">
          </BuildableReference>
-      </BuildableProductRunnable>
+      </MacroExpansion>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">
