@@ -14,7 +14,6 @@ Our favourite is receipts, however we don't judge you based on your rectangle pr
 [![Platform](https://img.shields.io/cocoapods/p/RectangleScanner.svg?style=flat)](http://cocoapods.org/pods/RectangleScanner)
 
 
-
 ## Example
 
 To run the example project, clone the repo, and run `pod install` from the Example directory first.
@@ -30,6 +29,13 @@ it, simply add the following line to your Podfile:
 
 ```ruby
 pod 'RectangleScanner'
+```
+
+RectangleScanner is also available through [Carthage](https://github.com/Carthage/Carthage). To install
+it, simply add the following line to your Cartfile:
+
+```ruby
+github 'wevat/rectangle-scanner'
 ```
 
 ## Author
