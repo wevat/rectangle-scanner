@@ -5,7 +5,7 @@
 //  Created by Harry Bloom on 12/04/2018.
 //
 
-import Foundation
+import UIKit
 import Vision
 
 public struct RectangleScanConfiguration {
