@@ -43,15 +43,10 @@ open class CameraViewController: UIViewController {
         let fileName = "CameraViewController"
         let pathForXib = Bundle.main.path(forResource: fileName, ofType: "xib")
 
-        print("main bundle for file \(fileName) = \(pathForXib)")
-        print("other bundle for file \(fileName) = \(Bundle(for: type(of: self)).path(forResource: fileName, ofType: "xib"))")
-
         if pathForXib != nil {
             super.init(nibName: fileName, bundle: Bundle.main)
-            print("Instantiated with main bundle")
         } else {
-            super.init(nibName: fileName, bundle: Bundle(for: type(of: self)))
-            print("Instantiated with Bundle(for: CameraViewController.self)")
+            super.init(nibName: fileName, bundle: Bundle.module)
         }
 
     }

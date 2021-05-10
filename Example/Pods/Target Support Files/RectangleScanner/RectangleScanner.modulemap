@@ -1,6 +1,0 @@
-framework module RectangleScanner {
-  umbrella header "RectangleScanner-umbrella.h"
-
-  export *
-  module * { export * }
-}
